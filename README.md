@@ -4,7 +4,7 @@ M365 Service Request Center is a compact yet feature-rich Microsoft Power Apps p
 ### **Scalability & Adaptability**
 The project inherently holds scalability, allowing adaptations and expansions according to organizational needs. However, potential users should be mindful that due to the inherent limitations of Power Apps, scalability might necessitate multiple manual configurations and adjustments. It is crucial to evaluate the expansion needs against the required manual interventions to ensure optimal functionality and user experience.
 
-## 🚀 **Project Overview**
+## 🚀 **Components**
 
 ### **Power App Application:**
 - **Home Screen:** Allows users to submit requests, view open requests, and email themselves the list of open requests.
@@ -36,22 +36,13 @@ For a detailed installation guide, refer to [Configuration & Deployment](https:/
 ## 📁 **Project Structure**
 
 M365-Service-Request-Center
-│
-├─── (Packed) Solutions --> Solution file in Zip format
-│
-├─── (Unpacked) CanvasApps
-│ └─── new_m365servicerequestcenter_afdf0_DocumentUri --> Power App unpacked source files
-│
-├─── (Unpacked) Solutions
-│ └─── Microsoft365Requests_1_0_0_0 --> Solution files
-│
-├─── Config --> XML and CSV configuration files
-│
-├─── Documents --> Documentation files including original color codes in the application, workflow graphical documentation
-│
-├─── Screenshots --> Screenshots of the application
-│
-└─── Utilities --> Deployment scripts to facilitate deployment and reduce manual work.
+(Packed) Solutions --> Solution file in Zip format
+(Unpacked) CanvasApps --> new_m365servicerequestcenter_afdf0_DocumentUri --> Power App unpacked source files
+(Unpacked) Solutions --> Microsoft365Requests_1_0_0_0 --> Solution files
+Config --> XML and CSV configuration files
+Documents --> Documentation files including original color codes in the application, workflow graphical documentation
+Screenshots --> Screenshots of the application
+Utilities --> Deployment scripts to facilitate deployment and reduce manual work.
 
 
 ## 📘 **Documentation**
