@@ -35,14 +35,13 @@ For a detailed installation guide, refer to [Configuration & Deployment](https:/
 
 ## 📁 **Project Structure**
 
-M365-Service-Request-Center
-(Packed) Solutions --> Solution file in Zip format
-(Unpacked) CanvasApps --> new_m365servicerequestcenter_afdf0_DocumentUri --> Power App unpacked source files
-(Unpacked) Solutions --> Microsoft365Requests_1_0_0_0 --> Solution files
-Config --> XML and CSV configuration files
-Documents --> Documentation files including original color codes in the application, workflow graphical documentation
-Screenshots --> Screenshots of the application
-Utilities --> Deployment scripts to facilitate deployment and reduce manual work.
+- (Packed) Solutions --> Solution file in Zip format
+- (Unpacked) CanvasApps --> new_m365servicerequestcenter_afdf0_DocumentUri --> Power App unpacked source files
+- (Unpacked) Solutions --> Microsoft365Requests_1_0_0_0 --> Solution files
+- Config --> XML and CSV configuration files
+- Documents --> Documentation files including original color codes in the application, workflow graphical documentation
+- Screenshots --> Screenshots of the application
+- Utilities --> Deployment scripts to facilitate deployment and reduce manual work.
 
 
 ## 📘 **Documentation**
