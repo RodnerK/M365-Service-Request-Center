@@ -1,0 +1,1217 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_4951d"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "08aceebe-a2da-4e9e-a4d3-afd83a221077"
+          },
+          "type": "Request",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Sendanemail(V2)_To": {
+                  "type": "string",
+                  "format": "email",
+                  "description": "Specify email addresses separated by semicolons like someone@contoso.com",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "Sendanemail(V2)_Subject": {
+                  "type": "string",
+                  "description": "Specify the subject of the mail",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "Sendanemail(V2)_Body": {
+                  "type": "string",
+                  "format": "html",
+                  "description": "Specify the body of the mail. This parameter is used as part of \"6AC82FF7-AD1B-4AB4-9589-6EF6FFEADE9A\"",
+                  "x-ms-powerflows-param-ispartial": true
+                },
+                "ParseJSON(RequestCollection)_Content": {
+                  "type": "any",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "SwitchRecordType_On": {
+                  "type": "any",
+                  "description": "Choose a value",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "ParseJSON(RequestCollection)2_Content": {
+                  "type": "any",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "ParseJSON(RequestCollection)3_Content": {
+                  "type": "any",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "ParseJSON(RequestCollection)4_Content": {
+                  "type": "any",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "ParseJSON(RequestCollection)5_Content": {
+                  "type": "any",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "ParseJSON(RequestCollection)6_Content": {
+                  "type": "any",
+                  "x-ms-powerflows-param-ispartial": false
+                }
+              },
+              "required": [
+                "Sendanemail(V2)_To",
+                "Sendanemail(V2)_Subject",
+                "Sendanemail(V2)_Body",
+                "ParseJSON(RequestCollection)_Content",
+                "SwitchRecordType_On",
+                "ParseJSON(RequestCollection)2_Content",
+                "ParseJSON(RequestCollection)3_Content",
+                "ParseJSON(RequestCollection)4_Content",
+                "ParseJSON(RequestCollection)5_Content",
+                "ParseJSON(RequestCollection)6_Content"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Init_RequestsRecords": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "7c533f43-d34c-4345-a6f7-df88e6b14211"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "RequestsRecords",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Switch_RecordType": {
+          "runAfter": {
+            "Init_RequestsRecords": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case_EnvCreation": {
+              "case": "EnvCreation",
+              "actions": {
+                "Parse_JSON_(RequestCollection)": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "c2cf22af-e877-4dac-99c8-086624e6c892"
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@triggerBody()['ParseJSON(RequestCollection)_Content']",
+                    "schema": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "Apply_to_each": {
+                  "foreach": "@body('Parse_JSON_(RequestCollection)')",
+                  "actions": {
+                    "Append_to_array_variable": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "7d9f8b23-8bdb-44ff-b0e8-752ce69993f0"
+                      },
+                      "type": "AppendToArrayVariable",
+                      "inputs": {
+                        "name": "RequestsRecords",
+                        "value": "@items('Apply_to_each')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_(RequestCollection)": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "fb249022-a95b-44b1-aabd-986cf3968b3b"
+                  },
+                  "type": "Foreach"
+                },
+                "Compose": {
+                  "runAfter": {
+                    "Create_HTML_table": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "2120b9ee-6ab8-48b5-a547-1d7ab1f52d24"
+                  },
+                  "type": "Compose",
+                  "inputs": "<style>\ntable {\n  border: 1px solid #1C6EA4;\n  background-color: #EEEEEE;\n  width: 100%;\n  text-align: right;\n  border-collapse: collapse;\n}\ntable td, table th {\n  border: 1px solid #AAAAAA;\n  padding: 3px 2px;\n}\ntable tbody td {\n  font-size: 13px;\n}\ntable thead {\n  background: #1C6EA4;\n  border-bottom: 2px solid #444444;\n}\ntable thead th {\n  font-size: 15px;\n  font-weight: bold;\n  color: #FFFFFF;\n  border-left: 2px solid #D0E4F5;\n}\ntable thead th:first-child {\n  border-left: none;\n}\n</style>\n@{body('Create_HTML_table')}"
+                },
+                "Create_HTML_table": {
+                  "runAfter": {
+                    "Apply_to_each": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "702f1f1e-88de-4667-ac6a-0721fadb2b9c"
+                  },
+                  "type": "Table",
+                  "inputs": {
+                    "from": "@variables('RequestsRecords')",
+                    "format": "HTML",
+                    "columns": [
+                      {
+                        "header": "SubmitterName",
+                        "value": "@item()?['Submitter_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "RequestorName",
+                        "value": "@item()?['Requestor_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "EnvironmentName",
+                        "value": "@item()['Environment_x0020_name']"
+                      },
+                      {
+                        "header": "EnvironmentDescription",
+                        "value": "@item()['Environment_x0020_description']"
+                      },
+                      {
+                        "header": "EnvironmentType",
+                        "value": "@item()['Environment_x0020_type']['Value']"
+                      },
+                      {
+                        "header": "BusinessCase",
+                        "value": "@item()['Business_x0020_case']"
+                      },
+                      {
+                        "header": "DataverseEnabled",
+                        "value": "@item()['Dataverse_x0020_enabled']"
+                      },
+                      {
+                        "header": "CodeComponentEnabled",
+                        "value": "@item()['Code_x0020_component_x0020_enabl']"
+                      },
+                      {
+                        "header": "RequestedDate",
+                        "value": "@if(not(empty(item()?['Requested_x0020_date'])), formatDateTime(item()?['Requested_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "CompletedDate",
+                        "value": "@if(not(empty(item()?['Completed_x0020_date'])), formatDateTime(item()?['Completed_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "RequestID",
+                        "value": "@item()['Request_x0020_ID']"
+                      },
+                      {
+                        "header": "Status",
+                        "value": "@item()['Status']['Value']"
+                      },
+                      {
+                        "header": "ApprovedBy",
+                        "value": "@item()?['Approved_x0020_by']?['DisplayName']"
+                      }
+                    ]
+                  }
+                },
+                "Send_an_email_(V2)": {
+                  "runAfter": {
+                    "Compose": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3d743c4d-2d1b-4de5-b57b-ec385cdee078"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                      "connectionName": "shared_office365",
+                      "operationId": "SendEmailV2"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "@triggerBody()['Sendanemail(V2)_To']",
+                      "emailMessage/Subject": "@triggerBody()['Sendanemail(V2)_Subject']",
+                      "emailMessage/Body": "<p><em><strong>Hello,</strong></em><br>\n<br>\nPlease find the list of your requests:<br>\n<br>\n@{outputs('Compose')}<br>\n<br>\nIf you have any questions or need further assistance, please don't hesitate to reach out.</p>"
+                    },
+                    "authentication": {
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                      "type": "Raw"
+                    }
+                  }
+                },
+                "Respond_to_a_PowerApp_or_flow": {
+                  "runAfter": {
+                    "Send_an_email_(V2)": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "5402919b-2ea2-4d0a-9c26-56c0f27390c5"
+                  },
+                  "type": "Response",
+                  "kind": "PowerApp",
+                  "inputs": {
+                    "statusCode": 200,
+                    "body": {
+                      "success": "True"
+                    },
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "title": "success",
+                          "x-ms-dynamically-added": true,
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Case_EnvDeletion": {
+              "case": "EnvDeletion",
+              "actions": {
+                "Parse_JSON_(RequestCollection)_2": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "d26abc7d-2fa8-4329-b320-4a1ef63f3c53"
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@triggerBody()['ParseJSON(RequestCollection)2_Content']",
+                    "schema": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "Apply_to_each_2": {
+                  "foreach": "@body('Parse_JSON_(RequestCollection)_2')",
+                  "actions": {
+                    "Append_to_array_variable_2": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "ca5d5ba6-ef97-462b-9cb0-e65e4c902c2d"
+                      },
+                      "type": "AppendToArrayVariable",
+                      "inputs": {
+                        "name": "RequestsRecords",
+                        "value": "@items('Apply_to_each_2')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_(RequestCollection)_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ce8a9b42-4122-41a4-9515-f1da8a6212d5"
+                  },
+                  "type": "Foreach"
+                },
+                "Create_HTML_table_2": {
+                  "runAfter": {
+                    "Apply_to_each_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "489d17ea-7e54-4cea-a063-065733a24f00"
+                  },
+                  "type": "Table",
+                  "inputs": {
+                    "from": "@variables('RequestsRecords')",
+                    "format": "HTML",
+                    "columns": [
+                      {
+                        "header": "SubmitterName",
+                        "value": "@item()?['Submitter_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "RequestorName",
+                        "value": "@item()?['Requestor_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "EnvironmentName",
+                        "value": "@item()['Environment_x0020_name_x0020__x0']?['Value']"
+                      },
+                      {
+                        "header": "BusinessCase",
+                        "value": "@item()['Business_x0020_case']"
+                      },
+                      {
+                        "header": "PlannedDeletionDate",
+                        "value": "@if(not(empty(item()?['Planned_x0020_deletion_x0020_dat'])), formatDateTime(item()?['Planned_x0020_deletion_x0020_dat'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "RequestedDate",
+                        "value": "@if(not(empty(item()?['Requested_x0020_date'])), formatDateTime(item()?['Requested_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "CompletedDate",
+                        "value": "@if(not(empty(item()?['Completed_x0020_date'])), formatDateTime(item()?['Completed_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "RequestID",
+                        "value": "@item()['Request_x0020_ID']"
+                      },
+                      {
+                        "header": "Status",
+                        "value": "@item()['Status']['Value']"
+                      },
+                      {
+                        "header": "ApprovedBy",
+                        "value": "@item()?['Approved_x0020_by']?['DisplayName']"
+                      }
+                    ]
+                  }
+                },
+                "Compose_2": {
+                  "runAfter": {
+                    "Create_HTML_table_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "014925f3-0f30-4d2d-a840-879c85d0b5c4"
+                  },
+                  "type": "Compose",
+                  "inputs": "<style>\ntable {\n  border: 1px solid #1C6EA4;\n  background-color: #EEEEEE;\n  width: 100%;\n  text-align: right;\n  border-collapse: collapse;\n}\ntable td, table th {\n  border: 1px solid #AAAAAA;\n  padding: 3px 2px;\n}\ntable tbody td {\n  font-size: 13px;\n}\ntable thead {\n  background: #1C6EA4;\n  border-bottom: 2px solid #444444;\n}\ntable thead th {\n  font-size: 15px;\n  font-weight: bold;\n  color: #FFFFFF;\n  border-left: 2px solid #D0E4F5;\n}\ntable thead th:first-child {\n  border-left: none;\n}\n</style>\n@{body('Create_HTML_table_2')}"
+                },
+                "Send_an_email_(V2)_2": {
+                  "runAfter": {
+                    "Compose_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "559a838f-d221-44d7-9a57-f8b15df1c143"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                      "connectionName": "shared_office365",
+                      "operationId": "SendEmailV2"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "@triggerBody()['Sendanemail(V2)_To']",
+                      "emailMessage/Subject": "@triggerBody()['Sendanemail(V2)_Subject']",
+                      "emailMessage/Body": "<p><em><strong>Hello,</strong></em><br>\n<br>\nPlease find the list of your requests:<br>\n<br>\n@{outputs('Compose_2')}<br>\n<br>\nIf you have any questions or need further assistance, please don't hesitate to reach out.</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": {
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                      "type": "Raw"
+                    }
+                  }
+                },
+                "Respond_to_a_PowerApp_or_flow_2": {
+                  "runAfter": {
+                    "Send_an_email_(V2)_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "1b1f469c-3518-45a5-ab60-0e7f10aeca36"
+                  },
+                  "type": "Response",
+                  "kind": "PowerApp",
+                  "inputs": {
+                    "statusCode": 200,
+                    "body": {
+                      "success": "True"
+                    },
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "title": "success",
+                          "x-ms-dynamically-added": true,
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Case_AppDeployment": {
+              "case": "AppDeployment",
+              "actions": {
+                "Parse_JSON_(RequestCollection)_3": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "2e35070d-209f-4cc6-9757-3b5ab02abd8e"
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@triggerBody()['ParseJSON(RequestCollection)3_Content']",
+                    "schema": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "Apply_to_each_3": {
+                  "foreach": "@body('Parse_JSON_(RequestCollection)_3')",
+                  "actions": {
+                    "Append_to_array_variable_3": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "24b658e1-aec4-4a3a-93c6-7b35ff118867"
+                      },
+                      "type": "AppendToArrayVariable",
+                      "inputs": {
+                        "name": "RequestsRecords",
+                        "value": "@items('Apply_to_each_3')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_(RequestCollection)_3": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "38119659-d974-4543-94d6-2fa49512dc05"
+                  },
+                  "type": "Foreach"
+                },
+                "Respond_to_a_PowerApp_or_flow_3": {
+                  "runAfter": {
+                    "Send_an_email_(V2)_3": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "c7a70f06-c16a-4d0a-a26e-ba63fef0e992"
+                  },
+                  "type": "Response",
+                  "kind": "PowerApp",
+                  "inputs": {
+                    "statusCode": 200,
+                    "body": {
+                      "success": "True"
+                    },
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "title": "success",
+                          "x-ms-dynamically-added": true,
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "Create_HTML_table_3": {
+                  "runAfter": {
+                    "Apply_to_each_3": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "2e72e67b-e531-4673-95cd-83e836ffe2ae"
+                  },
+                  "type": "Table",
+                  "inputs": {
+                    "from": "@variables('RequestsRecords')",
+                    "format": "HTML",
+                    "columns": [
+                      {
+                        "header": "SubmitterName",
+                        "value": "@item()?['Submitter_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "RequestorName",
+                        "value": "@item()?['Requestor_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "ApplicationName",
+                        "value": "@item()['Application_x0020_name']"
+                      },
+                      {
+                        "header": "ApplicationDescription",
+                        "value": "@item()['Application_x0020_description']"
+                      },
+                      {
+                        "header": "BusinessCase",
+                        "value": "@item()['Business_x0020_case']"
+                      },
+                      {
+                        "header": "PersonalData",
+                        "value": "@item()['Personal_x0020_data']"
+                      },
+                      {
+                        "header": "PlannedDeploymentDate",
+                        "value": "@if(not(empty(item()?['Planned_x0020_deployment_x0020_d'])), formatDateTime(item()?['Planned_x0020_deployment_x0020_d'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "HostingEnvironmentName",
+                        "value": "@item()['Hosting_x0020_environment_x0020_']?['Value']"
+                      },
+                      {
+                        "header": "DataverseEnabled",
+                        "value": "@item()['Dataverse_x0020_enabled']"
+                      },
+                      {
+                        "header": "DatabaseSource",
+                        "value": "@item()['Database_x0020_source']?['Value']"
+                      },
+                      {
+                        "header": "DatabaseName(s)(External)",
+                        "value": "@replace(replace(join(item()?['Database_x0020_name_x0028_s_x002'], ', '), '{\"Value\":\"', ''), '\"}', '')"
+                      },
+                      {
+                        "header": "ComplexityLevel",
+                        "value": "@item()['Complexity_x0020_level']?['Value']"
+                      },
+                      {
+                        "header": "ConnectorType(s)",
+                        "value": "@replace(replace(join(item()?['Connector_x0020_type_x0028_s_x00'], ', '), '{\"Value\":\"', ''), '\"}', '')"
+                      },
+                      {
+                        "header": "StandardConnectorName(s)",
+                        "value": "@replace(replace(join(item()?['Standard_x0020_connector_x0020_n'], ', '), '{\"Value\":\"', ''), '\"}', '')"
+                      },
+                      {
+                        "header": "PremiumConnectorName(s)",
+                        "value": "@replace(replace(join(item()?['Premium_x0020_connector_x0020_na'], ', '), '{\"Value\":\"', ''), '\"}', '')"
+                      },
+                      {
+                        "header": "CustomConnectorName(s)",
+                        "value": "@replace(replace(join(item()?['Custom_x0020_connector_x0020_nam'], ', '), '{\"Value\":\"', ''), '\"}', '')"
+                      },
+                      {
+                        "header": "RequestedDate",
+                        "value": "@if(not(empty(item()?['Requested_x0020_date'])), formatDateTime(item()?['Requested_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "CompletedDate",
+                        "value": "@if(not(empty(item()?['Completed_x0020_date'])), formatDateTime(item()?['Completed_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "RequestID",
+                        "value": "@item()['Request_x0020_ID']"
+                      },
+                      {
+                        "header": "Status",
+                        "value": "@item()['Status']['Value']"
+                      },
+                      {
+                        "header": "ApprovedBy",
+                        "value": "@item()?['Approved_x0020_by']?['DisplayName']"
+                      }
+                    ]
+                  }
+                },
+                "Compose_3": {
+                  "runAfter": {
+                    "Create_HTML_table_3": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "1ac1bf05-c293-4608-8094-f74cf33a74cc"
+                  },
+                  "type": "Compose",
+                  "inputs": "<style>\ntable {\n  border: 1px solid #1C6EA4;\n  background-color: #EEEEEE;\n  width: 100%;\n  text-align: right;\n  border-collapse: collapse;\n}\ntable td, table th {\n  border: 1px solid #AAAAAA;\n  padding: 3px 2px;\n}\ntable tbody td {\n  font-size: 13px;\n}\ntable thead {\n  background: #1C6EA4;\n  border-bottom: 2px solid #444444;\n}\ntable thead th {\n  font-size: 15px;\n  font-weight: bold;\n  color: #FFFFFF;\n  border-left: 2px solid #D0E4F5;\n}\ntable thead th:first-child {\n  border-left: none;\n}\n</style>\n@{body('Create_HTML_table_3')}"
+                },
+                "Send_an_email_(V2)_3": {
+                  "runAfter": {
+                    "Compose_3": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "32e19134-90a4-4338-8ea6-65e87d79a694"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                      "connectionName": "shared_office365",
+                      "operationId": "SendEmailV2"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "@triggerBody()['Sendanemail(V2)_To']",
+                      "emailMessage/Subject": "@triggerBody()['Sendanemail(V2)_Subject']",
+                      "emailMessage/Body": "<p><em><strong>Hello,</strong></em><br>\n<br>\nPlease find the list of your requests:<br>\n<br>\n@{outputs('Compose_3')}<br>\n<br>\nIf you have any questions or need further assistance, please don't hesitate to reach out.</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": {
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                      "type": "Raw"
+                    }
+                  }
+                }
+              }
+            },
+            "Case_AppDeletion": {
+              "case": "AppDeletion",
+              "actions": {
+                "Parse_JSON_(RequestCollection)_4": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "3a446f8c-3ca9-4bb8-8a96-1315f51da00f"
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@triggerBody()['ParseJSON(RequestCollection)4_Content']",
+                    "schema": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "Apply_to_each_4": {
+                  "foreach": "@body('Parse_JSON_(RequestCollection)_4')",
+                  "actions": {
+                    "Append_to_array_variable_4": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "5d21ff6c-6828-4651-a988-33a35baef9fd"
+                      },
+                      "type": "AppendToArrayVariable",
+                      "inputs": {
+                        "name": "RequestsRecords",
+                        "value": "@items('Apply_to_each_4')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_(RequestCollection)_4": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "9921e17d-05ee-44ba-9340-714df56cd3b3"
+                  },
+                  "type": "Foreach"
+                },
+                "Create_HTML_table_4": {
+                  "runAfter": {
+                    "Apply_to_each_4": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "5899659f-b996-4e37-8ed9-f4deec1acbbc"
+                  },
+                  "type": "Table",
+                  "inputs": {
+                    "from": "@variables('RequestsRecords')",
+                    "format": "HTML",
+                    "columns": [
+                      {
+                        "header": "SubmitterName",
+                        "value": "@item()?['Submitter_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "RequestorName",
+                        "value": "@item()?['Requestor_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "ApplicationName",
+                        "value": "@item()['Application_x0020_name']"
+                      },
+                      {
+                        "header": "HostingEnvironmentName",
+                        "value": "@item()['Hosting_x0020_environment_x0020_']?['Value']"
+                      },
+                      {
+                        "header": "BusinessCase",
+                        "value": "@item()['Business_x0020_case']"
+                      },
+                      {
+                        "header": "PlannedDeletionDate",
+                        "value": "@if(not(empty(item()?['Planned_x0020_deletion_x0020_dat'])), formatDateTime(item()?['Planned_x0020_deletion_x0020_dat'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "RequestedDate",
+                        "value": "@if(not(empty(item()?['Requested_x0020_date'])), formatDateTime(item()?['Requested_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "CompletedDate",
+                        "value": "@if(not(empty(item()?['Completed_x0020_date'])), formatDateTime(item()?['Completed_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "RequestID",
+                        "value": "@item()['Request_x0020_ID']"
+                      },
+                      {
+                        "header": "Status",
+                        "value": "@item()['Status']['Value']"
+                      },
+                      {
+                        "header": "ApprovedBy",
+                        "value": "@item()?['Approved_x0020_by']?['DisplayName']"
+                      }
+                    ]
+                  }
+                },
+                "Compose_4": {
+                  "runAfter": {
+                    "Create_HTML_table_4": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "35ab2a9b-8f79-4084-b9d9-241fb06fbbf6"
+                  },
+                  "type": "Compose",
+                  "inputs": "<style>\ntable {\n  border: 1px solid #1C6EA4;\n  background-color: #EEEEEE;\n  width: 100%;\n  text-align: right;\n  border-collapse: collapse;\n}\ntable td, table th {\n  border: 1px solid #AAAAAA;\n  padding: 3px 2px;\n}\ntable tbody td {\n  font-size: 13px;\n}\ntable thead {\n  background: #1C6EA4;\n  border-bottom: 2px solid #444444;\n}\ntable thead th {\n  font-size: 15px;\n  font-weight: bold;\n  color: #FFFFFF;\n  border-left: 2px solid #D0E4F5;\n}\ntable thead th:first-child {\n  border-left: none;\n}\n</style>\n@{body('Create_HTML_table_4')}"
+                },
+                "Send_an_email_(V2)_4": {
+                  "runAfter": {
+                    "Compose_4": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "90ffd827-c9f6-40cd-ad32-4fa184dd7bfa"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                      "connectionName": "shared_office365",
+                      "operationId": "SendEmailV2"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "@triggerBody()['Sendanemail(V2)_To']",
+                      "emailMessage/Subject": "@triggerBody()['Sendanemail(V2)_Subject']",
+                      "emailMessage/Body": "<p><em><strong>Hello,</strong></em><br>\n<br>\nPlease find the list of your requests:<br>\n<br>\n@{outputs('Compose_4')}<br>\n<br>\nIf you have any questions or need further assistance, please don't hesitate to reach out.</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": {
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                      "type": "Raw"
+                    }
+                  }
+                },
+                "Respond_to_a_PowerApp_or_flow_4": {
+                  "runAfter": {
+                    "Send_an_email_(V2)_4": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "b82425bb-e1ce-4cae-a8d9-9da0e6d207a0"
+                  },
+                  "type": "Response",
+                  "kind": "PowerApp",
+                  "inputs": {
+                    "statusCode": 200,
+                    "body": {
+                      "success": "True"
+                    },
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "title": "success",
+                          "x-ms-dynamically-added": true,
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Case_GroupCreation": {
+              "case": "GroupCreation",
+              "actions": {
+                "Parse_JSON_(RequestCollection)_5": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "2537170e-aec4-4868-af31-3e06ae0bc113"
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@triggerBody()['ParseJSON(RequestCollection)5_Content']",
+                    "schema": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "Apply_to_each_5": {
+                  "foreach": "@body('Parse_JSON_(RequestCollection)_5')",
+                  "actions": {
+                    "Append_to_array_variable_5": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "6c673108-19a1-432c-ae40-ce91a47c4746"
+                      },
+                      "type": "AppendToArrayVariable",
+                      "inputs": {
+                        "name": "RequestsRecords",
+                        "value": "@items('Apply_to_each_5')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_(RequestCollection)_5": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "d20f952b-03f2-42f0-9cc7-58e34571ffd9"
+                  },
+                  "type": "Foreach"
+                },
+                "Create_HTML_table_5": {
+                  "runAfter": {
+                    "Apply_to_each_5": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "e931f504-ee0f-43ea-ba38-182f88290f82"
+                  },
+                  "type": "Table",
+                  "inputs": {
+                    "from": "@variables('RequestsRecords')",
+                    "format": "HTML",
+                    "columns": [
+                      {
+                        "header": "SubmitterName",
+                        "value": "@item()?['Submitter_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "RequestorName",
+                        "value": "@item()?['Requestor_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "GroupName",
+                        "value": "@item()['Group_x0020_name']"
+                      },
+                      {
+                        "header": "GroupOnwer(s)",
+                        "value": "@item()['Group_x0020_owner_x0028_s_x0029_']?['DisplayName']"
+                      },
+                      {
+                        "header": "BusinessCase",
+                        "value": "@item()['Business_x0020_case']"
+                      },
+                      {
+                        "header": "AddToTeams",
+                        "value": "@item()['Add_x0020_to_x0020_Teams']"
+                      },
+                      {
+                        "header": "RequestedDate",
+                        "value": "@if(not(empty(item()?['Requested_x0020_date'])), formatDateTime(item()?['Requested_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "CompletedDate",
+                        "value": "@if(not(empty(item()?['Completed_x0020_date'])), formatDateTime(item()?['Completed_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "RequestID",
+                        "value": "@item()['Request_x0020_ID']"
+                      },
+                      {
+                        "header": "Status",
+                        "value": "@item()['Status']['Value']"
+                      },
+                      {
+                        "header": "ApprovedBy",
+                        "value": "@item()?['Approved_x0020_by']?['DisplayName']"
+                      }
+                    ]
+                  }
+                },
+                "Compose_5": {
+                  "runAfter": {
+                    "Create_HTML_table_5": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3b650e1c-57fe-47bb-91f0-7318020ab438"
+                  },
+                  "type": "Compose",
+                  "inputs": "<style>\ntable {\n  border: 1px solid #1C6EA4;\n  background-color: #EEEEEE;\n  width: 100%;\n  text-align: right;\n  border-collapse: collapse;\n}\ntable td, table th {\n  border: 1px solid #AAAAAA;\n  padding: 3px 2px;\n}\ntable tbody td {\n  font-size: 13px;\n}\ntable thead {\n  background: #1C6EA4;\n  border-bottom: 2px solid #444444;\n}\ntable thead th {\n  font-size: 15px;\n  font-weight: bold;\n  color: #FFFFFF;\n  border-left: 2px solid #D0E4F5;\n}\ntable thead th:first-child {\n  border-left: none;\n}\n</style>\n@{body('Create_HTML_table_5')}"
+                },
+                "Send_an_email_(V2)_5": {
+                  "runAfter": {
+                    "Compose_5": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "a5c2231a-1c20-47a6-ae5d-4237e7e62f91"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                      "connectionName": "shared_office365",
+                      "operationId": "SendEmailV2"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "@triggerBody()['Sendanemail(V2)_To']",
+                      "emailMessage/Subject": "@triggerBody()['Sendanemail(V2)_Subject']",
+                      "emailMessage/Body": "<p><em><strong>Hello,</strong></em><br>\n<br>\nPlease find the list of your requests:<br>\n<br>\n@{outputs('Compose_5')}<br>\n<br>\nIf you have any questions or need further assistance, please don't hesitate to reach out.</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": {
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                      "type": "Raw"
+                    }
+                  }
+                },
+                "Respond_to_a_PowerApp_or_flow_5": {
+                  "runAfter": {
+                    "Send_an_email_(V2)_5": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "7630d79c-26c2-4ed4-be60-0141c61fefc6"
+                  },
+                  "type": "Response",
+                  "kind": "PowerApp",
+                  "inputs": {
+                    "statusCode": 200,
+                    "body": {
+                      "success": "True"
+                    },
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "title": "success",
+                          "x-ms-dynamically-added": true,
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Case_GroupDeletion": {
+              "case": "GroupDeletion",
+              "actions": {
+                "Parse_JSON_(RequestCollection)_6": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "4adee92b-95c8-4fcf-8481-bc1efacd3830"
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@triggerBody()['ParseJSON(RequestCollection)6_Content']",
+                    "schema": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "Apply_to_each_6": {
+                  "foreach": "@body('Parse_JSON_(RequestCollection)_6')",
+                  "actions": {
+                    "Append_to_array_variable_6": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "152e3c25-d8f6-4d5f-8a88-2a453badec15"
+                      },
+                      "type": "AppendToArrayVariable",
+                      "inputs": {
+                        "name": "RequestsRecords",
+                        "value": "@items('Apply_to_each_6')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_(RequestCollection)_6": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "f678a91e-c6f7-4a50-83c7-f2f9f75c27bc"
+                  },
+                  "type": "Foreach"
+                },
+                "Create_HTML_table_6": {
+                  "runAfter": {
+                    "Apply_to_each_6": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "b05ec3d1-5100-492f-8a83-52a91cbdf000"
+                  },
+                  "type": "Table",
+                  "inputs": {
+                    "from": "@variables('RequestsRecords')",
+                    "format": "HTML",
+                    "columns": [
+                      {
+                        "header": "SubmitterName",
+                        "value": "@item()?['Submitter_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "RequestorName",
+                        "value": "@item()?['Requestor_x0020_name']?['DisplayName']"
+                      },
+                      {
+                        "header": "GroupName",
+                        "value": "@item()['Group_x0020_name']\r\n"
+                      },
+                      {
+                        "header": "BusinessCase",
+                        "value": "@item()['Business_x0020_case']"
+                      },
+                      {
+                        "header": "PlannedDeletionDate",
+                        "value": "@if(not(empty(item()?['Planned_x0020_deletion_x0020_dat'])), formatDateTime(item()?['Planned_x0020_deletion_x0020_dat'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "RequestedDate",
+                        "value": "@if(not(empty(item()?['Requested_x0020_date'])), formatDateTime(item()?['Requested_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "CompletedDate",
+                        "value": "@if(not(empty(item()?['Completed_x0020_date'])), formatDateTime(item()?['Completed_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)"
+                      },
+                      {
+                        "header": "RequestID",
+                        "value": "@item()['Request_x0020_ID']"
+                      },
+                      {
+                        "header": "Status",
+                        "value": "@item()['Status']['Value']"
+                      },
+                      {
+                        "header": "ApprovedBy",
+                        "value": "@item()?['Approved_x0020_by']?['DisplayName']"
+                      }
+                    ]
+                  }
+                },
+                "Compose_6": {
+                  "runAfter": {
+                    "Create_HTML_table_6": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "78c6aaa0-23d5-4b1c-a88a-813a184fe473"
+                  },
+                  "type": "Compose",
+                  "inputs": "<style>\ntable {\n  border: 1px solid #1C6EA4;\n  background-color: #EEEEEE;\n  width: 100%;\n  text-align: right;\n  border-collapse: collapse;\n}\ntable td, table th {\n  border: 1px solid #AAAAAA;\n  padding: 3px 2px;\n}\ntable tbody td {\n  font-size: 13px;\n}\ntable thead {\n  background: #1C6EA4;\n  border-bottom: 2px solid #444444;\n}\ntable thead th {\n  font-size: 15px;\n  font-weight: bold;\n  color: #FFFFFF;\n  border-left: 2px solid #D0E4F5;\n}\ntable thead th:first-child {\n  border-left: none;\n}\n</style>\n@{body('Create_HTML_table_6')}"
+                },
+                "Send_an_email_(V2)_6": {
+                  "runAfter": {
+                    "Compose_6": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "907b5262-dda8-4610-bd6a-b68e26849305"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                      "connectionName": "shared_office365",
+                      "operationId": "SendEmailV2"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "@triggerBody()['Sendanemail(V2)_To']",
+                      "emailMessage/Subject": "@triggerBody()['Sendanemail(V2)_Subject']",
+                      "emailMessage/Body": "<p><em><strong>Hello,</strong></em><br>\n<br>\nPlease find the list of your requests:<br>\n<br>\n@{outputs('Compose_6')}<br>\n<br>\nIf you have any questions or need further assistance, please don't hesitate to reach out.</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": {
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                      "type": "Raw"
+                    }
+                  }
+                },
+                "Respond_to_a_PowerApp_or_flow_6": {
+                  "runAfter": {
+                    "Send_an_email_(V2)_6": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "304b1641-8305-4ac4-b483-47fc5e58defe"
+                  },
+                  "type": "Response",
+                  "kind": "PowerApp",
+                  "inputs": {
+                    "statusCode": 200,
+                    "body": {
+                      "success": "True"
+                    },
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "success": {
+                          "title": "success",
+                          "x-ms-dynamically-added": true,
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerBody()['SwitchRecordType_On']",
+          "metadata": {
+            "operationMetadataId": "d06268f7-e58f-4b33-9896-194563398d3b"
+          },
+          "type": "Switch"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": "0253862642354d9187425cfc8b3bdda2"
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,497 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |
+        =//Set Global variables
+        Concurrent(
+            //Display variables
+            Set(
+                DisplayNewForm,
+                false
+            ),
+            Set(
+                DisplayNewRequestMenu,
+                false
+            ),
+            Set(
+                DisplayEnvCreationTable,
+                false
+            ),
+            Set(
+                DisplayEnvDeletionTable,
+                false
+            ),
+            Set(
+                DisplayAppDeplyTable,
+                false
+            ),
+            Set(
+                DisplayAppDeletionTable,
+                false
+            ),
+            Set(
+                DisplayGroupCreationTable,
+                false
+            ),
+            Set(
+                DisplayGroupDeletionTable,
+                false
+            ),
+            Set(
+                AppExtDBDisplay,
+                false
+            ),
+            Set(
+                AppStandConnDisplay,
+                false
+            ),
+            Set(
+                AppPremConnDisplay,
+                false
+            ),
+            Set(
+                AppCustConnDisplay,
+                false
+            ),
+            //New form variables
+            Set(
+                NewEnvType,
+                ""
+            ),
+            Set(
+                NewEnvName,
+                ""
+            ),
+            Set(
+                NewAppType,
+                ""
+            ),
+            Set(
+                NewAppName,
+                ""
+            ),
+            Set(
+                NewGroupType,
+                ""
+            ),
+            Set(
+                NewGroupName,
+                ""
+            ),
+            Set(
+                NewRequestId,
+                0
+            ),
+            Set(
+                StartNewFormClearFields,
+                false
+            ),
+            //Reset controls
+            Set(
+                ResetControls,
+                false
+            ),
+            //Content variables
+            Set(
+                DetailedRequestContent,
+                LookUp(
+                    'Metadata - Screen content',
+                    screen_location = "DetailedRequests - Content header - Environment creation"
+                ).content
+            )
+        );
+        //App color variables
+        Concurrent(
+            Set(colorAppBackground,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorAppBackground").color_value_hexadecimal)),
+            Set(colorHeaderBackground,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorHeaderBackground").color_value_hexadecimal)),
+            Set(colorHeadertext,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorHeadertext").color_value_hexadecimal)),
+            Set(colorContentBackground,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorContentBackground").color_value_hexadecimal)),
+            Set(colorContentText,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorContentText").color_value_hexadecimal)),
+            Set(colorTableHeader,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorTableHeader").color_value_hexadecimal)),
+            Set(colorTableContent,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorTableContent").color_value_hexadecimal)),
+            Set(colorTableText,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorTableText").color_value_hexadecimal)),
+            Set(colorTableAction,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorTableAction").color_value_hexadecimal)),
+            Set(colorFormBackground,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorFormBackground").color_value_hexadecimal)),
+            Set(colorFormText,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorFormText").color_value_hexadecimal)),
+            Set(colorFormControl,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorFormControl").color_value_hexadecimal)),
+            Set(colorFormButton,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorFormButton").color_value_hexadecimal)),
+            Set(colorFormButtonText,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorFormButtonText").color_value_hexadecimal)),
+            Set(colorFormMandatory,
+            ColorValue(LookUp('Metadata - App Color codes', color_group_name = "colorFormMandatory").color_value_hexadecimal))
+        );
+        //Set Navigation (Screen) collection
+        ClearCollect(
+            screenIndex,
+            {
+                Name: "Environment creation(s)",
+                Screen: DetailedRequests
+            },
+            {
+                Name: "Environment deletion(s)",
+                Screen: DetailedRequests
+            },
+            {
+                Name: "App deployment(s)",
+                Screen: DetailedRequests
+            },
+            {
+                Name: "App deletion(s)",
+                Screen: DetailedRequests
+            },
+            {
+                Name: "M365 Group creation(s)",
+                Screen: DetailedRequests
+            },
+            {
+                Name: "M365 Group deletion(s)",
+                Screen: DetailedRequests
+            }
+        );
+        //Data from 'Request - Environment creation'
+        ClearCollect(
+            coll_open_requests,
+            AddColumns(
+                ShowColumns(
+                    'Request - Environment creation',
+                    "Requestor_x0020_name",
+                    "Submitter_x0020_name",
+                    "Environment_x0020_name",
+                    "Requested_x0020_date",
+                    "Request_x0020_ID",
+                    "Approved_x0020_by",
+                    "Status"
+                ),
+                "Request type",
+                "Environment creation",
+                "Requestor name",
+                Requestor_x0020_name.DisplayName,
+                "Submitter ame",
+                Submitter_x0020_name.DisplayName,
+                "Name",
+                Environment_x0020_name,
+                "Requested date",
+                Requested_x0020_date,
+                "Request ID",
+                Request_x0020_ID,
+                "Request Status",
+                Status.Value
+            )
+        );
+        //Data from 'Request - Environment deletion'
+        Collect(
+            coll_open_requests,
+            AddColumns(
+                ShowColumns(
+                    'Request - Environment deletion',
+                    "Requestor_x0020_name",
+                    "Submitter_x0020_name",
+                    "Environment_x0020_name_x0020__x0",
+                    "Requested_x0020_date",
+                    "Request_x0020_ID",
+                    "Approved_x0020_by",
+                    "Status"
+                ),
+                "Request type",
+                "Environment deletion",
+                "Requestor name",
+                Requestor_x0020_name.DisplayName,
+                "Submitter name",
+                Submitter_x0020_name.DisplayName,
+                "Name",
+                Environment_x0020_name_x0020__x0.Value,
+                "Requested date",
+                Requested_x0020_date,
+                "Request ID",
+                Request_x0020_ID,
+                "Request Status",
+                Status.Value
+            )
+        );
+        //Data from 'Request - App deployment'
+        Collect(
+            coll_open_requests,
+            AddColumns(
+                ShowColumns(
+                    'Request - App deployment',
+                    "Requestor_x0020_name",
+                    "Submitter_x0020_name",
+                    "Application_x0020_name",
+                    "Requested_x0020_date",
+                    "Request_x0020_ID",
+                    "Approved_x0020_by",
+                    "Status"
+                ),
+                "Request type",
+                "Application deployment",
+                "Requestor name",
+                Requestor_x0020_name.DisplayName,
+                "Submitter name",
+                Submitter_x0020_name.DisplayName,
+                "Name",
+                Application_x0020_name,
+                "Requested date",
+                Requested_x0020_date,
+                "Request ID",
+                Request_x0020_ID,
+                "Request Status",
+                Status.Value
+            )
+        );
+        //Data from 'Request - App deletion'
+        Collect(
+            coll_open_requests,
+            AddColumns(
+                ShowColumns(
+                    'Request - App deletion',
+                    "Requestor_x0020_name",
+                    "Submitter_x0020_name",
+                    "Application_x0020_name",
+                    "Requested_x0020_date",
+                    "Request_x0020_ID",
+                    "Approved_x0020_by",
+                    "Status"
+                ),
+                "Request type",
+                "Application deletion",
+                "Requestor name",
+                Requestor_x0020_name.DisplayName,
+                "Submitter name",
+                Submitter_x0020_name.DisplayName,
+                "Name",
+                Application_x0020_name,
+                "Requested date",
+                Requested_x0020_date,
+                "Request ID",
+                Request_x0020_ID,
+                "Request Status",
+                Status.Value
+            )
+        );
+        //Data from 'Request - Group creation'
+        Collect(
+            coll_open_requests,
+            AddColumns(
+                ShowColumns(
+                    'Request - Group creation',
+                    "Requestor_x0020_name",
+                    "Submitter_x0020_name",
+                    "Group_x0020_name",
+                    "Requested_x0020_date",
+                    "Request_x0020_ID",
+                    "Approved_x0020_by",
+                    "Status"
+                ),
+                "Request type",
+                "M365 Group creation",
+                "Requestor name",
+                Requestor_x0020_name.DisplayName,
+                "Submitter name",
+                Submitter_x0020_name.DisplayName,
+                "Name",
+                Group_x0020_name,
+                "Requested date",
+                Requested_x0020_date,
+                "Request ID",
+                Request_x0020_ID,
+                "Request Status",
+                Status.Value
+            )
+        );
+        //Data from 'Request - Group deletion'
+        Collect(
+            coll_open_requests,
+            AddColumns(
+                ShowColumns(
+                    'Request - Group deletion',
+                    "Requestor_x0020_name",
+                    "Submitter_x0020_name",
+                    "Group_x0020_name",
+                    "Requested_x0020_date",
+                    "Request_x0020_ID",
+                    "Approved_x0020_by",
+                    "Status"
+                ),
+                "Request type",
+                "M365 group deletion",
+                "Requestor name",
+                Requestor_x0020_name.DisplayName,
+                "Submitter name",
+                Submitter_x0020_name.DisplayName,
+                "Name",
+                Group_x0020_name,
+                "Requested date",
+                Requested_x0020_date,
+                "Request ID",
+                Request_x0020_ID,
+                "Request Status",
+                Status.Value
+            )
+        );
+        SortByColumns(
+            coll_open_requests,
+            "Request ID",
+            SortOrder.Descending
+        );
+        //New Environment request fields
+        ClearCollect(
+            coll_environment_creation,
+            SortByColumns(
+                Filter(
+                    'Metadata - List UI',
+                    ui_form_type.Value = "Environment creation"
+                ),
+                "ui_row_index",
+                SortOrder.Ascending
+            )
+        );
+        //New App deployment request fields
+        ClearCollect(
+            coll_app_deployment,
+            SortByColumns(
+                Filter(
+                    'Metadata - List UI',
+                    ui_form_type.Value = "App deployment"
+                ),
+                "ui_row_index",
+                SortOrder.Ascending
+            )
+        );
+        //New Group request fields
+        ClearCollect(
+            coll_group_creation,
+            SortByColumns(
+                Filter(
+                    'Metadata - List UI',
+                    ui_form_type.Value = "M365 Group creation"
+                ),
+                "ui_row_index",
+                SortOrder.Ascending
+            )
+        );
+        //Environment deletion request fields
+        ClearCollect(
+            coll_environment_deletion,
+            SortByColumns(
+                Filter(
+                    'Metadata - List UI',
+                    ui_form_type.Value = "Environment deletion"
+                ),
+                "ui_row_index",
+                SortOrder.Ascending
+            )
+        );
+        //App deletion request fields
+        ClearCollect(
+            coll_app_deletion,
+            SortByColumns(
+                Filter(
+                    'Metadata - List UI',
+                    ui_form_type.Value = "App deletion"
+                ),
+                "ui_row_index",
+                SortOrder.Ascending
+            )
+        );
+        //Group deletion request fields
+        ClearCollect(
+            coll_group_deletion,
+            SortByColumns(
+                Filter(
+                    'Metadata - List UI',
+                    ui_form_type.Value = "M365 Group deletion"
+                ),
+                "ui_row_index",
+                SortOrder.Ascending
+            )
+        );
+        //Set default/startup form items and title
+        Concurrent(
+            Set(
+                NewFormTitleText,
+                "Request New Environment in Power Platform"
+            ),
+            Set(
+                NewFormItems,
+                coll_environment_creation
+            )
+        );
+        //Get drop down items
+        //Power Apps
+        ForAll(
+            PowerAppsforMakers.GetApps().value,
+            Collect(
+                PowerAppsDnames,
+                properties.displayName
+            )
+        );
+        //Environments
+        ForAll(
+            PowerAppsforMakers.GetEnvironments().value,
+            Collect(
+                EnvironmentDnames,
+                properties.displayName
+            )
+        );
+        //M365 Groups
+        ForAll(
+            Office365Groups.ListGroups().value,
+            Collect(
+                O365Groups,
+                displayName
+            )
+        );
+        //Standard connectors
+        Collect(
+            StandardConnectorsL,
+            ForAll(
+                Filter(
+                    'Metadata - Common Connectors',
+                    'Connector type'.Value = "Standard connector"
+                ),
+                'Connector name'
+            )
+        );
+        //Premium connectors
+        Collect(
+            PremiumConnectorsL,
+            ForAll(
+                Filter(
+                    'Metadata - Common Connectors',
+                    'Connector type'.Value = "Premium connector"
+                ),
+                'Connector name'
+            )
+        );
+        //Custom connectors
+        Collect(
+            CustomConnectorsL,
+            ForAll(
+                Filter(
+                    'Metadata - Common Connectors',
+                    'Connector type'.Value = "Custom connector"
+                ),
+                'Connector name'
+            )
+        );
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

@@ -1,0 +1,2860 @@
+Home As screen:
+    Fill: =colorAppBackground
+    LoadingSpinnerColor: =ColorFade(Self.Fill, -20%)
+    OnVisible: =Select(Header_Refresh)
+
+    CurrentUserData_Workaround As combobox:
+        BorderColor: =
+        BorderStyle: =
+        BorderThickness: =
+        ChevronDisabledFill: =
+        ChevronFill: =
+        ChevronHoverFill: =
+        Color: =
+        DefaultSelectedItems: |-
+            =Office365Users.SearchUser({searchTerm:User().Email})
+        DisabledBorderColor: =
+        DisabledColor: =
+        DisabledFill: =
+        DisplayFields: =["DisplayName","Mail"]
+        Fill: =
+        FocusedBorderColor: =
+        FocusedBorderThickness: =
+        HoverBorderColor: =
+        HoverColor: =
+        HoverFill: =
+        Items: |-
+            =Office365Users.SearchUser({searchTerm:PeopleFields.SearchText,top:10})
+        PressedBorderColor: =
+        PressedColor: =
+        PressedFill: =
+        SearchFields: =["DisplayName"]
+        SearchItems: |-
+            =Search(Office365Users.SearchUser({searchTerm:PeopleFields.SearchText,top:10}),CurrentUserData_Workaround.SearchText,"DisplayName")
+        SelectionColor: =
+        SelectionFill: =
+        SelectionTagColor: =
+        SelectionTagFill: =
+        Visible: =false
+        Y: =1040
+        ZIndex: =1
+
+    Navigation_Home As groupContainer.manualLayoutContainer:
+        BorderColor: =
+        BorderStyle: =
+        BorderThickness: =
+        Fill: =colorContentBackground
+        Height: =898
+        Width: =240
+        Y: =54
+        ZIndex: =7
+
+        NavigationGallery_Home As gallery.variableTemplateHeightGallery:
+            AccessibleLabel: |-
+                ="Navigation Menu: Select an item to view detailed request types."
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            DelayItemLoading: =true
+            Fill: =colorContentBackground
+            FocusedBorderColor: =
+            FocusedBorderThickness: =
+            Height: =479
+            Items: =screenIndex
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            LoadingSpinnerColor: =ColorFade(Self.Fill, -20%)
+            TabIndex: =0
+            TemplateFill: =colorContentBackground
+            TemplateSize: =53
+            Width: =240
+            Y: =18
+            ZIndex: =1
+
+            NavigationItems_Home As button:
+                Align: =Align.Left
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorContentText
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =Self.Fill
+                Fill: =colorContentBackground
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                FontWeight: =FontWeight.Normal
+                Height: =30
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =colorTableHeader
+                OnSelect: |-
+                    =Set(DisplayEnvCreationTable, false);
+                    Set(DisplayEnvDeletionTable, false);
+                    Set(DisplayAppDeplyTable, false);
+                    Set(DisplayAppDeletionTable, false);
+                    Set(DisplayGroupCreationTable, false);
+                    Set(DisplayGroupDeletionTable, false);
+                    
+                    If(ThisItem.Name = "Environment creation(s)",
+                        Set(DisplayEnvCreationTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - Environment creation").content);
+                        Navigate(ThisItem.Screen)
+                    );
+                    If(ThisItem.Name = "Environment deletion(s)",
+                        Set(DisplayEnvDeletionTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - Environment deletion").content);
+                        Navigate(ThisItem.Screen)
+                    );
+                    If(ThisItem.Name = "App deployment(s)",
+                        Set(DisplayAppDeplyTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - App deployment").content);
+                        Navigate(ThisItem.Screen)
+                    );
+                    If(ThisItem.Name = "App deletion(s)",
+                        Set(DisplayAppDeletionTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - App deletion").content);
+                        Navigate(ThisItem.Screen)
+                    );
+                    If(ThisItem.Name = "M365 Group creation(s)",
+                        Set(DisplayGroupCreationTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - Group creation").content);
+                        Navigate(ThisItem.Screen)
+                    );
+                    If(ThisItem.Name = "M365 Group deletion(s)",
+                        Set(DisplayGroupDeletionTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - Group deletion").content);
+                        Navigate(ThisItem.Screen)
+                    );
+                    
+                    RefreshCurrentTable;
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, -20%)
+                PressedFill: =ColorFade(Self.HoverFill, 20%)
+                Size: =11
+                Text: =ThisItem.Name
+                Width: =231
+                ZIndex: =1
+
+    NewRequestForm_Home As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =7
+
+        NewForm As gallery.variableTemplateHeightGallery:
+            AccessibleLabel: |-
+                ="Dynamic Form Gallery: Displays fields based on selected request type for user input and submission."
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            DelayItemLoading: =true
+            Fill: =colorFormBackground
+            FocusedBorderColor: =
+            FocusedBorderThickness: =
+            Height: =912
+            Items: =NewFormItems
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            LoadingSpinnerColor: =ColorFade(Self.Fill, -20%)
+            TabIndex: =0
+            TemplateFill: =colorFormBackground
+            TemplateSize: =233
+            Visible: =DisplayNewForm
+            Width: =810
+            X: =1110
+            Y: =106
+            ZIndex: =11
+
+            Labels As label:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorFormText
+                DisabledBorderColor: =
+                DisabledColor: =Self.Color
+                DisabledFill: =Self.Fill
+                Fill: =colorFormBackground
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                HoverBorderColor: =
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =
+                Size: =10
+                Text: =ThisItem.ui_label
+                Visible: |-
+                    =If(
+                        "All" in ThisItem.ui_visibility_mode.Value,
+                        If(
+                            ThisItem.ui_type.Value = "choice",
+                            Switch(
+                                ThisItem.ui_label,
+                                "Database name(s) (External)",
+                                AppExtDBDisplay,
+                                "Standard connector name(s)",
+                                AppStandConnDisplay,
+                                "Premium connector name(s)",
+                                AppPremConnDisplay,
+                                "Custom connector name(s)",
+                                AppCustConnDisplay,
+                                true
+                            ),
+                            true
+                        ),
+                        false
+                    )
+                Width: =257
+                X: =15
+                Y: =12
+                ZIndex: =1
+
+            TextInputSingleLineFields As text:
+                AccessibleLabel: =ThisItem.ui_label
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorFormText
+                Default: =""
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                DisplayMode: =If(ThisItem.ui_enabled = false, DisplayMode.Disabled, DisplayMode.Edit)
+                Fill: =colorFormControl
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =30
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                OnChange: |
+                    =Switch(
+                        Concatenate(
+                            ThisItem.ui_form_type.Value,
+                            "-",
+                            ThisItem.ui_label
+                        ),
+                        "Environment creation-Environment name",
+                        Set(
+                            NewEnvName,
+                            TextInputSingleLineFields.Text
+                        ),
+                        "App deployment-Application name",
+                        Set(
+                            NewAppName,
+                            TextInputSingleLineFields.Text
+                        ),
+                        "M365 Group creation-Group name",
+                        Set(
+                            NewGroupName,
+                            TextInputSingleLineFields.Text
+                        )
+                    );
+                    If(
+                        ThisItem.ui_label = "Environment name" Or "Application name" Or "Group name",
+                        Patch(
+                            UserInputCollection,
+                            LookUp(
+                                UserInputCollection,
+                                ui_label = Labels.Text
+                            ),
+                            {
+                                user_input_text_single: Switch(
+                                    ThisItem.ui_form_type.Value,
+                                    "Environment creation",
+                                    Concatenate(
+                                        NewEnvType,
+                                        "-",
+                                        NewEnvName
+                                    ),
+                                    "App deployment",
+                                    Concatenate(
+                                        NewAppType,
+                                        "-",
+                                        NewAppName
+                                    ),
+                                    "M365 Group creation",
+                                    Concatenate(
+                                        NewGroupType,
+                                        "-",
+                                        NewGroupName
+                                    )
+                                )
+                            }
+                        ),
+                        Patch(
+                            UserInputCollection,
+                            LookUp(
+                                UserInputCollection,
+                                ui_label = Labels.Text
+                            ),
+                            {user_input_text_single: TextInputSingleLineFields.Text}
+                        )
+                    );
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =ResetControls
+                Size: =10
+                Visible: =If(ThisItem.ui_type.Value = "text_input_single" && "All" in ThisItem.ui_visibility_mode.Value, true, false)
+                Width: =485
+                X: =272
+                Y: =12
+                ZIndex: =2
+
+            TextInputMultiLineFields As text:
+                AccessibleLabel: =ThisItem.ui_label
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorFormText
+                Default: =""
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                Fill: =colorFormControl
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: |
+                    =If(
+                        CountRows(Split(TextInputMultiLineFields.Text, Char(10))) <= 1, /* Count the number of lines */
+                        30,                                            /* Minimum height */
+                        30 + (CountRows(Split(TextInputMultiLineFields.Text, Char(10))) * 10) /* Estimated height per line */
+                    )
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                Mode: =TextMode.MultiLine
+                OnChange: |-
+                    =Patch(
+                        UserInputCollection,
+                        LookUp(
+                            UserInputCollection,
+                            ui_label = Labels.Text
+                        ),
+                        {
+                            user_input_text_multi: TextInputMultiLineFields.Text
+                        }
+                    );
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =ResetControls
+                Size: =10
+                Visible: =If(ThisItem.ui_type.Value = "text_input_multi" && "All" in ThisItem.ui_visibility_mode.Value, true, false)
+                Width: =485
+                X: =272
+                Y: =12
+                ZIndex: =3
+
+            "HelpTextFields As 'Information button'":
+                AccessibleLabel: =ThisItem.ui_help_text
+                Content: =ThisItem.ui_help_text
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                Visible: |-
+                    =If(
+                        "All" in ThisItem.ui_visibility_mode.Value,
+                        If(
+                            ThisItem.ui_type.Value = "choice",
+                            Switch(
+                                ThisItem.ui_label,
+                                "Database name(s) (External)",
+                                AppExtDBDisplay,
+                                "Standard connector name(s)",
+                                AppStandConnDisplay,
+                                "Premium connector name(s)",
+                                AppPremConnDisplay,
+                                "Custom connector name(s)",
+                                AppCustConnDisplay,
+                                true
+                            ),
+                            true
+                        ),
+                        false
+                    )
+                Width: =32
+                X: |-
+                    =Switch(
+                        ThisItem.ui_type.Value,
+                        "date",
+                        575,
+                        "number",
+                        575,
+                        "checkbox",
+                        330,
+                        757
+                    )
+                Y: =0
+                ZIndex: =4
+
+            CheckboxFields As toggleSwitch:
+                AccessibleLabel: =ThisItem.ui_label
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorFormText
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisplayMode: =If(ThisItem.ui_enabled = false, DisplayMode.Disabled, DisplayMode.Edit)
+                FalseFill: =ColorFade(colorFormBackground, -20%)
+                FalseText: ="No"
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                HandleFill: =colorFormControl
+                Height: =20
+                HoverBorderColor: =
+                OnChange: =ThisItem.ui_label
+                OnCheck: |-
+                    =/*Patch(
+                        UserInputCollectionNewEnvironment,
+                        LookUp(
+                            UserInputCollectionNewEnvironment,
+                            ui_label = Labels.Text
+                        ),
+                        {
+                            user_input: ThisItem.IsSelected
+                        }
+                    );*/
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =
+                Reset: =ResetControls
+                Size: =10
+                TrueFill: =ColorFade(colorFormBackground, -50%)
+                TrueText: ="Yes"
+                Visible: =If(ThisItem.ui_type.Value = "checkbox" && "All" in ThisItem.ui_visibility_mode.Value, true, false)
+                Width: =68
+                X: =270
+                Y: =22
+                ZIndex: =5
+
+            DateFields As datepicker:
+                AccessibleLabel: =ThisItem.ui_label
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorFormText
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                DisplayMode: =If(ThisItem.ui_enabled = false, DisplayMode.Disabled, DisplayMode.Edit)
+                Fill: =colorFormControl
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =30
+                IconFill: =colorFormControl
+                OnChange: |-
+                    =Patch(
+                        UserInputCollection,
+                        LookUp(
+                            UserInputCollection,
+                            ui_label = Labels.Text
+                        ),
+                        {
+                            user_input_date: DateTimeValue(DateFields.SelectedDate)
+                        }
+                    );
+                OnSelect: =Select(Parent)
+                Reset: =ResetControls
+                Size: =10
+                Visible: =If(ThisItem.ui_type.Value = "date" && "All" in ThisItem.ui_visibility_mode.Value, true, false)
+                Width: =303
+                X: =272
+                Y: =12
+                ZIndex: =6
+
+            NumberFields As text:
+                AccessibleLabel: =ThisItem.ui_label
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorFormText
+                Default: =NewRequestId
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                DisplayMode: =If(ThisItem.ui_enabled = false, DisplayMode.Disabled, DisplayMode.Edit)
+                Fill: =colorFormControl
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Format: =TextFormat.Number
+                Height: =30
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                OnChange: |-
+                    =Patch(
+                        UserInputCollection,
+                        LookUp(
+                            UserInputCollection,
+                            ui_label = Labels.Text
+                        ),
+                        {
+                            user_input_number: Value(NumberFields.Text)
+                        }
+                    );
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =ResetControls
+                Size: =10
+                Visible: =If(ThisItem.ui_type.Value = "number" && "All" in ThisItem.ui_visibility_mode.Value, true, false)
+                Width: =303
+                X: =272
+                Y: =12
+                ZIndex: =7
+
+            PeopleFields As combobox:
+                AccessibleLabel: =ThisItem.ui_label
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                ChevronBackground: =RGBA(244, 244, 244, 1)
+                ChevronDisabledBackground: =RGBA(244, 244, 244, 1)
+                ChevronDisabledFill: =ColorFade(Self.ChevronFill, 70%)
+                ChevronFill: =colorFormText
+                ChevronHoverBackground: =RGBA(244, 244, 244, 1)
+                ChevronHoverFill: =ColorFade(Self.ChevronFill, -20%)
+                Color: =colorFormText
+                DefaultSelectedItems: |-
+                    =If(ThisItem.ui_set_default_in_new = true, Office365Users.SearchUser({searchTerm:User().Email}))
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                DisplayFields: =["DisplayName","Mail"]
+                DisplayMode: =If(ThisItem.ui_enabled = false, DisplayMode.Disabled, DisplayMode.Edit)
+                Fill: =colorFormControl
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =30
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                InputTextPlaceholder: ="Find people"
+                Items: |-
+                    =Office365Users.SearchUser({searchTerm:PeopleFields.SearchText,top:10})
+                OnChange: |-
+                    =Patch(
+                        UserInputCollection,
+                        LookUp(
+                            UserInputCollection,
+                            ui_label = Labels.Text
+                        ),
+                        {
+                            user_input_people: PeopleFields.Selected
+                        }
+                    );
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                Reset: =ResetControls
+                SearchFields: =["DisplayName"]
+                SearchItems: |-
+                    =Search(Office365Users.SearchUser({searchTerm:PeopleFields.SearchText,top:10}),PeopleFields.SearchText,"DisplayName")
+                SelectionColor: =colorFormText
+                SelectionFill: =ColorFade(Self.Fill, -20%)
+                SelectionTagFill: =ColorFade(Self.Fill, -20%)
+                SelectMultiple: =false
+                Size: =10
+                Visible: =If(ThisItem.ui_type.Value = "people" && "All" in ThisItem.ui_visibility_mode.Value, true, false)
+                Width: =485
+                X: =272
+                Y: =12
+                ZIndex: =8
+
+            ChoiceFields As combobox:
+                AccessibleLabel: =ThisItem.ui_label
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                ChevronBackground: =RGBA(244, 244, 244, 1)
+                ChevronDisabledBackground: =RGBA(244, 244, 244, 1)
+                ChevronDisabledFill: =ColorFade(Self.ChevronFill, 70%)
+                ChevronFill: =colorFormText
+                ChevronHoverBackground: =RGBA(244, 244, 244, 1)
+                ChevronHoverFill: =ColorFade(Self.ChevronFill, -20%)
+                Color: =colorFormText
+                Default: =First(ThisItem.ui_choices)
+                DefaultSelectedItems: =
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                DisplayFields: =["Value"]
+                DisplayMode: =If(ThisItem.ui_enabled = false, DisplayMode.Disabled, DisplayMode.Edit)
+                Fill: =colorFormControl
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =30
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                InputTextPlaceholder: ="Select option"
+                Items: |-
+                    =Switch(
+                        ThisItem.ui_label,
+                        "Application name", PowerAppsDnames,
+                        "Hosting environment name", EnvironmentDnames,
+                        "Environment name", EnvironmentDnames,
+                        "Group name", O365Groups,
+                        "Standard connector name(s)", StandardConnectorsL,
+                        "Premium connector name(s)", PremiumConnectorsL,
+                        "Custom connector name(s)", CustomConnectorsL,
+                        ThisItem.ui_choices.Value)
+                NoSelectionText: =
+                OnChange: |
+                    =//ui_form_type and ui_label value check
+                    Switch(
+                        Concatenate(
+                            ThisItem.ui_form_type.Value,
+                            "-",
+                            ThisItem.ui_label
+                        ),
+                        "Environment creation-Environment type",
+                        Set(
+                            NewEnvType,
+                            ChoiceFields.Selected.Value
+                        ),
+                        "App deployment-Deployment environment",
+                        Set(
+                            NewAppType,
+                            ChoiceFields.Selected.Value
+                        ),
+                        "M365 Group creation-Group environment",
+                        Set(
+                            NewGroupType,
+                            ChoiceFields.Selected.Value
+                        )
+                    );
+                    //Dependent field visibility set
+                    If(
+                        ThisItem.ui_label = "Database source",
+                        If(
+                            ChoiceFields.Selected.Value = "Database (External)",
+                            Set(
+                                AppExtDBDisplay,
+                                true
+                            ),
+                            Set(
+                                AppExtDBDisplay,
+                                false
+                            )
+                        ),
+                        false
+                    );
+                    If(
+                        ThisItem.ui_label = "Connector type(s)",
+                        If(
+                            "Standard connector(s)" in Concatenate(ChoiceFields.SelectedItems),
+                            Set(
+                                AppStandConnDisplay,
+                                true
+                            ),
+                            Set(
+                                AppStandConnDisplay,
+                                false
+                            )
+                        ),
+                        false
+                    );
+                    If(
+                        ThisItem.ui_label = "Connector type(s)",
+                        If(
+                            "Premium connector(s)" in Concatenate(ChoiceFields.SelectedItems),
+                            Set(
+                                AppPremConnDisplay,
+                                true
+                            ),
+                            Set(
+                                AppPremConnDisplay,
+                                false
+                            )
+                        ),
+                        false
+                    );
+                    If(
+                        ThisItem.ui_label = "Connector type(s)",
+                        If(
+                            "Custom connector(s)" in Concatenate(ChoiceFields.SelectedItems),
+                            Set(
+                                AppCustConnDisplay,
+                                true
+                            ),
+                            Set(
+                                AppCustConnDisplay,
+                                false
+                            )
+                        ),
+                        false
+                    );
+                    //Collect data
+                    Switch(
+                        ThisItem.ui_label,
+                        "Database name(s) (External)",
+                        Patch(
+                            UserInputCollection,
+                            LookUp(
+                                UserInputCollection,
+                                ui_label = Labels.Text
+                            ),
+                            {user_input_choice_multi: ChoiceFields.SelectedItems}
+                        ),
+                        "Connector type(s)",Patch(
+                            UserInputCollection,
+                            LookUp(
+                                UserInputCollection,
+                                ui_label = Labels.Text
+                            ),
+                            {user_input_choice_multi: ChoiceFields.SelectedItems}
+                        ),
+                        "Standard connector name(s)",
+                        Patch(
+                            UserInputCollection,
+                            LookUp(
+                                UserInputCollection,
+                                ui_label = Labels.Text
+                            ),
+                            {user_input_choice_multi: ChoiceFields.SelectedItems}
+                        ),
+                        "Premium connector name(s)",
+                        Patch(
+                            UserInputCollection,
+                            LookUp(
+                                UserInputCollection,
+                                ui_label = Labels.Text
+                            ),
+                            {user_input_choice_multi: ChoiceFields.SelectedItems}
+                        ),
+                        "Custom connector name(s)",
+                        Patch(
+                            UserInputCollection,
+                            LookUp(
+                                UserInputCollection,
+                                ui_label = Labels.Text
+                            ),
+                            {user_input_choice_multi: ChoiceFields.SelectedItems}
+                        ),
+                        Patch(
+                            UserInputCollection,
+                            LookUp(
+                                UserInputCollection,
+                                ui_label = Labels.Text
+                            ),
+                            {user_input_choice: ChoiceFields.Selected}
+                        )
+                    );
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                Reset: =ResetControls
+                SearchFields: =["Value"]
+                SearchItems: |-
+                    =Search(Switch(
+                        ThisItem.ui_label,
+                        "Application name", PowerAppsDnames,
+                        "Hosting environment name", EnvironmentDnames,
+                        "Environment name", EnvironmentDnames,
+                        "Group name", O365Groups,
+                        "Standard connector name(s)", StandardConnectorsL,
+                        "Premium connector name(s)", PremiumConnectorsL,
+                        "Custom connector name(s)", CustomConnectorsL,
+                        ThisItem.ui_choices.Value),ChoiceFields.SearchText,"Value")
+                SelectionColor: =colorFormText
+                SelectionFill: =ColorFade(Self.Fill, -20%)
+                SelectionTagFill: =ColorFade(Self.Fill, -20%)
+                SelectMultiple: |-
+                    =//If(ThisItem.ui_label = "Connector type(s)", ComboSelectMultiple, false)
+                    Switch(ThisItem.ui_label,
+                    "Database name(s) (External)", true,
+                    "Connector type(s)", true,
+                    "Standard connector name(s)", true,
+                    "Premium connector name(s)", true,
+                    "Custom connector name(s)", true,
+                    false)
+                Size: =10
+                Visible: |-
+                    =If(
+                        "All" in ThisItem.ui_visibility_mode.Value,
+                        If(
+                            ThisItem.ui_type.Value = "choice",
+                            Switch(
+                                ThisItem.ui_label,
+                                "Database name(s) (External)",
+                                AppExtDBDisplay,
+                                "Standard connector name(s)",
+                                AppStandConnDisplay,
+                                "Premium connector name(s)",
+                                AppPremConnDisplay,
+                                "Custom connector name(s)",
+                                AppCustConnDisplay,
+                                true
+                            ),
+                            false
+                        ),
+                        false
+                    )
+                Width: =485
+                X: =272
+                Y: =12
+                ZIndex: =9
+
+            HyperLinkFields As text:
+                AccessibleLabel: =ThisItem.ui_label
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorFormText
+                Default: =""
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                Fill: =colorFormControl
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =30
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                OnChange: |-
+                    =Patch(
+                        UserInputCollection,
+                        LookUp(
+                            UserInputCollection,
+                            ui_label = Labels.Text
+                        ),
+                        {
+                            user_input_hyperlink: HyperLinkFields.Text
+                        }
+                    );
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =ResetControls
+                Size: =10
+                Visible: =If(ThisItem.ui_type.Value = "hyperlink" && "All" in ThisItem.ui_visibility_mode.Value, true, false)
+                Width: =485
+                X: =272
+                Y: =12
+                ZIndex: =10
+
+            TextInputSingleLineFields_Prefix As text:
+                AccessibleLabel: |-
+                    =Switch(ThisItem.ui_form_type.Value,
+                    "Environment creation", "New Environment name prefix: Displays a non-editable concatenation of the selected 'Environment Type' and 'Environment Name'. Not selectable or modifiable.",
+                    "App deployment", "New App name prefix: Displays a non-editable concatenation of the selected 'Environment Type' and 'App Name'. Not selectable or modifiable.",
+                    "M365 Group creation", "New Microsoft 365 group name prefix: Displays a non-editable concatenation of the selected 'Environment Type' and 'M365 group Name'. Not selectable or modifiable."
+                    )
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorFormText
+                Default: |-
+                    =Switch(ThisItem.ui_form_type.Value,
+                    "Environment creation", Concatenate(NewEnvType, "-", NewEnvName),
+                    "App deployment", Concatenate(NewAppType, "-", NewAppName),
+                    "M365 Group creation", Concatenate(NewGroupType, "-", NewGroupName)
+                    )
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                DisplayMode: =DisplayMode.Disabled
+                Fill: =colorFormControl
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =30
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                OnChange: |-
+                    =Patch(
+                        UserInputCollection,
+                        LookUp(
+                            UserInputCollection,
+                            ui_label = "Environment name" Or "Application name" Or "Group name"
+                        ),
+                        {
+                            user_input_prefix: TextInputSingleLineFields_Prefix.Text
+                        }
+                    );
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Reset: =ResetControls
+                Size: =10
+                Visible: |-
+                    =If(
+                        NewForm.DisplayMode = DisplayMode.Edit,
+                        Switch(
+                            Concatenate(
+                                ThisItem.ui_type.Value,
+                                "-",
+                                ThisItem.ui_label
+                            ),
+                            "text_input_single-Environment name",
+                            true,
+                            "text_input_single-Application name",
+                            true,
+                            "text_input_single-Group name",
+                            true,
+                            false
+                        ),
+                        false
+                    )
+                Width: =485
+                X: =272
+                Y: =63
+                ZIndex: =11
+
+            MandatoryMarkIcon As star:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                Fill: =colorFormMandatory
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =10
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                OnSelect: =Select(Parent)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                Visible: |-
+                    =If(
+                        "All" in ThisItem.ui_visibility_mode.Value,
+                        If(
+                            ThisItem.ui_type.Value = "choice",
+                            Switch(
+                                ThisItem.ui_label,
+                                "Database name(s) (External)",
+                                AppExtDBDisplay,
+                                "Standard connector name(s)",
+                                AppStandConnDisplay,
+                                "Premium connector name(s)",
+                                AppPremConnDisplay,
+                                "Custom connector name(s)",
+                                AppCustConnDisplay,
+                                true
+                            ),
+                            true
+                        ),
+                        false
+                    )
+                Width: =10
+                X: =260
+                Y: =12
+                ZIndex: =12
+
+        NewFormTitle As label:
+            Align: =Align.Center
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Color: =colorFormText
+            DisabledBorderColor: =
+            DisabledColor: =ColorFade(Self.Color, 70%)
+            DisabledFill: =ColorFade(Self.Fill, 70%)
+            Fill: =colorFormBackground
+            FocusedBorderColor: =
+            FocusedBorderThickness: =
+            FontWeight: =FontWeight.Semibold
+            Height: =52
+            HoverBorderColor: =
+            HoverColor: =ColorFade(Self.Color, -20%)
+            HoverFill: =ColorFade(Self.Fill, -20%)
+            PressedBorderColor: =
+            PressedColor: =ColorFade(Self.Color, 20%)
+            PressedFill: =ColorFade(Self.Fill, 20%)
+            Size: =12
+            Text: =NewFormTitleText
+            Visible: =DisplayNewForm
+            Width: =810
+            X: =1110
+            Y: =54
+            ZIndex: =12
+
+        NewFormControls As groupContainer.manualLayoutContainer:
+            BorderColor: =
+            BorderStyle: =
+            DropShadow: =DropShadow.None
+            Fill: =colorFormBackground
+            Height: =62
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Visible: =DisplayNewForm
+            Width: =810
+            X: =1110
+            Y: =1018
+            ZIndex: =13
+
+            NewFormSave As button:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorFormButtonText
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                Fill: =colorFormButton
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =32
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                OnSelect: |
+                    =//Hide newForm
+                    Set(
+                        DisplayNewForm,
+                        false
+                    );
+                    //Refresh current list
+                    Switch(
+                        Concatenate(
+                            "Request - ",
+                            First(UserInputCollection).ui_form_type
+                        ),
+                        "Request - Environment creation",
+                        Refresh('Request - Environment creation'),
+                        "Request - Environment deletion",
+                        Refresh('Request - Environment deletion'),
+                        "Request - App deployment",
+                        Refresh('Request - App deployment'),
+                        "Request - App deletion",
+                        Refresh('Request - App deletion'),
+                        "Request - M365 Group creation",
+                        Refresh('Request - Group creation'),
+                        "Request - M365 Group deletion",
+                        Refresh('Request - Group deletion')
+                    );
+                    //Patch new item to current list
+                    Switch(
+                        Concatenate(
+                            "Request - ",
+                            First(UserInputCollection).ui_form_type
+                        ),
+                        "Request - Environment creation",
+                        Set(
+                            varRecord,
+                            Patch(
+                                'Request - Environment creation',
+                                Defaults('Request - Environment creation'),
+                                {
+                                    'Submitter name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Submitter name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Submitter name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Requestor name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Requestor name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Requestor name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Environment name': Concatenate(
+                                        NewEnvType,
+                                        "-",
+                                        NewEnvName
+                                    ),
+                                    'Environment description': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Environment description",
+                                        user_input_text_multi
+                                    ),
+                                    'Environment type': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Environment type",
+                                        user_input_choice
+                                    ),
+                                    'Business case': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Business Case",
+                                        user_input_text_multi
+                                    ),
+                                    'Dataverse enabled': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Dataverse enabled",
+                                        Value(user_input_checkbox)
+                                    ),
+                                    'Code component enabled': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Code component enabled",
+                                        Value(user_input_checkbox)
+                                    ),
+                                    'Request ID': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Request ID",
+                                        Value(user_input_number)
+                                    ),
+                                    Status: {Value: "Submitted"},
+                                    'Requested date': Now()
+                                }
+                            )
+                        ),
+                        "Request - Environment deletion",
+                        Set(
+                            varRecord,
+                            Patch(
+                                'Request - Environment deletion',
+                                Defaults('Request - Environment deletion'),
+                                {
+                                    'Submitter name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Submitter name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Submitter name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Requestor name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Requestor name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Requestor name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Environment name (Choice)': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Environment name",
+                                        user_input_choice
+                                    ),
+                                    'Business case': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Business case",
+                                        user_input_text_multi
+                                    ),
+                                    'Planned deletion date': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Planned deletion date",
+                                        user_input_date
+                                    ),
+                                    'Requested date': Now(),
+                                    'Request ID': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Request ID",
+                                        Value(user_input_number)
+                                    ),
+                                    Status: {Value: "Submitted"}
+                                }
+                            )
+                        ),
+                        "Request - App deployment",
+                        Set(
+                            varRecord,
+                            Patch(
+                                'Request - App deployment',
+                                Defaults('Request - App deployment'),
+                                {
+                                    'Submitter name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Submitter name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Submitter name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Requestor name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Requestor name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Requestor name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Application name': Concatenate(
+                                        NewAppType,
+                                        "-",
+                                        NewAppName
+                                    ),
+                                    'Application description': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Application description",
+                                        user_input_text_multi
+                                    ),
+                                    'Business case': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Business case",
+                                        user_input_text_multi
+                                    ),
+                                    'Personal data': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Personal data",
+                                        Value(user_input_checkbox)
+                                    ),
+                                    'Planned deployment date': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Planned deployment date",
+                                        user_input_date
+                                    ),
+                                    'Hosting environment name': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Hosting environment name",
+                                        user_input_choice
+                                    ),
+                                    'Dataverse enabled': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Dataverse enabled",
+                                        Value(user_input_checkbox)
+                                    ),
+                                    'Database source': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Database source",
+                                        user_input_choice
+                                    ),
+                                    'Database name(s) (External)': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Database name(s) (External)",
+                                        user_input_choice_multi
+                                    ),
+                                    'Complexity level': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Complexity level",
+                                        user_input_choice
+                                    ),
+                                    'Connector type(s)': If(
+                                        IsBlank(
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Connector type(s)",
+                                                user_input_choice_multi
+                                            )
+                                        ),
+                                        ["None"],
+                                        LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Connector type(s)",
+                                            user_input_choice_multi
+                                        )
+                                    ),
+                                    'Standard connector name(s)': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Standard connector name(s)",
+                                        user_input_choice_multi
+                                    ),
+                                    'Premium connector name(s)': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Premium connector name(s)",
+                                        user_input_choice_multi
+                                    ),
+                                    'Custom connector name(s)': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Custom connector name(s)",
+                                        user_input_choice_multi
+                                    ),
+                                    'Requested date': Now(),
+                                    'Request ID': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Request ID",
+                                        Value(user_input_number)
+                                    ),
+                                    Status: {Value: "Submitted"}
+                                }
+                            )
+                        ),
+                        "Request - App deletion",
+                        Set(
+                            varRecord,
+                            Patch(
+                                'Request - App deletion',
+                                Defaults('Request - App deletion'),
+                                {
+                                    'Submitter name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Submitter name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Submitter name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Requestor name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Requestor name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Requestor name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Application name': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Application name",
+                                        Text(user_input_choice.Value)
+                                    ),
+                                    'Hosting environment name': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Hosting environment name",
+                                        user_input_choice
+                                    ),
+                                    'Business case': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Business case",
+                                        user_input_text_multi
+                                    ),
+                                    'Planned deletion date': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Planned deletion date",
+                                        user_input_date
+                                    ),
+                                    'Requested date': Now(),
+                                    'Request ID': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Request ID",
+                                        Value(user_input_number)
+                                    ),
+                                    Status: {Value: "Submitted"}
+                                }
+                            )
+                        ),
+                        "Request - M365 Group creation",
+                        Set(
+                            varRecord,
+                            Patch(
+                                'Request - Group creation',
+                                Defaults('Request - Group creation'),
+                                {
+                                    'Submitter name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Submitter name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Submitter name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Requestor name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Requestor name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Requestor name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Group owner': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Group owner",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Group owner",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Group name': Concatenate(
+                                        NewGroupType,
+                                        "-",
+                                        NewGroupName
+                                    ),
+                                    'Business case': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Business case",
+                                        user_input_text_multi
+                                    ),
+                                    'Add to Teams': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Add to Teams",
+                                        Value(user_input_checkbox)
+                                    ),
+                                    Privacy: LookUp(UserInputCollection,
+                                    ui_label = "Privacy",
+                                    user_input_choice
+                                    ),
+                                    'Requested date': Now(),
+                                    'Request ID': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Request ID",
+                                        Value(user_input_number)
+                                    ),
+                                    Status: {Value: "Submitted"}
+                                }
+                            )
+                        ),
+                        "Request - M365 Group deletion",
+                        Set(
+                            varRecord,
+                            Patch(
+                                'Request - Group deletion',
+                                Defaults('Request - Group deletion'),
+                                {
+                                    'Submitter name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Submitter name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Submitter name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Requestor name': {
+                                        Claims: Concatenate(
+                                            "i:0#.f|membership|",
+                                            LookUp(
+                                                UserInputCollection,
+                                                ui_label = "Requestor name",
+                                                user_input_people
+                                            ).UserPrincipalName
+                                        ),
+                                        Department: "",
+                                        DisplayName: LookUp(
+                                            UserInputCollection,
+                                            ui_label = "Requestor name",
+                                            user_input_people
+                                        ).DisplayName,
+                                        Email: "",
+                                        JobTitle: "",
+                                        Picture: ""
+                                    },
+                                    'Group name': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Group name",
+                                        Text(user_input_choice.Value)
+                                    ),
+                                    'Business case': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Business case",
+                                        user_input_text_multi
+                                    ),
+                                    'Planned deletion date': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Planned deletion date",
+                                        user_input_date
+                                    ),
+                                    'Requested date': Now(),
+                                    'Request ID': LookUp(
+                                        UserInputCollection,
+                                        ui_label = "Request ID",
+                                        Value(user_input_number)
+                                    ),
+                                    Status: {Value: "Submitted"}
+                                }
+                            )
+                        )
+                    );
+                    If(
+                        !IsBlank(varRecord),
+                        Notify(
+                            "Your request has been submitted!",
+                            NotificationType.Success
+                        ),
+                        Notify(
+                            "Something went wrong. Your request was not submitted",
+                            NotificationType.Error
+                        )
+                    );
+                    Select(Header_Refresh);
+                    Set(
+                        StartNewFormClearFields,
+                        true
+                    );
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                Size: =10
+                Text: ="Save"
+                Width: =96
+                X: =18
+                Y: =12
+                ZIndex: =3
+
+            NewFormCancel As button:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorFormButtonText
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                Fill: =colorFormButton
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =32
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                OnSelect: |-
+                    =//Hide newForm
+                    Set(
+                        DisplayNewForm,
+                        false
+                    );
+                    Set(StartNewFormClearFields, true);
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                Size: =10
+                Text: ="Cancel"
+                Width: =96
+                X: =142
+                Y: =12
+                ZIndex: =4
+
+            NewFormClearFields As timer:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =0
+                Color: =
+                DisabledBorderColor: =
+                DisabledColor: =
+                DisabledFill: =
+                Duration: =2000
+                Fill: =
+                FocusedBorderColor: =
+                Height: =32
+                HoverBorderColor: =
+                HoverColor: =
+                HoverFill: =
+                OnTimerEnd: |-
+                    =//Reset form controls to default
+                    Set(
+                        ResetControls,
+                        true
+                    );
+                    Set(
+                        ResetControls,
+                        false
+                    );
+                    //Refresh datasources
+                    Refresh('Request - Environment creation');
+                    Refresh('Request - Environment deletion');
+                    Refresh('Request - App deployment');
+                    Refresh('Request - App deletion');
+                    Refresh('Request - Group creation');
+                    Refresh('Request - Group deletion');
+                    Set(StartNewFormClearFields, false);
+                    Reset(NewFormClearFields);
+                PressedBorderColor: =
+                PressedColor: =
+                PressedFill: =
+                Start: =StartNewFormClearFields
+                Visible: =false
+                Width: =126
+                X: =668
+                Y: =12
+                ZIndex: =5
+
+    BlurRectangle_Home As rectangle:
+        AccessibleLabel: |-
+            ="Visual Overlay: Provides blur effect to application when form is opened, not interactive."
+        BorderColor: =
+        BorderStyle: =
+        BorderThickness: =
+        Fill: =RGBA(0, 0, 0, 0.4)
+        FocusedBorderColor: =
+        FocusedBorderThickness: =
+        Height: =Max(App.Height, App.MinScreenHeight)
+        OnSelect: =Set(DisplayPopup, true);
+        TabIndex: =0
+        Visible: =DisplayNewForm
+        Width: =1920.00
+        X: =0.00
+        ZIndex: =10
+
+    Header_Home As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =14
+
+        MenuBar As groupContainer.manualLayoutContainer:
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Fill: =colorHeaderBackground
+            Height: =54
+            Width: =1920
+            ZIndex: =6
+
+            HomeButton As button:
+                BorderColor: =colorHeadertext
+                BorderStyle: =BorderStyle.Dotted
+                BorderThickness: =0.1
+                Color: =colorHeadertext
+                DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                Fill: =colorHeaderBackground
+                FocusedBorderThickness: =0.1
+                Height: =45
+                HoverBorderColor: =ColorFade(Self.BorderColor, -20%)
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                OnSelect: =Navigate(Home);
+                PressedBorderColor: =ColorFade(Self.BorderColor, 20%)
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                Size: =12
+                Text: ="Home"
+                Width: =164
+                X: =5
+                Y: =5
+                ZIndex: =1
+
+            NewRequestButton As button:
+                BorderColor: =colorHeadertext
+                BorderStyle: =BorderStyle.Dotted
+                BorderThickness: =0.1
+                Color: =colorHeadertext
+                DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                Fill: =colorHeaderBackground
+                FocusedBorderThickness: =0.1
+                Height: =45
+                HoverBorderColor: =ColorFade(Self.BorderColor, -20%)
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                OnSelect: =If(DisplayNewRequestMenu = true, Set(DisplayNewRequestMenu, false), Refresh('Metadata - List UI'); Set(DisplayNewRequestMenu, true))
+                PressedBorderColor: =ColorFade(Self.BorderColor, 20%)
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                Size: =12
+                Text: ="Request new"
+                Width: =164
+                X: =183
+                Y: =5
+                ZIndex: =2
+
+            Help_Home As icon.Help:
+                AccessibleLabel: |-
+                    ="Help button: Click to open the help site in a new window for assistance and more information on using this application."
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorHeadertext
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                Fill: =colorHeaderBackground
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =30
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                Icon: =Icon.Help
+                OnSelect: |-
+                    =Launch(
+                        LookUp('Metadata - Screen content', screen_location = "Help link").hyperlink
+                    )
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                TabIndex: =0
+                Width: =30
+                X: =1883
+                Y: =12
+                ZIndex: =3
+
+            Seperator As icon.VerticalLine:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorHeadertext
+                DisabledBorderColor: =
+                DisabledColor: =Self.Color
+                DisplayMode: =DisplayMode.Disabled
+                Fill: =colorHeaderBackground
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =27
+                HoverBorderColor: =
+                HoverColor: =Self.Color
+                Icon: =Icon.VerticalLine
+                PressedBorderColor: =
+                PressedColor: =Self.Color
+                Width: =14
+                X: =375
+                Y: =14
+                ZIndex: =4
+
+            AppNameLabel As label:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorHeadertext
+                DisabledBorderColor: =
+                DisabledColor: =Self.Color
+                DisabledFill: =Self.Fill
+                Fill: =colorHeaderBackground
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                FontWeight: =FontWeight.Semibold
+                Height: =45
+                HoverBorderColor: =
+                PressedBorderColor: =
+                Size: =12
+                Text: ="M365 Service request Center"
+                Width: =330
+                X: =406
+                Y: =5
+                ZIndex: =5
+
+        RequestNewDropDownBack As button:
+            BorderColor: =colorHeadertext
+            BorderStyle: =BorderStyle.Dotted
+            BorderThickness: =0.1
+            Color: =colorHeaderBackground
+            DisabledBorderColor: =Self.BorderColor
+            DisabledColor: =Self.Color
+            DisabledFill: =Self.Fill
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =colorHeaderBackground
+            FocusedBorderThickness: =0.1
+            Height: =254
+            HoverBorderColor: =Self.BorderColor
+            HoverColor: =Self.Color
+            HoverFill: =Self.Fill
+            PressedBorderColor: =Self.BorderColor
+            PressedColor: =Self.Color
+            PressedFill: =Self.Fill
+            Text: =""
+            Visible: =DisplayNewRequestMenu
+            Width: =208
+            X: =192
+            Y: =60
+            ZIndex: =8
+
+        RequestNewDropDown As gallery.variableTemplateHeightGallery:
+            AccessibleLabel: |-
+                ="Request Type Dropdown: Select a request type to open the corresponding form for submission."
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            DelayItemLoading: =true
+            Fill: =colorHeaderBackground
+            FocusedBorderColor: =
+            FocusedBorderThickness: =
+            Height: =229
+            Items: =Choices('Metadata - List UI'.ui_form_type)
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            LoadingSpinnerColor: =ColorFade(Self.Fill, -20%)
+            TabIndex: =0
+            TemplateFill: =colorHeaderBackground
+            TemplateSize: =38
+            Transition: =Transition.Pop
+            Visible: =DisplayNewRequestMenu
+            Width: =186
+            X: =203
+            Y: =73
+            ZIndex: =9
+
+            RequestNewElem As button:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorHeadertext
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                DisabledFill: =ColorFade(Self.Fill, 70%)
+                Fill: =colorHeaderBackground
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                FontWeight: =FontWeight.Lighter
+                Height: =32
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                HoverFill: =ColorFade(Self.Fill, -20%)
+                OnSelect: |
+                    =If(
+                        ThisItem.Value = "Environment creation",
+                        If(
+                            CountRows(coll_environment_creation) = 0,
+                            Filter(
+                                'Metadata - List UI',
+                                ui_form_type.Value = "Environment creation"
+                            ),
+                            "ui_row_index",
+                            SortOrder.Ascending
+                        );
+                        Set(
+                            NewFormTitleText,
+                            Concatenate(
+                                "Request New ",
+                                ThisItem.Value,
+                                " in Power Platform"
+                            )
+                        );
+                        Set(
+                            NewFormItems,
+                            coll_environment_creation
+                        );
+                    If(
+                            DisplayNewRequestMenu = true,
+                            Set(
+                                DisplayNewRequestMenu,
+                                false
+                            ),
+                            Set(
+                                DisplayNewRequestMenu,
+                                true
+                            )
+                        );
+                        Set(
+                            DisplayNewForm,
+                            true
+                        );
+                        
+                    );
+                    If(
+                        ThisItem.Value = "Environment deletion",
+                        If(
+                            CountRows(coll_environment_deletion) = 0,
+                            Filter(
+                                'Metadata - List UI',
+                                ui_form_type.Value = "Environment deletion"
+                            ),
+                            "ui_row_index",
+                            SortOrder.Ascending
+                        );
+                        Set(
+                            NewFormTitleText,
+                            Concatenate(
+                                "Request New ",
+                                ThisItem.Value,
+                                " from Power Platform"
+                            )
+                        );
+                        Set(
+                            NewFormItems,
+                            coll_environment_deletion
+                        );
+                    If(
+                            DisplayNewRequestMenu = true,
+                            Set(
+                                DisplayNewRequestMenu,
+                                false
+                            ),
+                            Set(
+                                DisplayNewRequestMenu,
+                                true
+                            )
+                        );
+                        Set(
+                            DisplayNewForm,
+                            true
+                        );
+                        
+                    );
+                    If(
+                        ThisItem.Value = "App deployment",
+                        If(
+                            CountRows(coll_app_deployment) = 0,
+                            Filter(
+                                'Metadata - List UI',
+                                ui_form_type.Value = "App deployment"
+                            ),
+                            "ui_row_index",
+                            SortOrder.Ascending
+                        );
+                        Set(
+                            NewFormTitleText,
+                            Concatenate(
+                                "Request New ",
+                                ThisItem.Value,
+                                " to Power Platform"
+                            )
+                        );
+                        Set(
+                            NewFormItems,
+                            coll_app_deployment
+                        );
+                    If(
+                            DisplayNewRequestMenu = true,
+                            Set(
+                                DisplayNewRequestMenu,
+                                false
+                            ),
+                            Set(
+                                DisplayNewRequestMenu,
+                                true
+                            )
+                        );
+                    Concurrent(
+                    //Get drop down items
+                    //Environments
+                    Clear(EnvironmentDnames);
+                        ForAll(
+                            PowerAppsforMakers.GetEnvironments().value,
+                            Collect(
+                                EnvironmentDnames,
+                                properties.displayName
+                            )
+                        ),
+                        
+                    //Standard connectors
+                    Clear(StandardConnectorsL);
+                        Collect(
+                            StandardConnectorsL,
+                            ForAll(
+                                Filter(
+                                    'Metadata - Common Connectors',
+                                    'Connector type'.Value = "Standard connector"
+                                ),
+                                'Connector name'
+                            )
+                        ),
+                        
+                    //Premium connectors
+                    Clear(PremiumConnectorsL);
+                        Collect(
+                            PremiumConnectorsL,
+                            ForAll(
+                                Filter(
+                                    'Metadata - Common Connectors',
+                                    'Connector type'.Value = "Premium connector"
+                                ),
+                                'Connector name'
+                            )
+                        ),
+                        
+                    //Custom connectors
+                    Clear(CustomConnectorsL);
+                        Collect(
+                            CustomConnectorsL,
+                            ForAll(
+                                Filter(
+                                    'Metadata - Common Connectors',
+                                    'Connector type'.Value = "Custom connector"
+                                ),
+                                'Connector name'
+                            )
+                        )
+                    );
+                        Set(
+                            DisplayNewForm,
+                            true
+                        );
+                        
+                    );
+                    If(
+                        ThisItem.Value = "App deletion",
+                        If(
+                            CountRows(coll_app_deletion) = 0,
+                            Filter(
+                                'Metadata - List UI',
+                                ui_form_type.Value = "App deletion"
+                            ),
+                            "ui_row_index",
+                            SortOrder.Ascending
+                        );
+                        Set(
+                            NewFormTitleText,
+                            Concatenate(
+                                "Request New ",
+                                ThisItem.Value,
+                                " from Power Platform"
+                            )
+                        );
+                        Set(
+                            NewFormItems,
+                            coll_app_deletion
+                        );
+                    If(
+                            DisplayNewRequestMenu = true,
+                            Set(
+                                DisplayNewRequestMenu,
+                                false
+                            ),
+                            Set(
+                                DisplayNewRequestMenu,
+                                true
+                            )
+                        );
+                    Concurrent(
+                    //Get drop down items
+                    //Power Apps
+                    Clear(PowerAppsDnames);
+                        ForAll(
+                            PowerAppsforMakers.GetApps().value,
+                            Collect(
+                                PowerAppsDnames,
+                                properties.displayName
+                            )
+                        ),
+                        
+                    //Environments
+                    Clear(EnvironmentDnames);
+                        ForAll(
+                            PowerAppsforMakers.GetEnvironments().value,
+                            Collect(
+                                EnvironmentDnames,
+                                properties.displayName
+                            )
+                        )
+                    );
+                        Set(
+                            DisplayNewForm,
+                            true
+                        );
+                    );
+                    If(
+                        ThisItem.Value = "M365 Group creation",
+                        If(
+                            CountRows(coll_group_creation) = 0,
+                            Filter(
+                                'Metadata - List UI',
+                                ui_form_type.Value = "M365 Group creation"
+                            ),
+                            "ui_row_index",
+                            SortOrder.Ascending
+                        );
+                        Set(
+                            NewFormTitleText,
+                            Concatenate(
+                                "Request New ",
+                                ThisItem.Value
+                            )
+                        );
+                        Set(
+                            NewFormItems,
+                            coll_group_creation
+                        );
+                    If(
+                            DisplayNewRequestMenu = true,
+                            Set(
+                                DisplayNewRequestMenu,
+                                false
+                            ),
+                            Set(
+                                DisplayNewRequestMenu,
+                                true
+                            )
+                        );
+                        Set(
+                            DisplayNewForm,
+                            true
+                        );
+                        
+                    );
+                    If(
+                        ThisItem.Value = "M365 Group deletion",
+                        If(
+                            CountRows(coll_group_deletion) = 0,
+                            Filter(
+                                'Metadata - List UI',
+                                ui_form_type.Value = "M365 Group deletion"
+                            ),
+                            "ui_row_index",
+                            SortOrder.Ascending
+                        );
+                        Set(
+                            NewFormTitleText,
+                            Concatenate(
+                                "Request New ",
+                                ThisItem.Value
+                            )
+                        );
+                        Set(
+                            NewFormItems,
+                            coll_group_deletion
+                        );
+                    If(
+                            DisplayNewRequestMenu = true,
+                            Set(
+                                DisplayNewRequestMenu,
+                                false
+                            ),
+                            Set(
+                                DisplayNewRequestMenu,
+                                true
+                            )
+                        );
+                        //Get drop down items
+                    //M365 Groups
+                    Clear(O365Groups);
+                        ForAll(
+                            Office365Groups.ListGroups().value,
+                            Collect(
+                                O365Groups,
+                                displayName
+                            )
+                        );
+                        Set(
+                            DisplayNewForm,
+                            true
+                        );
+                        
+                    );
+                    // Retrieve the last used Request ID, generate the next one and Patch the list
+                    Set(
+                        NewRequestId,
+                        Value(Last('Metadata - Request IDs').'Request ID used') + 1
+                    );
+                    Remove( 'Metadata - Request IDs', Last('Metadata - Request IDs'));
+                    Patch(
+                        'Metadata - Request IDs',
+                        Defaults('Metadata - Request IDs'),
+                        {'Request ID used': NewRequestId}
+                    );
+                    //Set the prfix field variables to empty
+                    Set(
+                        NewEnvName,
+                        ""
+                    );
+                    Set(
+                        NewAppName,
+                        ""
+                    );
+                    Set(
+                        NewGroupName,
+                        ""
+                    );
+                    Set(
+                        NewEnvType,
+                        ""
+                    );
+                    Set(
+                        NewAppType,
+                        ""
+                    );
+                    Set(
+                        NewGroupType,
+                        ""
+                    );
+                    Clear(UserInputCollection);
+                    ForAll(
+                        NewFormItems,
+                        Collect(
+                            UserInputCollection,
+                            {
+                                ui_form_type: ThisRecord.ui_form_type.Value,
+                                ui_type: ThisRecord.ui_type.Value,
+                                ui_label: ThisRecord.ui_label,
+                                user_input_text_single: TextInputSingleLineFields.Text,
+                                user_input_text_multi: TextInputMultiLineFields.Text,
+                                user_input_checkbox: CheckboxFields.Value,
+                                user_input_date: DateTimeValue(DateFields.SelectedDate),
+                                user_input_number: Value(NumberFields.Text),
+                                user_input_people: CurrentUserData_Workaround.Selected,
+                                //PeopleFields.Selected,
+                                user_input_choice: ChoiceFields.Selected,
+                                user_input_choice_multi: ChoiceFields.SelectedItems,
+                                user_input_hyperlink: HyperLinkFields.Text,
+                                user_input_prefix: TextInputSingleLineFields_Prefix.Text
+                            }
+                        )
+                    );
+                PaddingBottom: =1
+                PaddingLeft: =1
+                PaddingRight: =1
+                PaddingTop: =1
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                PressedFill: =ColorFade(Self.Fill, 20%)
+                Size: =11
+                Text: =ThisItem.Value
+                Width: =176
+                ZIndex: =2
+
+    Content_Home As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =15
+
+        ContentActiveRequests As groupContainer.manualLayoutContainer:
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Fill: =colorContentBackground
+            Height: =435
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =1639
+            X: =258
+            Y: =517
+            ZIndex: =2
+
+            ActiveRequestColl_1 As gallery.variableTemplateHeightGallery:
+                AccessibleLabel: |-
+                    ="Active Request Gallery: This section displays all your currently opened or active request items, allowing you to view your ongoing requests efficiently."
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                DelayItemLoading: =true
+                Fill: =colorContentBackground
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =435
+                Items: |-
+                    =SortByColumns(
+                        Filter(
+                            coll_open_requests,
+                            Not(Status.Value in ["Completed", "Rejected", "Cancelled"]) &&
+                            (Requestor_x0020_name.DisplayName = User().FullName || Submitter_x0020_name.DisplayName = User().FullName)
+                        ),
+                        "Request ID",
+                        SortOrder.Ascending
+                    )
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                LoadingSpinnerColor: =ColorFade(Self.Fill, -20%)
+                TabIndex: =0
+                TemplateFill: =colorContentBackground
+                TemplateSize: =49
+                Width: =1639
+                ZIndex: =1
+
+                ActiveRequest_Container_1 As groupContainer.manualLayoutContainer:
+                    BorderColor: =
+                    BorderStyle: =
+                    BorderThickness: =
+                    Fill: =colorTableContent
+                    Height: =40
+                    Width: =1626
+                    ZIndex: =1
+
+                    ActiveRequest_Requestor_1 As label:
+                        BorderColor: =
+                        BorderStyle: =
+                        BorderThickness: =
+                        Color: =colorTableText
+                        DisabledBorderColor: =
+                        DisabledColor: =Self.Color
+                        DisabledFill: =Self.Fill
+                        Fill: =colorTableContent
+                        FocusedBorderColor: =
+                        FocusedBorderThickness: =
+                        HoverBorderColor: =
+                        PressedBorderColor: =
+                        Size: =10
+                        Text: =ThisItem.'Requestor name'
+                        Width: =205
+                        ZIndex: =1
+
+                    ActiveRequest_RequesType_1 As label:
+                        BorderColor: =
+                        BorderStyle: =
+                        BorderThickness: =
+                        Color: =colorTableText
+                        DisabledBorderColor: =
+                        DisabledColor: =Self.Color
+                        DisabledFill: =Self.Fill
+                        Fill: =colorTableContent
+                        FocusedBorderColor: =
+                        FocusedBorderThickness: =
+                        HoverBorderColor: =
+                        PressedBorderColor: =
+                        Size: =10
+                        Text: =ThisItem.'Request type'
+                        Width: =326
+                        X: =205
+                        ZIndex: =2
+
+                    ActiveRequest_Name_1 As label:
+                        BorderColor: =
+                        BorderStyle: =
+                        BorderThickness: =
+                        Color: =colorTableText
+                        DisabledBorderColor: =
+                        DisabledColor: =Self.Color
+                        DisabledFill: =Self.Fill
+                        Fill: =colorTableContent
+                        FocusedBorderColor: =
+                        FocusedBorderThickness: =
+                        HoverBorderColor: =
+                        PressedBorderColor: =
+                        Size: =10
+                        Text: =ThisItem.Name
+                        Width: =320
+                        X: =531
+                        ZIndex: =3
+
+                    ActiveRequest_RequestID_1 As label:
+                        BorderColor: =
+                        BorderStyle: =
+                        BorderThickness: =
+                        Color: =colorTableText
+                        DisabledBorderColor: =
+                        DisabledColor: =Self.Color
+                        DisabledFill: =Self.Fill
+                        Fill: =colorTableContent
+                        FocusedBorderColor: =
+                        FocusedBorderThickness: =
+                        HoverBorderColor: =
+                        PressedBorderColor: =
+                        Size: =10
+                        Text: =ThisItem.'Request ID'
+                        Width: =140
+                        X: =851
+                        ZIndex: =4
+
+                    ActiveRequest_Status_1 As label:
+                        BorderColor: =
+                        BorderStyle: =
+                        BorderThickness: =
+                        Color: =colorTableText
+                        DisabledBorderColor: =
+                        DisabledColor: =Self.Color
+                        DisabledFill: =Self.Fill
+                        Fill: =colorTableContent
+                        FocusedBorderColor: =
+                        FocusedBorderThickness: =
+                        HoverBorderColor: =
+                        PressedBorderColor: =
+                        Size: =10
+                        Text: =ThisItem.'Request Status'
+                        Width: =218
+                        X: =991
+                        ZIndex: =5
+
+                    ActiveRequest_RequestDate_1 As label:
+                        BorderColor: =
+                        BorderStyle: =
+                        BorderThickness: =
+                        Color: =colorTableText
+                        DisabledBorderColor: =
+                        DisabledColor: =Self.Color
+                        DisabledFill: =Self.Fill
+                        Fill: =colorTableContent
+                        FocusedBorderColor: =
+                        FocusedBorderThickness: =
+                        HoverBorderColor: =
+                        PressedBorderColor: =
+                        Size: =10
+                        Text: =ThisItem.'Requested date'
+                        Width: =151
+                        X: =1209
+                        ZIndex: =6
+
+        ActiveRequestCollHeader As groupContainer.manualLayoutContainer:
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Fill: =colorTableHeader
+            Height: =39
+            Width: =1639
+            X: =258
+            Y: =478
+            ZIndex: =3
+
+            Header_Requestor As label:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisabledBorderColor: =
+                DisabledColor: =Self.Color
+                DisabledFill: =Self.Fill
+                DisplayMode: =DisplayMode.View
+                Fill: =colorTableHeader
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                FontWeight: =FontWeight.Semibold
+                Height: =39
+                HoverBorderColor: =
+                PressedBorderColor: =
+                Size: =10
+                Text: ="Requestor"
+                Width: =185
+                X: =5
+                ZIndex: =1
+
+            Header_RequestType As label:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisabledBorderColor: =
+                DisabledColor: =Self.Color
+                DisabledFill: =Self.Fill
+                DisplayMode: =DisplayMode.View
+                Fill: =colorTableHeader
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                FontWeight: =FontWeight.Semibold
+                Height: =39
+                HoverBorderColor: =
+                PressedBorderColor: =
+                Size: =10
+                Text: ="Request type"
+                Width: =328
+                X: =210
+                ZIndex: =2
+
+            Header_Name As label:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisabledBorderColor: =
+                DisabledColor: =Self.Color
+                DisabledFill: =Self.Fill
+                DisplayMode: =DisplayMode.View
+                Fill: =colorTableHeader
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                FontWeight: =FontWeight.Semibold
+                Height: =39
+                HoverBorderColor: =
+                PressedBorderColor: =
+                Size: =10
+                Text: ="Name"
+                Width: =321
+                X: =536
+                ZIndex: =3
+
+            Header_RequestID As label:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisabledBorderColor: =
+                DisabledColor: =Self.Color
+                DisabledFill: =Self.Fill
+                DisplayMode: =DisplayMode.View
+                Fill: =colorTableHeader
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                FontWeight: =FontWeight.Semibold
+                Height: =39
+                HoverBorderColor: =
+                PressedBorderColor: =
+                Size: =10
+                Text: ="Request ID"
+                Width: =140
+                X: =856
+                ZIndex: =4
+
+            Header_Status As label:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisabledBorderColor: =
+                DisabledColor: =Self.Color
+                DisabledFill: =Self.Fill
+                DisplayMode: =DisplayMode.View
+                Fill: =colorTableHeader
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                FontWeight: =FontWeight.Semibold
+                Height: =39
+                HoverBorderColor: =
+                PressedBorderColor: =
+                Size: =10
+                Text: ="Status"
+                Width: =224
+                X: =996
+                ZIndex: =5
+
+            Header_RequestDate As label:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisabledBorderColor: =
+                DisabledColor: =Self.Color
+                DisabledFill: =Self.Fill
+                DisplayMode: =DisplayMode.View
+                Fill: =colorTableHeader
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                FontWeight: =FontWeight.Semibold
+                Height: =39
+                HoverBorderColor: =
+                PressedBorderColor: =
+                Size: =10
+                Text: ="Request date"
+                Width: =171
+                X: =1222
+                ZIndex: =6
+
+            Header_Refresh As icon.Reload:
+                AccessibleLabel: |-
+                    ="Refresh Button: Click to update and load the most recent data in the opened request table, ensuring you are viewing the most current information available."
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                Fill: =colorTableHeader
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =25
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                Icon: =Icon.Reload
+                OnSelect: |-
+                    =//Data from 'Request - Environment creation'
+                    ClearCollect(coll_open_requests,
+                        AddColumns(
+                            ShowColumns('Request - Environment creation', 
+                                "Requestor_x0020_name", "Submitter_x0020_name", "Environment_x0020_name", "Requested_x0020_date", "Request_x0020_ID", "Approved_x0020_by", "Status"),
+                                "Request type", "Environment creation",
+                                "Requestor name", Requestor_x0020_name.DisplayName,
+                                "Submitter name", Submitter_x0020_name.DisplayName,
+                                "Name", Environment_x0020_name,
+                                "Requested date", Requested_x0020_date,
+                                "Request ID", Request_x0020_ID,
+                                "Approved by", Approved_x0020_by.DisplayName,
+                                "Request Status", Status.Value
+                        )
+                    );
+                    //Data from 'Request - Environment deletion'
+                    Collect(coll_open_requests,
+                        AddColumns(
+                            ShowColumns('Request - Environment deletion', 
+                                "Requestor_x0020_name", "Submitter_x0020_name", "Environment_x0020_name_x0020__x0", "Requested_x0020_date", "Request_x0020_ID", "Approved_x0020_by", "Status"),
+                                "Request type", "Environment deletion",
+                                "Requestor name", Requestor_x0020_name.DisplayName,
+                                "Submitter name", Submitter_x0020_name.DisplayName,
+                                "Name", Environment_x0020_name_x0020__x0.Value,
+                                "Requested date", Requested_x0020_date,
+                                "Request ID", Request_x0020_ID,
+                                "Approved by", Approved_x0020_by.DisplayName,
+                                "Request Status", Status.Value
+                        )
+                    );
+                    
+                    //Data from 'Request - App deployment'
+                    Collect(coll_open_requests,
+                        AddColumns(
+                            ShowColumns('Request - App deployment', 
+                                "Requestor_x0020_name", "Submitter_x0020_name", "Application_x0020_name", "Requested_x0020_date", "Request_x0020_ID", "Approved_x0020_by", "Status"),
+                                "Request type", "Application deployment",
+                                "Requestor name", Requestor_x0020_name.DisplayName,
+                                "Submitter name", Submitter_x0020_name.DisplayName,
+                                "Name", Application_x0020_name,
+                                "Requested date", Requested_x0020_date,
+                                "Request ID", Request_x0020_ID,
+                                "Approved by", Approved_x0020_by.DisplayName,
+                                "Request Status", Status.Value
+                        )
+                    );
+                    
+                    //Data from 'Request - App deletion'
+                    Collect(coll_open_requests,
+                        AddColumns(
+                            ShowColumns('Request - App deletion', 
+                                "Requestor_x0020_name", "Submitter_x0020_name", "Application_x0020_name", "Requested_x0020_date", "Request_x0020_ID", "Approved_x0020_by", "Status"),
+                                "Request type", "Application deletion",
+                                "Requestor name", Requestor_x0020_name.DisplayName,
+                                "Submitter name", Submitter_x0020_name.DisplayName,
+                                "Name", Application_x0020_name,
+                                "Requested date", Requested_x0020_date,
+                                "Request ID", Request_x0020_ID,
+                                "Approved by", Approved_x0020_by.DisplayName,
+                                "Request Status", Status.Value
+                        )
+                    );
+                    //Data from 'Request - Group creation'
+                    Collect(coll_open_requests,
+                        AddColumns(
+                            ShowColumns('Request - Group creation', 
+                                "Requestor_x0020_name", "Submitter_x0020_name", "Group_x0020_name", "Requested_x0020_date", "Request_x0020_ID", "Approved_x0020_by", "Status"),
+                                "Request type", "M365 Group creation",
+                                "Requestor name", Requestor_x0020_name.DisplayName,
+                                "Submitter name", Submitter_x0020_name.DisplayName,
+                                "Name", Group_x0020_name,
+                                "Requested date", Requested_x0020_date,
+                                "Request ID", Request_x0020_ID,
+                                "Approved by", Approved_x0020_by.DisplayName,
+                                "Request Status", Status.Value
+                        )
+                    );
+                    //Data from 'Request - Group deletion'
+                    Collect(coll_open_requests,
+                        AddColumns(
+                            ShowColumns('Request - Group deletion', 
+                                "Requestor_x0020_name", "Submitter_x0020_name", "Group_x0020_name", "Requested_x0020_date", "Request_x0020_ID", "Approved_x0020_by", "Status"),
+                                "Request type", "M365 group deletion",
+                                "Requestor name", Requestor_x0020_name.DisplayName,
+                                "Submitter name", Submitter_x0020_name.DisplayName,
+                                "Name", Group_x0020_name,
+                                "Requested date", Requested_x0020_date,
+                                "Request ID", Request_x0020_ID,
+                                "Approved by", Approved_x0020_by.DisplayName,
+                                "Request Status", Status.Value
+                        )
+                    );
+                    
+                    Sort(coll_open_requests, 'Request ID', SortOrder.Descending);
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                TabIndex: =0
+                Tooltip: ="Refresh"
+                Width: =25
+                X: =1571
+                Y: =7
+                ZIndex: =7
+
+            Header_SendAsMail As icon.Reload:
+                AccessibleLabel: |-
+                    ="Send opened request to my Email Button: Click to receive an email containing all data from the currently opened request table. Please check your inbox after clicking."
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                Fill: =colorTableHeader
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =25
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                Icon: =Icon.Mail
+                OnSelect: |
+                    =If(
+                        SendopenrequeststoSelf.Run(
+                            User().Email,
+                            "",
+                            "",
+                            JSON(
+                                SortByColumns(
+                        Filter(
+                            coll_open_requests,
+                            Not(Status.Value in ["Completed", "Rejected", "Cancelled"]) &&
+                            (Requestor_x0020_name.DisplayName = User().FullName || Submitter_x0020_name.DisplayName = User().FullName)
+                        ),
+                        "Request ID",
+                        SortOrder.Ascending
+                    ),
+                                JSONFormat.IncludeBinaryData
+                            ),
+                            JSON(
+                                SortByColumns(
+                        Filter(
+                            coll_open_requests,
+                            Not(Status.Value in ["Completed", "Rejected", "Cancelled"]) &&
+                            (Requestor_x0020_name.DisplayName = User().FullName || Submitter_x0020_name.DisplayName = User().FullName)
+                        ),
+                        "Request ID",
+                        SortOrder.Ascending
+                    ),
+                                JSONFormat.IncludeBinaryData
+                            )
+                        ).success = "True",
+                        Notify(
+                            "Email sent successfully.",
+                            NotificationType.Success,
+                            2000
+                        ),
+                        Notify(
+                            "Sending mail failed has failed.",
+                            NotificationType.Error,
+                            5000
+                        )
+                    );
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                TabIndex: =0
+                Tooltip: ="Send opened request to my mail"
+                Width: =25
+                X: =1526
+                Y: =7
+                ZIndex: =8
+
+        ContentHeader As groupContainer.manualLayoutContainer:
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Fill: =colorContentBackground
+            Height: =346
+            Width: =1639
+            X: =258
+            Y: =83
+            ZIndex: =4
+
+            Header_HTML_Home As htmlViewer:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorContentText
+                DisabledBorderColor: =
+                DisabledFill: =Self.Fill
+                Fill: =colorContentBackground
+                Height: =346
+                HoverBorderColor: =
+                HtmlText: =LookUp('Metadata - Screen content', screen_location = "Home - Content header").content
+                Size: =10
+                Width: =1639
+                ZIndex: =1
+
+        ContentFooter As groupContainer.manualLayoutContainer:
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Fill: =colorContentBackground
+            Height: =99
+            Width: =1920
+            Y: =981
+            ZIndex: =5
+
+            Footer_HTML_Home As htmlViewer:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorContentText
+                DisabledBorderColor: =
+                DisabledFill: =Self.Fill
+                Fill: =colorContentBackground
+                Height: =85
+                HoverBorderColor: =
+                HtmlText: =LookUp('Metadata - Screen content', screen_location = "Home - Content footer").content
+                Size: =9
+                Width: =1872
+                X: =21
+                Y: =14
+                ZIndex: =1
+

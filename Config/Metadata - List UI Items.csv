@@ -1,0 +1,81 @@
+ui_label,ui_type,ui_enabled,ui_help_text,ui_form_type,ui_row_index,ui_visibility_mode,ui_choices,ui_set_default_in_new,ui_mandatory
+Submitter name,people,False,Current user who is submitting the request. (Auto populated and can't be changed),Environment creation,1,all,,True,False
+Requestor name,people,True,Enter the name of the person who initiated this environment creation request.,Environment creation,2,all,,True,True
+Environment name,text_input_single,True,Specify a name for the new environment to be created.,Environment creation,3,all,,,True
+Environment description,text_input_multi,True,Specify a name for the new environment to be created.,Environment creation,4,all,,,True
+Environment type,choice,True,Indicate the type of environment you're requesting.,Environment creation,5,all,"Production, Default, Sandbox, Trial, Developer, Microsoft Dataverse for Teams",,True
+Dataverse enabled,checkbox,True,Specify whether Dataverse will be enabled for this environment.,Environment creation,7,all,,True,
+Code component enabled,checkbox,True,Indicate whether code components will be used in this environment.,Environment creation,8,edit,,True,
+Request ID,number,False,This field will be auto-assigned a unique ID for tracking purposes.,Environment creation,9,all,,True,
+Status,choice,True,This field will show the current status of the environment creation request.,Environment creation,10,"edit, view","Pending Review, Under Processing, Approved, Rejected, On Hold, Completed, Cancelled, Scheduled, Pending Approval, Awaiting Feedback, Escalated, Pending Action, Under Review, In Progress, Submitted",True,
+Approved by,people,True,This field will be auto-populated when the request approved by the responsible person.,Environment creation,13,"edit, view",,,
+Business Case,text_input_multi,True,Provide a detailed business case for creating the new environment.,Environment creation,6,all,,,True
+Submitter name,people,False,Current user who is submitting the request. (Auto populated and can't be changed),App deployment,1,all,,True,
+Requestor name,people,True,Enter the name of the person who initiated this deployment request.,App deployment,2,all,,True,True
+Application name,text_input_single,True,Specify the name of the application to be deployed.,App deployment,3,all,,,True
+Application description,text_input_multi,True,Provide a brief description of the application.,App deployment,4,all,,,True
+Business case,text_input_multi,True,Explain the reason for deploying the application and provide relevant details.,App deployment,6,all,,,True
+Personal data,checkbox,True,Indicate whether the application processes personal data and describe the data types.,App deployment,7,all,,True,True
+Planned deployment date,date,True,Select the date when you intend the application to be deployed.,App deployment,8,all,,,True
+Hosting environment name,choice,True,Provide the name of the environment where the application will be hosted.,App deployment,9,all,,True,True
+Dataverse enabled,checkbox,True,Specify whether Dataverse will be enabled for the application.,App deployment,10,all,,True,
+Database source,choice,True,Indicate the source of the application's database.,App deployment,11,all,"App memory, Database (External)",True,True
+Database name(s) (External),choice,True,"If using an external database, provide the name(s) of the database(s).",App deployment,12,all,"Microsoft Lists (SharePoint Lists), Microsoft Dataverse, SQL Server, Microsoft Dynamics, Other CRM databases, Common Data Service, Azure SQL Database, SharePoint Document Libraries, OneDrive for Business, DropBox, Google Drive, Google Sheets, MySQL, Oracle Database, PostgreSQL, MongoDB, Cosmos DB, Firebase, Airtable",,True
+Complexity level,choice,True,Indicate the complexity level of the application.,App deployment,13,all,"Simple, Complicated, Complex",True,True
+Connector type(s),choice,True,Specify the type(s) of connectors used by the application.,App deployment,14,all,"Standard connector(s), Premium connector(s), Custom connector(s)",False,
+Standard connector name(s),choice,True,List the names of standard connectors used by the application.,App deployment,15,all,,,True
+Premium connector name(s),choice,True,List the names of premium connectors used by the application.,App deployment,16,all,,,True
+Custom connector name(s),choice,True,List the names of custom connectors used by the application.,App deployment,17,all,,,True
+Link to the app,hyperlink,True,Provide a link to access the application.,App deployment,18,all,,,True
+Requested date,date,True,This field will be auto-populated with the date when the request was made.,App deployment,21,"edit, view",,,
+Completed date,date,True,This field will be updated automatically when the request is completed.,App deployment,22,"edit, view",,,
+Request ID,number,False,This field will be auto-assigned a unique ID for tracking purposes.,App deployment,19,all,,True,
+Status,choice,True,This field will show the current status of the deployment request.,App deployment,20,"edit, view","Pending Review, Under Processing, Approved, Rejected, On Hold, Completed, Cancelled, In Progress, Scheduled, Pending Approval, Awaiting Feedback, Escalated, Pending Action, Under Review, Reopened, Submitted",True,
+Approved by,people,True,This field will be auto-populated when the request approved by the responsible person.,App deployment,23,"edit, view",,,
+Requested date,date,True,This field will be auto-populated with the date when the request was made.,Environment creation,11,"edit, view",,,
+Completed date,date,True,This field will be updated automatically when the request is completed.,Environment creation,12,"edit, view",,,
+Submitter name,people,False,Current user who is submitting the request. (Auto populated and can't be changed),M365 Group creation,1,all,,True,
+Requestor name,people,True,Enter the name of the person who initiated this M365 Group creation request.,M365 Group creation,2,all,,True,True
+Group name,text_input_single,True,Specify the name of the Microsoft 365 group you want to create.,M365 Group creation,3,all,,,True
+Group owner,people,True,Provide the name(s) of the person or people who will be designated as the owner(s) of the group.,M365 Group creation,5,all,,,True
+Business case,text_input_multi,True,Provide a brief explanation of the reasons for creating the Microsoft 365 group.,M365 Group creation,6,all,,,True
+Add to Teams,checkbox,True,Select whether the new group should be added to Microsoft Teams.,M365 Group creation,7,all,,True,
+Requested date,date,True,This field will be auto-populated with the date when the request was made.,M365 Group creation,9,"edit, view",,,
+Completed date,date,True,This field will be updated automatically when the request is completed.,M365 Group creation,10,"edit, view",,,
+Request ID,number,False,This field will be auto-assigned a unique ID for tracking purposes.,M365 Group creation,11,all,,True,
+Status,choice,True,This field will show the current status of the Microsoft 365 group creation request.,M365 Group creation,12,"edit, view","Pending Review, Under Processing, Approved, Rejected, On Hold, Completed, Cancelled, In Progress, Scheduled, Pending Approval, Awaiting Feedback, Escalated, Pending Action, Under Review, Reopened, Submitted",True,
+Approved by,people,True,This field will be auto-populated when the request approved by the responsible person.,M365 Group creation,13,"edit, view",,,
+Submitter name,people,False,Current user who is submitting the request. (Auto populated and can't be changed),Environment deletion,1,all,,True,
+Requestor name,people,True,Enter the name of the person who initiated this environment deletion request.,Environment deletion,2,all,,True,True
+Environment name,choice,True,Specify the name of the environment that you want to delete.,Environment deletion,3,all,,,True
+Business case,text_input_multi,True,Provide a brief explanation of the reasons for deleting the environment.,Environment deletion,4,all,,,True
+Planned deletion date,date,True,Indicate the date when you intend to have the environment deleted.,Environment deletion,5,all,,,True
+Requested date,date,True,This field will be auto-populated with the date when the request was made.,Environment deletion,8,"edit, view",,,
+Completed date,date,True,This field will be updated automatically when the request is completed.,Environment deletion,9,"edit, view",,,
+Request ID,number,False,This field will be auto-assigned a unique ID for tracking purposes.,Environment deletion,6,all,,True,
+Status,choice,True,This field will show the current status of the environment deletion request.,Environment deletion,7,"edit, view","Pending Review, Under Processing, Approved, Rejected, On Hold, Completed, Cancelled, In Progress, Scheduled, Pending Approval, Awaiting Feedback, Escalated, Pending Action, Under Review, Reopened, Submitted",True,
+Approved by,people,True,This field will be auto-populated when the request approved by the responsible person.,Environment deletion,10,"edit, view",,,
+Submitter name,people,False,Current user who is submitting the request. (Auto populated and can't be changed),App deletion,1,all,,True,
+Requestor name,people,True,Enter the name of the person who initiated this deletion request.,App deletion,2,all,,True,True
+Application name,choice,True,Specify the name of the application being considered for deletion.,App deletion,3,all,,,True
+Hosting environment name,choice,True,Provide the name of the environment where the application is hosted.,App deletion,4,all,,,True
+Business case,text_input_multi,True,Explain the reason for the application's deletion and provide relevant details.,App deletion,5,all,,,True
+Planned deletion date,date,True,Select the date when you intend the application to be deleted.,App deletion,6,all,,,True
+Requested date,date,True,This field will be auto-populated with the date when the request was made.,App deletion,7,"edit, view",,,
+Completed date,date,True,This field will be updated automatically when the request is completed.,App deletion,8,"edit, view",,,
+Request ID,number,False,This field will be auto-assigned a unique ID for tracking purposes.,App deletion,9,all,,True,
+Status,choice,True,This field will be auto-assigned a unique ID for tracking purposes.,App deletion,10,"edit, view","Pending Review, Under Processing, Approved, Rejected, On Hold, Completed, Cancelled, In Progress, Scheduled, Pending Approval, Awaiting Feedback, Escalated, Pending Action, Under Review, Reopened, Submitted",True,
+Approved by,people,True,This field will be auto-populated when the request approved by the responsible person.,App deletion,11,"edit, view",,,
+Submitter name,people,False,Current user who is submitting the request. (Auto populated and can't be changed),M365 Group deletion,1,all,,True,
+Requestor name,people,True,Enter the name of the person who initiated this M365 Group deletion request.,M365 Group deletion,2,all,,True,True
+Group name,choice,True,Specify the name of the Microsoft 365 group you want to delete.,M365 Group deletion,3,all,,,True
+Business case,text_input_multi,True,Provide a brief explanation of the reasons for deleting the Microsoft 365 group.,M365 Group deletion,4,all,,,True
+Planned deletion date,date,True,Choose the date when you plan the group to be deleted.,M365 Group deletion,5,all,,,True
+Requested date,date,True,This field will be auto-populated with the date when the request was made.,M365 Group deletion,6,"edit, view",,,
+Completed date,date,True,This field will be updated automatically when the request is completed.,M365 Group deletion,7,"edit, view",,,
+Request ID,number,False,This field will be auto-assigned a unique ID for tracking purposes.,M365 Group deletion,8,all,,True,
+Status,choice,True,This field will show the current status of the Microsoft 365 group deletion request.,M365 Group deletion,9,"edit, view","Pending Review, Under Processing, Approved, Rejected, On Hold, Completed, Cancelled, In Progress, Scheduled, Pending Approval, Awaiting Feedback, Escalated, Pending Action, Under Review, Reopened, Submitted",True,
+Approved by,people,True,This field will be auto-populated when the request approved by the responsible person.,M365 Group deletion,10,"edit, view",,,
+Deployment environment,choice,True,Indicate the specific environment for the deployment.,App deployment,5,all,"Development, Integration, Test, QA, Staging, UAT, Production",True,True
+Group environment,choice,True,Please specify the requested Microsoft 365 Group type! What stage it will be used?,M365 Group creation,4,all,"Production, UAT, Development",False,True
+Privacy,choice,True,Please specify if the new Group should be Private or Public group.,M365 Group creation,8,all,"Private, Public",True,True

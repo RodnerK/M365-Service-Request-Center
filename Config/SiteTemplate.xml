@@ -1,0 +1,840 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2022/09/ProvisioningSchema">
+  <pnp:Preferences Generator="PnP.Framework, Version=1.13.1.0, Culture=neutral, PublicKeyToken=0d501f89f11b748c" />
+  <pnp:Templates ID="CONTAINER-TEMPLATE-0F0DDCDC89044E0E8F38A572B465655F">
+    <pnp:ProvisioningTemplate ID="TEMPLATE-0F0DDCDC89044E0E8F38A572B465655F" Version="1" BaseSiteTemplate="GROUP#0" Scope="RootSite">
+      <pnp:SiteFields>
+        <Field Type="User" DisplayName="Submitter name" List="UserInfo" Required="TRUE" EnforceUniqueValues="FALSE" ShowField="ImnName" UserSelectionMode="PeopleOnly" UserSelectionScope="0" Group="M365 Management app" ID="{a2098001-3394-4378-861d-074fbf31ce1f}" SourceID="{{siteid}}" StaticName="Submitter_x0020_name" Name="Submitter_x0020_name" />
+        <Field Name="Connector_x0020_type_x0028_s_x0029_" FromBaseType="FALSE" Type="MultiChoice" DisplayName="Connector type(s)" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" FillInChoice="FALSE" Group="M365 Management app" ID="{3a39840e-ac59-43dd-9cd2-3463341fd1c9}" StaticName="Connector_x0020_type_x0028_s_x0029_" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" CustomFormatter="">
+          <Default>None</Default>
+          <CHOICES>
+            <CHOICE>None</CHOICE>
+            <CHOICE>Standard connector name(s)</CHOICE>
+            <CHOICE>Premium connector name(s)</CHOICE>
+            <CHOICE>Custom connector name(s)</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Name="Custom_x0020_connector_x0020_name_x0028_s_x0029_" FromBaseType="FALSE" Type="MultiChoice" DisplayName="Custom connector name(s)" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" FillInChoice="TRUE" Group="M365 Management app" ID="{b537580f-fe2a-4ea9-88d5-3a98aa4e3382}" StaticName="Custom_x0020_connector_x0020_name_x0028_s_x0029_" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}">
+          <CHOICES>
+            <CHOICE>Default</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="Choice" DisplayName="Complexity level" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" Group="M365 Management app" ID="{87b21c17-c1d9-462d-9b1c-e8b6fb4ad758}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Complexity_x0020_level" Name="Complexity_x0020_level" CustomFormatter="">
+          <Default>Simple</Default>
+          <CHOICES>
+            <CHOICE>Simple</CHOICE>
+            <CHOICE>Complicated</CHOICE>
+            <CHOICE>Complex</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="DateTime" DisplayName="Planned deployment date" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" Group="M365 Management app" FriendlyDisplayFormat="Disabled" ID="{6b32c025-240e-49dd-82ad-4edc4a525cf6}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Planned_x0020_deployment_x0020_date" Name="Planned_x0020_deployment_x0020_date" CustomFormatter="" CalType="0"></Field>
+        <Field Type="Boolean" DisplayName="Code component enabled" EnforceUniqueValues="FALSE" Indexed="FALSE" Group="M365 Management app" ID="{758a472d-838a-45ed-ad42-e1271d7c3f06}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Code_x0020_component_x0020_enabled" Name="Code_x0020_component_x0020_enabled" CustomFormatter="" Required="FALSE">
+          <Default>0</Default>
+        </Field>
+        <Field Type="Choice" DisplayName="Environment name (Choice)" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="TRUE" Group="M365 Management app" ID="{5943d637-7561-4ad3-9bef-51b78476f336}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Environment_x0020_name_x0020__x0028_Choice_x0029_" Name="Environment_x0020_name_x0020__x0028_Choice_x0029_" CustomFormatter="">
+          <Default>Default</Default>
+          <CHOICES>
+            <CHOICE>Default</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="Choice" DisplayName="Privacy" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" Group="M365 Management app" ID="{64586739-a7aa-4837-a377-394974b2e4ef}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Privacy" Name="Privacy">
+          <Default>Private</Default>
+          <CHOICES>
+            <CHOICE>Private</CHOICE>
+            <CHOICE>Public</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="Choice" DisplayName="Database source" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" Group="M365 Management app" ID="{55a96e44-8428-415a-aedc-b6d14d6b2d86}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Database_x0020_source" Name="Database_x0020_source" CustomFormatter="">
+          <Default>App memory</Default>
+          <CHOICES>
+            <CHOICE>App memory</CHOICE>
+            <CHOICE>Database name(s) (External)</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="Text" DisplayName="Environment name" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group="M365 Management app" ID="{ad3b6650-9b6b-44b6-aaec-f3fe7855588f}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Environment_x0020_name" Name="Environment_x0020_name" CustomFormatter=""></Field>
+        <Field Type="Note" DisplayName="Application description" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="FALSE" Sortable="FALSE" Group="M365 Management app" ID="{ad5dff52-f896-4332-813e-3c134e353c46}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Application_x0020_description" Name="Application_x0020_description" CustomFormatter="" RestrictedMode="TRUE" RichTextMode="Compatible" IsolateStyles="FALSE" AppendOnly="FALSE" UnlimitedLengthInDocumentLibrary="FALSE"></Field>
+        <Field Type="DateTime" DisplayName="Planned deletion date" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" Group="M365 Management app" FriendlyDisplayFormat="Disabled" ID="{c22b9b54-52d8-4331-aa7e-3ae78ea10600}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Planned_x0020_deletion_x0020_date" Name="Planned_x0020_deletion_x0020_date" CustomFormatter="" CalType="0"></Field>
+        <Field Name="Standard_x0020_connector_x0020_name_x0028_s_x0029_" FromBaseType="FALSE" Type="MultiChoice" DisplayName="Standard connector name(s)" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" FillInChoice="TRUE" Group="M365 Management app" ID="{9010ae56-626b-43ce-a447-bb60f6c41a65}" StaticName="Standard_x0020_connector_x0020_name_x0028_s_x0029_" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}">
+          <CHOICES>
+            <CHOICE>Default</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="Choice" DisplayName="Hosting environment name" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="TRUE" Group="M365 Management app" ID="{18a7b75b-cbde-4b81-96c4-94a56e7bab2e}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Hosting_x0020_environment_x0020_name" Name="Hosting_x0020_environment_x0020_name" CustomFormatter="">
+          <Default>Default</Default>
+          <CHOICES>
+            <CHOICE>Default</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="Text" DisplayName="Application name" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group="M365 Management app" ID="{3076e75b-8d38-4ac3-a726-425682c04bd3}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Application_x0020_name" Name="Application_x0020_name" CustomFormatter=""></Field>
+         <Field Name="Database_x0020_name_x0028_s_x0029__x0020__x0028_External_x0029_" FromBaseType="FALSE" Type="MultiChoice" DisplayName="Database name(s) (External)" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" FillInChoice="TRUE" Group="M365 Management app" ID="{ceb1106e-0801-47cb-a675-10242c790f8e}" StaticName="Database_x0020_name_x0028_s_x0029__x0020__x0028_External_x0029_" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}">
+          <CHOICES>
+            <CHOICE>Default</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Name="Premium_x0020_connector_x0020_name_x0028_s_x0029_" FromBaseType="FALSE" Type="MultiChoice" DisplayName="Premium connector name(s)" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" FillInChoice="TRUE" Group="M365 Management app" ID="{c900d36f-8db8-491d-a319-da700ea008ea}" StaticName="Premium_x0020_connector_x0020_name_x0028_s_x0029_" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}">
+          <CHOICES>
+            <CHOICE>Default</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="Choice" DisplayName="Environment type" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" Group="M365 Management app" ID="{51a2e179-f9c1-42e2-b011-df2ee69d1d22}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Environment_x0020_type" Name="Environment_x0020_type" CustomFormatter="">
+          <Default>Production</Default>
+          <CHOICES>
+            <CHOICE>Production</CHOICE>
+            <CHOICE>Default</CHOICE>
+            <CHOICE>Sandbox</CHOICE>
+            <CHOICE>Trial</CHOICE>
+            <CHOICE>Developer</CHOICE>
+            <CHOICE>Microsoft Dataverse for Teams</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="Choice" DisplayName="Status" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" Group="M365 Management app" ID="{a2083785-bfdd-4267-95c3-dfaf6ce268bb}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Status" Name="Status" CustomFormatter="">
+          <Default>Submitted</Default>
+          <CHOICES>
+            <CHOICE>Pending Review</CHOICE>
+            <CHOICE>Under Processing</CHOICE>
+            <CHOICE>Approved</CHOICE>
+            <CHOICE>Rejected</CHOICE>
+            <CHOICE>On Hold</CHOICE>
+            <CHOICE>Completed</CHOICE>
+            <CHOICE>Cancelled</CHOICE>
+            <CHOICE>In Progress</CHOICE>
+            <CHOICE>Scheduled</CHOICE>
+            <CHOICE>Pending Approval</CHOICE>
+            <CHOICE>Awaiting Feedback</CHOICE>
+            <CHOICE>Escalated</CHOICE>
+            <CHOICE>Pending Action</CHOICE>
+            <CHOICE>Under Review</CHOICE>
+            <CHOICE>Reopened</CHOICE>
+            <CHOICE>Submitted</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="Number" DisplayName="Request ID" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Min="1" Decimals="0" Group="M365 Management app" ID="{133e1587-3741-4696-9444-0eee5bb4cd5e}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Request_x0020_ID" Name="Request_x0020_ID" CustomFormatter="" Percentage="FALSE"></Field>
+        <Field Type="Link" DisplayName="Link to the app" RichText="TRUE" RichTextMode="ThemeHtml" Required="FALSE" Group="M365 Management app" ID="{239b459d-103a-413f-a0a3-69fdce8f418b}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Link_x0020_to_x0020_the_x0020_app" Name="Link_x0020_to_x0020_the_x0020_app" />
+        <Field Type="User" DisplayName="Group owner(s)" List="UserInfo" Required="TRUE" EnforceUniqueValues="FALSE" ShowField="ImnName" UserSelectionMode="PeopleOnly" UserSelectionScope="0" Mult="FALSE" Group="M365 Management app" ID="{62331aa9-a278-4968-b48f-f017d972f2bd}" SourceID="{{siteid}}" StaticName="Group_x0020_owner_x0028_s_x0029_" Name="Group_x0020_owner_x0028_s_x0029_" />
+        <Field Type="User" DisplayName="Requestor name" List="UserInfo" Required="TRUE" EnforceUniqueValues="FALSE" ShowField="ImnName" UserSelectionMode="PeopleOnly" UserSelectionScope="0" Group="M365 Management app" ID="{11572cb2-df6d-45e4-b7dc-e153572db9d3}" SourceID="{{siteid}}" StaticName="Requestor_x0020_name" Name="Requestor_x0020_name" />
+        <Field Type="Note" DisplayName="Business case" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="FALSE" Sortable="FALSE" Group="M365 Management app" ID="{f41215ba-8ee4-429e-b304-533cdca2b113}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Business_x0020_case" Name="Business_x0020_case" CustomFormatter="" RestrictedMode="TRUE" RichTextMode="Compatible" IsolateStyles="FALSE" AppendOnly="FALSE" UnlimitedLengthInDocumentLibrary="FALSE"></Field>
+        <Field Type="User" DisplayName="Approved by" List="UserInfo" Required="FALSE" EnforceUniqueValues="FALSE" ShowField="ImnName" UserSelectionMode="PeopleOnly" UserSelectionScope="0" Group="M365 Management app" ID="{f13ce4bc-c936-4f5c-9569-0581adbefbd2}" SourceID="{{siteid}}" StaticName="Approved_x0020_by" Name="Approved_x0020_by" />
+        <Field Type="Boolean" DisplayName="Personal data" EnforceUniqueValues="FALSE" Indexed="FALSE" Group="M365 Management app" ID="{ed32f7c5-e50f-4c73-b518-aab749696ff3}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Personal_x0020_data" Name="Personal_x0020_data" CustomFormatter="" Required="FALSE">
+          <Default>0</Default>
+        </Field>
+        <Field Type="Boolean" DisplayName="Add to Teams" EnforceUniqueValues="FALSE" Indexed="FALSE" Group="M365 Management app" ID="{ab3cefd0-e592-46d9-a582-cf480a4a48f5}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Add_x0020_to_x0020_Teams" Name="Add_x0020_to_x0020_Teams" CustomFormatter="" Required="FALSE">
+          <Default>0</Default>
+        </Field>
+        <Field Type="Boolean" DisplayName="Dataverse enabled" EnforceUniqueValues="FALSE" Indexed="FALSE" Group="M365 Management app" ID="{4fb619d5-57c5-4c58-bb1c-7aefe5d81165}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Dataverse_x0020_enabled" Name="Dataverse_x0020_enabled" CustomFormatter="" Required="FALSE">
+          <Default>0</Default>
+        </Field>
+        <Field Type="DateTime" DisplayName="Requested date" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateTime" Group="M365 Management app" FriendlyDisplayFormat="Disabled" ID="{956754d9-089b-4491-9650-cd9508f78eb7}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Requested_x0020_date" Name="Requested_x0020_date" CustomFormatter="" CalType="0"></Field>
+        <Field Type="DateTime" DisplayName="Completed date" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateTime" Group="M365 Management app" FriendlyDisplayFormat="Disabled" ID="{7689ade3-df76-4508-ac07-03f75d56e9f7}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Completed_x0020_date" Name="Completed_x0020_date" CustomFormatter="" CalType="0"></Field>
+        <Field Type="Text" DisplayName="Group name" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group="M365 Management app" ID="{dc5176fa-0958-4996-b18f-57f77a8bb59a}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Group_x0020_name" Name="Group_x0020_name" CustomFormatter=""></Field>
+        <Field Type="Note" DisplayName="Environment description" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="FALSE" Sortable="FALSE" Group="M365 Management app" ID="{e302c8ff-c2a7-4c70-bca9-fdd869facd3f}" SourceID="{0e7cfd30-5065-4114-8938-2d8de3d599c6}" StaticName="Environment_x0020_description" Name="Environment_x0020_description" CustomFormatter="" RestrictedMode="TRUE" RichTextMode="Compatible" IsolateStyles="FALSE" AppendOnly="FALSE" UnlimitedLengthInDocumentLibrary="FALSE"></Field>
+      </pnp:SiteFields>
+      <pnp:Lists>
+        <pnp:ListInstance Title="Metadata - App Color codes" Description="This list serves as a centralized repository for managing and storing color codes used within the app, ensuring consistent visual aesthetics and facilitating easy reference and updates to color schemes across different app components." DocumentTemplate="" OnQuickLaunch="false" TemplateType="100" Url="Lists/Metadata  App Color codes" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Metadata  App Color codes/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Metadata  App Color codes/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Metadata  App Color codes/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{D2B6D978-5D08-4BDA-8BBF-BD1E73F287E0}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Metadata  App Color codes/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="color_group_name" />
+                <FieldRef Name="Color_x0020_code_x0020__x0028_RG" />
+                <FieldRef Name="color_value_hexadecimal" />
+                <FieldRef Name="color_value_display_hexadecimal" />
+                <FieldRef Name="control_to_apply" />
+                <FieldRef Name="information" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <CustomFormatter />
+              <ColumnWidth>
+                <FieldRef Name="Control_x0020_group" width="230" />
+                <FieldRef Name="Control" width="196" />
+                <FieldRef Name="Color_x0020_code_x0020__x0028_RG" width="172" />
+                <FieldRef Name="Change_x0020_enabled" width="181" />
+                <FieldRef Name="Row_index" width="166" />
+                <FieldRef Name="color_value_hexadecimal" width="205" />
+                <FieldRef Name="applied_control" width="1002" />
+                <FieldRef Name="color_value_display_hexadecimal" width="245" />
+                <FieldRef Name="app_controls" width="991" />
+                <FieldRef Name="control_to_apply" width="181" />
+                <FieldRef Name="information" width="573" />
+              </ColumnWidth>
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" DisplayName="color_group_name" EnforceUniqueValues="TRUE" Format="Dropdown" Indexed="TRUE" MaxLength="255" Name="color_group_name" Required="TRUE" Title="color_group_name" Type="Text" ID="{3468cee9-c5da-4868-b5ba-a39a2f6734da}" Version="2" StaticName="color_group_name" SourceID="{{listid:Metadata - App Color codes}}" ColName="nvarchar7" RowOrdinal="0" />
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" DisplayName="color_value_RGBA" Format="Dropdown" MaxLength="255" Name="Color_x0020_code_x0020__x0028_RG" Required="TRUE" Title="color_value_RGBA" Type="Text" ID="{60140990-34db-4fc6-af1e-c34a5c210b7d}" Version="11" StaticName="Color_x0020_code_x0020__x0028_RG" SourceID="{{listid:Metadata - App Color codes}}" ColName="nvarchar8" RowOrdinal="0" />
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" DisplayName="color_value_hexadecimal" Format="Dropdown" MaxLength="255" Name="color_value_hexadecimal" Required="TRUE" Title="color_value_hexadecimal" Type="Text" ID="{07f0616b-c101-4139-a5a2-f0f5d61113fe}" Version="2" StaticName="color_value_hexadecimal" SourceID="{{listid:Metadata - App Color codes}}" ColName="nvarchar9" RowOrdinal="0" />
+            <Field Type="Calculated" DisplayName="color_value_display_hexadecimal" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" LCID="1038" ResultType="Number" ReadOnly="TRUE" ID="{6431f3f6-52bd-4162-a1ab-17484393a95c}" SourceID="{{listid:Metadata - App Color codes}}" StaticName="color_value_display_hexadecimal" Name="color_value_display_hexadecimal" ColName="sql_variant1" RowOrdinal="0" CustomFormatter="{&quot;$schema&quot;:&quot;https://developer.microsoft.com/json-schemas/sp/column-formatting.schema.json&quot;,&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;margin-left&quot;:&quot;33%&quot;,&quot;width&quot;:&quot;50px&quot;,&quot;height&quot;:&quot;20px&quot;,&quot;background-color&quot;:&quot;[$color_value_hexadecimal]&quot;,&quot;border&quot;:&quot;1px solid #ccc&quot;}}" Required="FALSE" Percentage="FALSE" Version="30">
+              <Formula>=[color_value_hexadecimal]</Formula>
+            </Field>
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" DisplayName="control_to_apply" EnforceUniqueValues="TRUE" FillInChoice="FALSE" Format="Dropdown" Indexed="TRUE" Name="control_to_apply" Required="TRUE" Title="control_to_apply" Type="Choice" ID="{0250529b-9add-47fa-995f-86cb76572eed}" Version="2" StaticName="control_to_apply" SourceID="{{listid:Metadata - App Color codes}}" ColName="nvarchar10" RowOrdinal="0">
+              <CHOICES>
+                <CHOICE>App background</CHOICE>
+                <CHOICE>Header background</CHOICE>
+                <CHOICE>Header text</CHOICE>
+                <CHOICE>Header text pressed</CHOICE>
+                <CHOICE>Content background</CHOICE>
+                <CHOICE>Content text</CHOICE>
+                <CHOICE>Content text pressed/selected</CHOICE>
+                <CHOICE>Table header</CHOICE>
+                <CHOICE>Table content</CHOICE>
+                <CHOICE>Table text</CHOICE>
+                <CHOICE>Table action</CHOICE>
+                <CHOICE>Table action pressed</CHOICE>
+                <CHOICE>Form background</CHOICE>
+                <CHOICE>Form text</CHOICE>
+                <CHOICE>Form control</CHOICE>
+                <CHOICE>Form button</CHOICE>
+                <CHOICE>Form button text</CHOICE>
+                <CHOICE>Form mandatory</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field AppendOnly="FALSE" DisplayName="information" Format="Dropdown" IsModern="TRUE" IsolateStyles="FALSE" Name="information" RichText="FALSE" RichTextMode="Compatible" Title="information" Type="Note" ID="{6722a8c2-7bb4-4b49-be15-95526f52b32f}" SourceID="{{listid:Metadata - App Color codes}}" StaticName="information" ColName="ntext2" RowOrdinal="0" />
+          </pnp:Fields>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://westeurope1-0.pushnp.svc.ms/notifications?token=fe0b9de0-900f-46b8-bad1-e4ddd86e8bed%2Fb!BFeLcy354E6aVVKUQQ3nUDD9fA5lUBRBiTgtjePVmcbdFZwc3TB4QrHRU8Fntf8t" ExpiresInDays="1" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Metadata - Common Connectors" Description="This list is a structured repository housing details of various Power App connectors used across applications, serving as a centralized reference point for developers and administrators to ensure uniformity and provide quick access to connector configurations and properties." DocumentTemplate="" OnQuickLaunch="false" TemplateType="100" Url="Lists/Metadata  Common Connectors" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Metadata  Common Connectors/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Metadata  Common Connectors/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Metadata  Common Connectors/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{68F8577D-B042-4FC3-A26F-A81163875436}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Metadata  Common Connectors/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Connector_x0020_type" />
+                <FieldRef Name="Connector_x0020_name" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field Type="Choice" DisplayName="Connector type" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{68ce29a2-fc70-4fe3-bbe0-e700a1d14c9f}" SourceID="{{listid:Metadata - Common Connectors}}" StaticName="Connector_x0020_type" Name="Connector_x0020_type" ColName="nvarchar7" RowOrdinal="0">
+              <Default>Standard connector</Default>
+              <CHOICES>
+                <CHOICE>Standard connector</CHOICE>
+                <CHOICE>Premium connector</CHOICE>
+                <CHOICE>Custom connector</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Type="Text" DisplayName="Connector name" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" ID="{1639b789-1f7c-4349-bffa-5b854de7611e}" SourceID="{{listid:Metadata - Common Connectors}}" StaticName="Connector_x0020_name" Name="Connector_x0020_name" ColName="nvarchar8" RowOrdinal="0" />
+          </pnp:Fields>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://westeurope1-0.pushnp.svc.ms/notifications?token=fe0b9de0-900f-46b8-bad1-e4ddd86e8bed%2Fb!BFeLcy354E6aVVKUQQ3nUDD9fA5lUBRBiTgtjePVmcbfSYRbiU8PRaVjcsF7BAPu" ExpiresInDays="1" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Metadata - List UI" Description="This list encapsulates the structured blueprint delineating the layout, elements, and data to be displayed within the Power App forms. It acts as a foundational reference for the app, ensuring the consistent representation of data and interface elements. Utilized dynamically by the Power App, it aids in maintaining uniformity and adherence to design principles across various forms and interface components." DocumentTemplate="" OnQuickLaunch="false" TemplateType="100" Url="Lists/Metadata  List UI" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Metadata  List UI/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Metadata  List UI/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Metadata  List UI/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{F012C7E1-F38E-4337-B5EF-50BC92DF0427}" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Metadata  List UI/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="ui_label" />
+                <FieldRef Name="ui_type" />
+                <FieldRef Name="ui_row_index" />
+                <FieldRef Name="ui_enabled" />
+                <FieldRef Name="ui_visibility_mode" />
+                <FieldRef Name="ui_set_default_in_new" />
+                <FieldRef Name="ui_mandatory" />
+                <FieldRef Name="ui_form_type" />
+                <FieldRef Name="ui_help_text" />
+                <FieldRef Name="ui_choices" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <CustomFormatter />
+              <ViewData />
+            </View>
+            <View Name="{30D35F73-201E-4FE7-9E8F-C5A8E66699C2}" DefaultView="TRUE" Type="HTML" DisplayName="All Items (Grouped by Type)" Url="{site}/Lists/Metadata  List UI/All Items Grouped by Type.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query>
+                <GroupBy Collapse="TRUE" GroupLimit="30">
+                  <FieldRef Name="ui_form_type" />
+                </GroupBy>
+                <OrderBy>
+                  <FieldRef Name="ui_row_index" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="ui_label" />
+                <FieldRef Name="ui_type" />
+                <FieldRef Name="ui_form_type" />
+                <FieldRef Name="ui_row_index" />
+                <FieldRef Name="ui_enabled" />
+                <FieldRef Name="ui_mandatory" />
+                <FieldRef Name="ui_help_text" />
+                <FieldRef Name="ui_set_default_in_new" />
+                <FieldRef Name="ui_visibility_mode" />
+                <FieldRef Name="ui_choices" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <CustomFormatter />
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field DisplayName="ui_label" Format="Dropdown" IsModern="TRUE" MaxLength="255" Name="ui_label" Required="TRUE" Title="ui_label" Type="Text" ID="{1b8f4f6c-1bdd-4d48-b45e-a801cf1539ca}" SourceID="{{listid:Metadata - List UI}}" StaticName="ui_label" ColName="nvarchar7" RowOrdinal="0" />
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" CustomFormatter="{&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;flex-wrap&quot;:&quot;wrap&quot;,&quot;display&quot;:&quot;flex&quot;},&quot;children&quot;:[{&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;box-sizing&quot;:&quot;border-box&quot;,&quot;padding&quot;:&quot;4px 8px 5px 8px&quot;,&quot;overflow&quot;:&quot;hidden&quot;,&quot;text-overflow&quot;:&quot;ellipsis&quot;,&quot;display&quot;:&quot;flex&quot;,&quot;border-radius&quot;:&quot;16px&quot;,&quot;height&quot;:&quot;24px&quot;,&quot;align-items&quot;:&quot;center&quot;,&quot;white-space&quot;:&quot;nowrap&quot;,&quot;margin&quot;:&quot;4px 4px 4px 4px&quot;},&quot;attributes&quot;:{&quot;class&quot;:{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_type]&quot;,&quot;people&quot;]},&quot;sp-css-backgroundColor-BgGold sp-css-borderColor-GoldFont sp-css-color-GoldFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_type]&quot;,&quot;number&quot;]},&quot;sp-css-backgroundColor-BgCyan sp-css-borderColor-CyanFont sp-css-color-CyanFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_type]&quot;,&quot;&quot;]},&quot;&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_type]&quot;,&quot;choice&quot;]},&quot;sp-css-backgroundColor-BgSage sp-css-borderColor-SageFont sp-css-color-SageFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_type]&quot;,&quot;checkbox&quot;]},&quot;sp-css-backgroundColor-BgCornflowerBlue sp-css-borderColor-CornflowerBlueFont sp-css-color-CornflowerBlueFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_type]&quot;,&quot;text_input_single&quot;]},&quot;sp-css-backgroundColor-BgLightPurple sp-css-borderColor-LightPurpleFont sp-css-color-LightPurpleFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_type]&quot;,&quot;text_input_multi&quot;]},&quot;sp-css-backgroundColor-BgLightBlue sp-css-borderColor-LightBlueFont sp-css-color-LightBlueFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_type]&quot;,&quot;date&quot;]},&quot;sp-css-backgroundColor-BgViolet sp-css-borderColor-VioletFont sp-css-color-VioletFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_type]&quot;,&quot;attachment&quot;]},&quot;sp-css-backgroundColor-BgMauve sp-css-borderColor-MauveFont sp-css-color-MauveFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_type]&quot;,&quot;hyperlink&quot;]},&quot;sp-css-backgroundColor-BgLightPurple sp-field-fontSizeSmall sp-css-color-LightPurpleFont&quot;,&quot;sp-field-borderAllRegular sp-field-borderAllSolid sp-css-borderColor-neutralSecondary&quot;]}]}]}]}]}]}]}]}]}]}},&quot;txtContent&quot;:&quot;[$ui_type]&quot;}],&quot;templateId&quot;:&quot;BgColorChoicePill&quot;}" DisplayName="ui_type" FillInChoice="FALSE" Format="Dropdown" Name="ui_type" Required="TRUE" Title="ui_type" Type="Choice" ID="{fc2f6ead-7cc8-4a25-8f61-4971b619ba8e}" Version="8" StaticName="ui_type" SourceID="{{listid:Metadata - List UI}}" ColName="nvarchar8" RowOrdinal="0">
+              <CHOICES>
+                <CHOICE>people</CHOICE>
+                <CHOICE>number</CHOICE>
+                <CHOICE>choice</CHOICE>
+                <CHOICE>checkbox</CHOICE>
+                <CHOICE>text_input_single</CHOICE>
+                <CHOICE>text_input_multi</CHOICE>
+                <CHOICE>date</CHOICE>
+                <CHOICE>attachment</CHOICE>
+                <CHOICE>hyperlink</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field DisplayName="ui_enabled" Format="Dropdown" IsModern="TRUE" Name="ui_enabled" Required="TRUE" Title="ui_enabled" Type="Boolean" ID="{0f7ff6f3-3ecb-45fe-93c3-31e3f87d8b6a}" SourceID="{{listid:Metadata - List UI}}" StaticName="ui_enabled" ColName="bit1" RowOrdinal="0">
+              <Default>1</Default>
+            </Field>
+            <Field AppendOnly="FALSE" DisplayName="ui_help_text" Format="Dropdown" IsModern="TRUE" IsolateStyles="FALSE" Name="ui_help_text" Required="TRUE" RichText="FALSE" RichTextMode="Compatible" Title="ui_help_text" Type="Note" ID="{6bce4e16-6382-470d-83f6-9ae0efacc3cf}" SourceID="{{listid:Metadata - List UI}}" StaticName="ui_help_text" ColName="ntext2" RowOrdinal="0" />
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" CustomFormatter="{&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;flex-wrap&quot;:&quot;wrap&quot;,&quot;display&quot;:&quot;flex&quot;},&quot;children&quot;:[{&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;box-sizing&quot;:&quot;border-box&quot;,&quot;padding&quot;:&quot;4px 8px 5px 8px&quot;,&quot;overflow&quot;:&quot;hidden&quot;,&quot;text-overflow&quot;:&quot;ellipsis&quot;,&quot;display&quot;:&quot;flex&quot;,&quot;border-radius&quot;:&quot;16px&quot;,&quot;height&quot;:&quot;24px&quot;,&quot;align-items&quot;:&quot;center&quot;,&quot;white-space&quot;:&quot;nowrap&quot;,&quot;margin&quot;:&quot;4px 4px 4px 4px&quot;},&quot;attributes&quot;:{&quot;class&quot;:{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_form_type]&quot;,&quot;Environment creation&quot;]},&quot;sp-css-backgroundColor-BgCornflowerBlue sp-css-color-CornflowerBlueFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_form_type]&quot;,&quot;Environment deletion&quot;]},&quot;sp-css-backgroundColor-BgMintGreen sp-css-color-MintGreenFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_form_type]&quot;,&quot;App deployment&quot;]},&quot;sp-css-backgroundColor-BgGold sp-css-color-GoldFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_form_type]&quot;,&quot;App deletion&quot;]},&quot;sp-css-backgroundColor-BgCoral sp-css-color-CoralFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_form_type]&quot;,&quot;M365 Group creation&quot;]},&quot;sp-css-backgroundColor-BgDustRose sp-css-color-DustRoseFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_form_type]&quot;,&quot;M365 Group deletion&quot;]},&quot;sp-css-backgroundColor-BgCyan sp-css-color-CyanFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$ui_form_type]&quot;,&quot;&quot;]},&quot;&quot;,&quot;sp-field-borderAllRegular sp-field-borderAllSolid sp-css-borderColor-neutralSecondary&quot;]}]}]}]}]}]}]}},&quot;txtContent&quot;:&quot;[$ui_form_type]&quot;}],&quot;templateId&quot;:&quot;BgColorChoicePill&quot;}" DisplayName="ui_form_type" FillInChoice="FALSE" Format="Dropdown" Name="ui_form_type" Required="TRUE" Title="ui_form_type" Type="Choice" ID="{ca0139f5-5513-4817-bbc9-0ed62db5c5b4}" Version="12" StaticName="ui_form_type" SourceID="{{listid:Metadata - List UI}}" ColName="nvarchar9" RowOrdinal="0" EnforceUniqueValues="FALSE" Indexed="FALSE">
+              <CHOICES>
+                <CHOICE>Environment creation</CHOICE>
+                <CHOICE>Environment deletion</CHOICE>
+                <CHOICE>App deployment</CHOICE>
+                <CHOICE>App deletion</CHOICE>
+                <CHOICE>M365 Group creation</CHOICE>
+                <CHOICE>M365 Group deletion</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" CommaSeparator="TRUE" CustomUnitOnRight="TRUE" Decimals="0" DisplayName="ui_row_index" Format="Dropdown" Max="30" Min="1" Name="ui_row_index" Percentage="FALSE" Required="TRUE" Title="ui_row_index" Type="Number" Unit="None" ID="{e8df2cd6-ea65-46e1-bc14-6455adabf89b}" Version="6" StaticName="ui_row_index" SourceID="{{listid:Metadata - List UI}}" ColName="float2" RowOrdinal="0" />
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" CustomFormatter="{&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;flex-wrap&quot;:&quot;wrap&quot;,&quot;display&quot;:&quot;flex&quot;},&quot;children&quot;:[{&quot;forEach&quot;:&quot;__INTERNAL__ in @currentField&quot;,&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;box-sizing&quot;:&quot;border-box&quot;,&quot;padding&quot;:&quot;4px 8px 5px 8px&quot;,&quot;overflow&quot;:&quot;hidden&quot;,&quot;text-overflow&quot;:&quot;ellipsis&quot;,&quot;display&quot;:&quot;flex&quot;,&quot;border-radius&quot;:&quot;16px&quot;,&quot;height&quot;:&quot;24px&quot;,&quot;align-items&quot;:&quot;center&quot;,&quot;white-space&quot;:&quot;nowrap&quot;,&quot;margin&quot;:&quot;4px 4px 4px 4px&quot;},&quot;attributes&quot;:{&quot;class&quot;:{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;new&quot;]},&quot;sp-css-backgroundColor-BgGold sp-css-borderColor-GoldFont sp-css-color-GoldFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;edit&quot;]},&quot;sp-css-backgroundColor-BgCyan sp-css-borderColor-CyanFont sp-css-color-CyanFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;view&quot;]},&quot;sp-css-backgroundColor-BgMintGreen sp-css-borderColor-MintGreenFont sp-css-color-MintGreenFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;all&quot;]},&quot;sp-css-backgroundColor-BgCoral sp-css-color-CoralFont&quot;,&quot;sp-field-borderAllRegular sp-field-borderAllSolid sp-css-borderColor-neutralSecondary&quot;]}]}]}]}},&quot;txtContent&quot;:&quot;[$__INTERNAL__]&quot;}],&quot;templateId&quot;:&quot;BgColorChoicePill&quot;}" DisplayName="ui_visibility_mode" FillInChoice="FALSE" Format="Dropdown" Name="ui_visibility_mode" Required="TRUE" Title="ui_visibility_mode" Type="MultiChoice" ID="{1b1755f6-2c83-4be2-8560-df9147a9370a}" Version="4" StaticName="ui_visibility_mode" SourceID="{{listid:Metadata - List UI}}" ColName="ntext3" RowOrdinal="0">
+              <CHOICES>
+                <CHOICE>new</CHOICE>
+                <CHOICE>edit</CHOICE>
+                <CHOICE>view</CHOICE>
+                <CHOICE>all</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" CustomFormatter="{&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;flex-wrap&quot;:&quot;wrap&quot;,&quot;display&quot;:&quot;flex&quot;},&quot;children&quot;:[{&quot;forEach&quot;:&quot;__INTERNAL__ in @currentField&quot;,&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;box-sizing&quot;:&quot;border-box&quot;,&quot;padding&quot;:&quot;4px 8px 5px 8px&quot;,&quot;overflow&quot;:&quot;hidden&quot;,&quot;text-overflow&quot;:&quot;ellipsis&quot;,&quot;display&quot;:&quot;flex&quot;,&quot;border-radius&quot;:&quot;16px&quot;,&quot;height&quot;:&quot;24px&quot;,&quot;align-items&quot;:&quot;center&quot;,&quot;white-space&quot;:&quot;nowrap&quot;,&quot;margin&quot;:&quot;4px 4px 4px 4px&quot;},&quot;attributes&quot;:{&quot;class&quot;:{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Pending Review&quot;]},&quot;sp-css-backgroundColor-BgPeach sp-css-color-PeachFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Under Processing&quot;]},&quot;sp-css-backgroundColor-BgSage sp-css-color-SageFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Approved&quot;]},&quot;sp-css-backgroundColor-BgLightPurple sp-css-color-LightPurpleFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Rejected&quot;]},&quot;sp-css-backgroundColor-BgViolet sp-css-color-VioletFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;On Hold&quot;]},&quot;sp-css-backgroundColor-BgLightBlue sp-css-color-LightBlueFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Completed&quot;]},&quot;sp-css-backgroundColor-BgMauve sp-css-color-MauveFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Cancelled&quot;]},&quot;sp-css-backgroundColor-BgLilac sp-css-color-LilacFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;In Progress&quot;]},&quot;sp-css-backgroundColor-BgLightGray sp-css-color-LightGrayFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Scheduled&quot;]},&quot;sp-css-backgroundColor-BgBlue sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Pending Approval&quot;]},&quot;sp-css-backgroundColor-BgGreen sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Awaiting Feedback&quot;]},&quot;sp-css-backgroundColor-BgBrown sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Escalated&quot;]},&quot;sp-css-backgroundColor-BgDarkRed sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Pending Action&quot;]},&quot;sp-css-backgroundColor-BgRed sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Under Review&quot;]},&quot;sp-css-backgroundColor-BgTeal sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Reopened&quot;]},&quot;sp-css-backgroundColor-BgOrange sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Production&quot;]},&quot;sp-css-backgroundColor-BgGreen sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Default&quot;]},&quot;sp-css-backgroundColor-BgBrown sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Sandbox&quot;]},&quot;sp-css-backgroundColor-BgDarkRed sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Trial&quot;]},&quot;sp-css-backgroundColor-BgRed sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Developer&quot;]},&quot;sp-css-backgroundColor-BgTeal sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Microsoft Dataverse for Teams&quot;]},&quot;sp-css-backgroundColor-BgOrange sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;App memory&quot;]},&quot;sp-css-backgroundColor-BgDarkGreen sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Database (External)&quot;]},&quot;sp-css-backgroundColor-BgLavender sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Simple&quot;]},&quot;sp-css-backgroundColor-BgDarkPurple sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Complicated&quot;]},&quot;sp-css-backgroundColor-BgDarkBlue sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Complex&quot;]},&quot;sp-css-backgroundColor-BgPurple sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Standard connector(s)&quot;]},&quot;sp-css-backgroundColor-BgGray sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Premium connector(s)&quot;]},&quot;sp-css-backgroundColor-BgCornflowerBlue sp-css-color-CornflowerBlueFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Custom connector(s)&quot;]},&quot;sp-css-backgroundColor-BgMintGreen sp-css-color-MintGreenFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Microsoft Lists (SharePoint Lists)&quot;]},&quot;sp-css-backgroundColor-BgGold sp-css-color-GoldFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Microsoft Dataverse&quot;]},&quot;sp-css-backgroundColor-BgCoral sp-css-color-CoralFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;SQL Server&quot;]},&quot;sp-css-backgroundColor-BgDustRose sp-css-color-DustRoseFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Microsoft Dynamics&quot;]},&quot;sp-css-backgroundColor-BgCyan sp-css-color-CyanFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Other CRM databases&quot;]},&quot;sp-css-backgroundColor-BgPeach sp-css-color-PeachFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Common Data Service&quot;]},&quot;sp-css-backgroundColor-BgSage sp-css-color-SageFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Azure SQL Database&quot;]},&quot;sp-css-backgroundColor-BgLightPurple sp-css-color-LightPurpleFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;SharePoint Document Libraries&quot;]},&quot;sp-css-backgroundColor-BgViolet sp-css-color-VioletFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;OneDrive for Business&quot;]},&quot;sp-css-backgroundColor-BgLightBlue sp-css-color-LightBlueFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;DropBox&quot;]},&quot;sp-css-backgroundColor-BgMauve sp-css-color-MauveFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Google Drive&quot;]},&quot;sp-css-backgroundColor-BgLilac sp-css-color-LilacFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Google Sheets&quot;]},&quot;sp-css-backgroundColor-BgLightGray sp-css-color-LightGrayFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;MySQL&quot;]},&quot;sp-css-backgroundColor-BgBlue sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Oracle Database&quot;]},&quot;sp-css-backgroundColor-BgGreen sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;PostgreSQL&quot;]},&quot;sp-css-backgroundColor-BgBrown sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;MongoDB&quot;]},&quot;sp-css-backgroundColor-BgDarkRed sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Cosmos DB&quot;]},&quot;sp-css-backgroundColor-BgRed sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Firebase&quot;]},&quot;sp-css-backgroundColor-BgTeal sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Airtable&quot;]},&quot;sp-css-backgroundColor-BgOrange sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Development&quot;]},&quot;sp-css-backgroundColor-BgDarkGreen sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Integration&quot;]},&quot;sp-css-backgroundColor-BgLavender sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Test&quot;]},&quot;sp-css-backgroundColor-BgDarkPurple sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;QA&quot;]},&quot;sp-css-backgroundColor-BgDarkBlue sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Staging&quot;]},&quot;sp-css-backgroundColor-BgPurple sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;UAT&quot;]},&quot;sp-css-backgroundColor-BgDarkPink sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Submitted&quot;]},&quot;sp-css-backgroundColor-BgDarkPink sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;None&quot;]},&quot;sp-css-backgroundColor-BgGray sp-css-color-WhiteFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Private&quot;]},&quot;sp-css-backgroundColor-BgCornflowerBlue sp-field-fontSizeSmall sp-css-color-CornflowerBlueFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;[$__INTERNAL__]&quot;,&quot;Public&quot;]},&quot;sp-css-backgroundColor-BgMintGreen sp-field-fontSizeSmall sp-css-color-MintGreenFont&quot;,&quot;sp-field-borderAllRegular sp-field-borderAllSolid sp-css-borderColor-neutralSecondary&quot;]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}},&quot;txtContent&quot;:&quot;[$__INTERNAL__]&quot;}],&quot;templateId&quot;:&quot;BgColorChoicePill&quot;}" DisplayName="ui_choices" FillInChoice="FALSE" Format="Dropdown" Name="ui_choices" Title="ui_choices" Type="MultiChoice" ID="{381bbc27-4482-4a5d-9416-5ca7daff173b}" Version="24" StaticName="ui_choices" SourceID="{{listid:Metadata - List UI}}" ColName="ntext4" RowOrdinal="0">
+              <CHOICES>
+                <CHOICE>Pending Review</CHOICE>
+                <CHOICE>Under Processing</CHOICE>
+                <CHOICE>Approved</CHOICE>
+                <CHOICE>Rejected</CHOICE>
+                <CHOICE>On Hold</CHOICE>
+                <CHOICE>Completed</CHOICE>
+                <CHOICE>Cancelled</CHOICE>
+                <CHOICE>In Progress</CHOICE>
+                <CHOICE>Scheduled</CHOICE>
+                <CHOICE>Pending Approval</CHOICE>
+                <CHOICE>Awaiting Feedback</CHOICE>
+                <CHOICE>Escalated</CHOICE>
+                <CHOICE>Pending Action</CHOICE>
+                <CHOICE>Under Review</CHOICE>
+                <CHOICE>Reopened</CHOICE>
+                <CHOICE>Production</CHOICE>
+                <CHOICE>Default</CHOICE>
+                <CHOICE>Sandbox</CHOICE>
+                <CHOICE>Trial</CHOICE>
+                <CHOICE>Developer</CHOICE>
+                <CHOICE>Microsoft Dataverse for Teams</CHOICE>
+                <CHOICE>App memory</CHOICE>
+                <CHOICE>Database (External)</CHOICE>
+                <CHOICE>Simple</CHOICE>
+                <CHOICE>Complicated</CHOICE>
+                <CHOICE>Complex</CHOICE>
+                <CHOICE>Standard connector(s)</CHOICE>
+                <CHOICE>Premium connector(s)</CHOICE>
+                <CHOICE>Custom connector(s)</CHOICE>
+                <CHOICE>Microsoft Lists (SharePoint Lists)</CHOICE>
+                <CHOICE>Microsoft Dataverse</CHOICE>
+                <CHOICE>SQL Server</CHOICE>
+                <CHOICE>Microsoft Dynamics</CHOICE>
+                <CHOICE>Other CRM databases</CHOICE>
+                <CHOICE>Common Data Service</CHOICE>
+                <CHOICE>Azure SQL Database</CHOICE>
+                <CHOICE>SharePoint Document Libraries</CHOICE>
+                <CHOICE>OneDrive for Business</CHOICE>
+                <CHOICE>DropBox</CHOICE>
+                <CHOICE>Google Drive</CHOICE>
+                <CHOICE>Google Sheets</CHOICE>
+                <CHOICE>MySQL</CHOICE>
+                <CHOICE>Oracle Database</CHOICE>
+                <CHOICE>PostgreSQL</CHOICE>
+                <CHOICE>MongoDB</CHOICE>
+                <CHOICE>Cosmos DB</CHOICE>
+                <CHOICE>Firebase</CHOICE>
+                <CHOICE>Airtable</CHOICE>
+                <CHOICE>Development</CHOICE>
+                <CHOICE>Integration</CHOICE>
+                <CHOICE>Test</CHOICE>
+                <CHOICE>QA</CHOICE>
+                <CHOICE>Staging</CHOICE>
+                <CHOICE>UAT</CHOICE>
+                <CHOICE>Submitted</CHOICE>
+                <CHOICE>None</CHOICE>
+                <CHOICE>Private</CHOICE>
+                <CHOICE>Public</CHOICE>
+              </CHOICES>
+              <Default>None</Default>
+            </Field>
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" DisplayName="ui_set_default_in_new" Format="Dropdown" Name="ui_set_default_in_new" Title="ui_set_default_in_new" Type="Boolean" ID="{a705db61-ffa5-416f-9b45-c1a86a85e5a2}" Version="4" StaticName="ui_set_default_in_new" SourceID="{{listid:Metadata - List UI}}" ColName="bit2" RowOrdinal="0">
+              <Default>0</Default>
+            </Field>
+            <Field DisplayName="ui_mandatory" Format="Dropdown" IsModern="TRUE" Name="ui_mandatory" Title="ui_mandatory" Type="Boolean" ID="{7ce5d1e1-c7b3-4e31-ae33-c1a91e81b323}" SourceID="{{listid:Metadata - List UI}}" StaticName="ui_mandatory" ColName="bit3" RowOrdinal="0">
+              <Default>0</Default>
+            </Field>
+          </pnp:Fields>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://westeurope1-0.pushnp.svc.ms/notifications?token=fe0b9de0-900f-46b8-bad1-e4ddd86e8bed%2Fb!BFeLcy354E6aVVKUQQ3nUDD9fA5lUBRBiTgtjePVmcYiwJ4CYDq7RK98tcQgnB6P" ExpiresInDays="1" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Metadata - Request IDs" Description="This list serves as a centralized registry for tracking the last used request ID in the Power App. It is pivotal for generating new, unique request IDs, ensuring each request is distinctly identified and managed within the application, fostering efficient tracking and management of user submissions." DocumentTemplate="" OnQuickLaunch="false" TemplateType="100" Url="Lists/Metadata  Request IDs" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Metadata  Request IDs/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Metadata  Request IDs/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Metadata  Request IDs/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{D844BEEB-9556-4587-992F-EFD586908F89}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Metadata  Request IDs/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="RequestIDused" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <CustomFormatter />
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field CommaSeparator="TRUE" CustomUnitOnRight="TRUE" DisplayName="Request ID used" EnforceUniqueValues="TRUE" Format="Dropdown" Indexed="TRUE" IsModern="TRUE" Min="1000000" Name="RequestIDused" Percentage="FALSE" Required="TRUE" Title="Request ID used" Type="Number" Unit="None" ID="{5ed98400-b653-4f30-9069-740db3425e50}" SourceID="{{listid:Metadata - Request IDs}}" StaticName="RequestIDused" ColName="float1" RowOrdinal="0" />
+          </pnp:Fields>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://westeurope1-0.pushnp.svc.ms/notifications?token=fe0b9de0-900f-46b8-bad1-e4ddd86e8bed%2Fb!BFeLcy354E6aVVKUQQ3nUDD9fA5lUBRBiTgtjePVmcZ1mnB0BSX2QoxeEtHR_EJN" ExpiresInDays="1" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Metadata - Requests workflows" Description="This list catalogues the various approvals associated with different request types. It acts as a repository for managing and referencing the approval processes necessary for each request, ensuring adherence to organizational protocols and facilitating smooth transitions through the approval stages." DocumentTemplate="" TemplateType="100" Url="Lists/Metadata  Requests workflows" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Metadata  Requests workflows/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Metadata  Requests workflows/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Metadata  Requests workflows/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ReadSecurity="2" WriteSecurity="2" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{68239B3E-126A-40B5-A045-3DBDFC20054E}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Metadata  Requests workflows/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Request_type" />
+                <FieldRef Name="Approval" />
+                <FieldRef Name="Notify" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <CustomFormatter />
+              <ColumnWidth>
+                <FieldRef Name="Notify" width="220" />
+              </ColumnWidth>
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field CustomFormatter="{&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;flex-wrap&quot;:&quot;wrap&quot;,&quot;display&quot;:&quot;flex&quot;},&quot;children&quot;:[{&quot;elmType&quot;:&quot;div&quot;,&quot;style&quot;:{&quot;box-sizing&quot;:&quot;border-box&quot;,&quot;padding&quot;:&quot;4px 8px 5px 8px&quot;,&quot;overflow&quot;:&quot;hidden&quot;,&quot;text-overflow&quot;:&quot;ellipsis&quot;,&quot;display&quot;:&quot;flex&quot;,&quot;border-radius&quot;:&quot;16px&quot;,&quot;height&quot;:&quot;24px&quot;,&quot;align-items&quot;:&quot;center&quot;,&quot;white-space&quot;:&quot;nowrap&quot;,&quot;margin&quot;:&quot;4px 4px 4px 4px&quot;},&quot;attributes&quot;:{&quot;class&quot;:{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;@currentField&quot;,&quot;Environment_creation&quot;]},&quot;sp-css-backgroundColor-BgGold sp-css-borderColor-GoldFont sp-field-fontSizeSmall sp-css-color-GoldFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;@currentField&quot;,&quot;App_deployment&quot;]},&quot;sp-css-backgroundColor-BgCyan sp-css-borderColor-CyanFont sp-field-fontSizeSmall sp-css-color-CyanFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;@currentField&quot;,&quot;Group_creation&quot;]},&quot;sp-css-backgroundColor-BgSage sp-css-borderColor-SageFont sp-field-fontSizeSmall sp-css-color-SageFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;@currentField&quot;,&quot;&quot;]},&quot;&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;@currentField&quot;,&quot;Environment_deletion&quot;]},&quot;sp-css-backgroundColor-BgCornflowerBlue sp-css-borderColor-CornflowerBlueFont sp-field-fontSizeSmall sp-css-color-CornflowerBlueFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;@currentField&quot;,&quot;App_deletion&quot;]},&quot;sp-css-backgroundColor-BgLightPurple sp-css-borderColor-LightPurpleFont sp-field-fontSizeSmall sp-css-color-LightPurpleFont&quot;,{&quot;operator&quot;:&quot;:&quot;,&quot;operands&quot;:[{&quot;operator&quot;:&quot;==&quot;,&quot;operands&quot;:[&quot;@currentField&quot;,&quot;Group_deletion&quot;]},&quot;sp-css-backgroundColor-BgViolet sp-css-borderColor-VioletFont sp-field-fontSizeSmall sp-css-color-VioletFont&quot;,&quot;sp-field-borderAllRegular sp-field-borderAllSolid sp-css-borderColor-neutralSecondary&quot;]}]}]}]}]}]}]}},&quot;txtContent&quot;:&quot;@currentField&quot;}],&quot;templateId&quot;:&quot;BgColorChoicePill&quot;}" DisplayName="Request_type" FillInChoice="FALSE" Format="Dropdown" IsModern="TRUE" Name="Request_type" Title="Request_type" Type="Choice" ID="{46fd7fb5-2e2b-410a-b981-b00c4e66df41}" SourceID="{{listid:Metadata - Requests workflows}}" StaticName="Request_type" ColName="nvarchar7" RowOrdinal="0">
+              <CHOICES>
+                <CHOICE>Environment_creation</CHOICE>
+                <CHOICE>App_deployment</CHOICE>
+                <CHOICE>Group_creation</CHOICE>
+                <CHOICE>Environment_deletion</CHOICE>
+                <CHOICE>App_deletion</CHOICE>
+                <CHOICE>Group_deletion</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" DisplayName="Approval" Format="Dropdown" List="UserInfo" Mult="TRUE" Name="Approval" Required="TRUE" Title="Approval" Type="UserMulti" UserSelectionMode="1" UserSelectionScope="0" ID="{f92f26ab-29e3-426c-8b70-467bbb78741c}" Version="2" StaticName="Approval" SourceID="{{listid:Metadata - Requests workflows}}" ColName="int1" RowOrdinal="0" />
+            <Field DisplayName="Notify" Format="Dropdown" IsModern="TRUE" List="UserInfo" Mult="TRUE" Name="Notify" Title="Notify" Type="UserMulti" UserSelectionMode="1" UserSelectionScope="0" ID="{9edc0ee8-1569-4de8-aefe-43196bf1958d}" SourceID="{{listid:Metadata - Requests workflows}}" StaticName="Notify" ColName="int2" RowOrdinal="0" />
+          </pnp:Fields>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://westeurope1-0.pushnp.svc.ms/notifications?token=fe0b9de0-900f-46b8-bad1-e4ddd86e8bed%2Fb!BFeLcy354E6aVVKUQQ3nUDD9fA5lUBRBiTgtjePVmcbxQ2SN-iaoSbhVLos2u_5n" ExpiresInDays="1" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Metadata - Screen content" Description="This SharePoint list houses content items designated to be displayed within the Power App application. It serves as a centralized repository for managing textual and visual elements presented to the users, enabling consistent content delivery and ease of content updates, ensuring users receive accurate and up-to-date information while interacting with the app." DocumentTemplate="" OnQuickLaunch="false" TemplateType="100" Url="Lists/Metadata  Screen content" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Metadata  Screen content/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Metadata  Screen content/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Metadata  Screen content/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{B3CCDF4C-647E-48A7-82EC-1B16A754DD57}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Metadata  Screen content/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="screen_location" />
+                <FieldRef Name="content" />
+                <FieldRef Name="hyperlink" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <CustomFormatter />
+              <ColumnWidth>
+                <FieldRef Name="content" width="1440" />
+              </ColumnWidth>
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field ClientSideComponentId="00000000-0000-0000-0000-000000000000" DisplayName="screen_location" Format="Dropdown" MaxLength="255" Name="screen_location" Required="TRUE" Title="screen_location" Type="Text" ID="{c555d8e8-3877-4b88-80c6-4cc6655e8d01}" Version="2" StaticName="screen_location" SourceID="{{listid:Metadata - Screen content}}" ColName="nvarchar7" RowOrdinal="0" />
+            <Field AppendOnly="FALSE" DisplayName="content" Format="Dropdown" IsModern="TRUE" IsolateStyles="FALSE" Name="content" RichText="FALSE" RichTextMode="Compatible" Title="content" Type="Note" ID="{83d48c71-1dd8-4461-bbd5-e42d641f88d8}" SourceID="{{listid:Metadata - Screen content}}" StaticName="content" ColName="ntext2" RowOrdinal="0" />
+            <Field DisplayName="hyperlink" Format="Hyperlink" IsModern="TRUE" Name="hyperlink" Title="hyperlink" Type="URL" ID="{41d91d04-4b8e-466a-ab59-4bb630809c48}" SourceID="{{listid:Metadata - Screen content}}" StaticName="hyperlink" ColName="nvarchar8" RowOrdinal="0" ColName2="nvarchar9" RowOrdinal2="0" />
+          </pnp:Fields>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://westeurope1-0.pushnp.svc.ms/notifications?token=fe0b9de0-900f-46b8-bad1-e4ddd86e8bed%2Fb!BFeLcy354E6aVVKUQQ3nUDD9fA5lUBRBiTgtjePVmcbmm6CPQpb-QbzMk0ucxfWn" ExpiresInDays="1" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Request - App deletion" Description="This list serves as the repository for all items pertaining to app deletion requests within the organization. It consolidates the necessary information, status, and documentation related to each deletion request, ensuring systematic processing and tracking of app removals, and providing a structured overview of all deletion endeavors undertaken within the Power App environment." DocumentTemplate="" OnQuickLaunch="false" TemplateType="100" Url="Lists/Request  App deletion" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Request  App deletion/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Request  App deletion/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Request  App deletion/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ReadSecurity="2" WriteSecurity="2" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{8414E4D6-4902-4B5A-8D3A-AFE4DCA626FA}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Request  App deletion/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Submitter_x0020_name" />
+                <FieldRef Name="Requestor_x0020_name" />
+                <FieldRef Name="Application_x0020_name" />
+                <FieldRef Name="Hosting_x0020_environment_x0020_" />
+                <FieldRef Name="Business_x0020_case" />
+                <FieldRef Name="Planned_x0020_deletion_x0020_dat" />
+                <FieldRef Name="Requested_x0020_date" />
+                <FieldRef Name="Completed_x0020_date" />
+                <FieldRef Name="Request_x0020_ID" />
+                <FieldRef Name="Status" />
+                <FieldRef Name="Approved_x0020_by" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+            <pnp:FieldRef ID="a2098001-3394-4378-861d-074fbf31ce1f" Name="Submitter_x0020_name" Required="true" DisplayName="Submitter name" />
+            <pnp:FieldRef ID="11572cb2-df6d-45e4-b7dc-e153572db9d3" Name="Requestor_x0020_name" Required="true" DisplayName="Requestor name" />
+            <pnp:FieldRef ID="3076e75b-8d38-4ac3-a726-425682c04bd3" Name="Application_x0020_name" Required="true" DisplayName="Application name" />
+            <pnp:FieldRef ID="f41215ba-8ee4-429e-b304-533cdca2b113" Name="Business_x0020_case" Required="true" DisplayName="Business case" />
+            <pnp:FieldRef ID="c22b9b54-52d8-4331-aa7e-3ae78ea10600" Name="Planned_x0020_deletion_x0020_dat" Required="true" DisplayName="Planned deletion date" />
+            <pnp:FieldRef ID="956754d9-089b-4491-9650-cd9508f78eb7" Name="Requested_x0020_date" Required="true" DisplayName="Requested date" />
+            <pnp:FieldRef ID="7689ade3-df76-4508-ac07-03f75d56e9f7" Name="Completed_x0020_date" DisplayName="Completed date" />
+            <pnp:FieldRef ID="133e1587-3741-4696-9444-0eee5bb4cd5e" Name="Request_x0020_ID" Required="true" DisplayName="Request ID" />
+            <pnp:FieldRef ID="a2083785-bfdd-4267-95c3-dfaf6ce268bb" Name="Status" Required="true" DisplayName="Status" />
+            <pnp:FieldRef ID="f13ce4bc-c936-4f5c-9569-0581adbefbd2" Name="Approved_x0020_by" DisplayName="Approved by" />
+            <pnp:FieldRef ID="18a7b75b-cbde-4b81-96c4-94a56e7bab2e" Name="Hosting_x0020_environment_x0020_" Required="true" DisplayName="Hosting environment name" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://flow-apim-europe-002-northeurope-01.azure-apim.net/apim/sharepointonline/ontableupdatedhook?r=https%253a%252f%252fprod-182.westeurope.logic.azure.com%252fworkflows%252f523bf521932c4e14b27d8890b00aaa80%252ftriggers%252fWhen_an_item_is_created_-_New_Power_App_deletion%252fpaths%252finvoke%253fapi-version%253d2016-06-01%2526sp%253d%25252Ftriggers%25252FWhen_an_item_is_created_-_New_Power_App_deletion%25252Frun%25252C%25252Ftriggers%25252FWhen_an_item_is_created_-_New_Power_App_deletion%25252Fread%2526sv%253d1.0%2526sig%253deB3qh3v09E3Y8jGaYRR95VKfpn5OQw0tNkJzuxk4rWQ" ExpiresInDays="3" />
+            <pnp:Webhook ServerNotificationUrl="https://westeurope1-0.pushnp.svc.ms/notifications?token=fe0b9de0-900f-46b8-bad1-e4ddd86e8bed%2Fb!BFeLcy354E6aVVKUQQ3nUDD9fA5lUBRBiTgtjePVmcbLxJFEPc8vRII4Fp2t96sz" ExpiresInDays="1" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Request - App deployment" Description="This list constitutes a centralized repository for all app deployment requests submitted within the organization. It assembles essential details, status updates, and relevant documentation for each deployment request, facilitating a streamlined, organized approach to managing and tracking the rollout of new apps within the Power App ecosystem." DocumentTemplate="" OnQuickLaunch="false" TemplateType="100" Url="Lists/Request  App deployment" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Request  App deployment/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Request  App deployment/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Request  App deployment/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ReadSecurity="2" WriteSecurity="2" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{55610556-07C2-4CFD-9E2F-6E267A4E1E59}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Request  App deployment/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Submitter_x0020_name" />
+                <FieldRef Name="Requestor_x0020_name" />
+                <FieldRef Name="Application_x0020_name" />
+                <FieldRef Name="Application_x0020_description" />
+                <FieldRef Name="Business_x0020_case" />
+                <FieldRef Name="Personal_x0020_data" />
+                <FieldRef Name="Planned_x0020_deployment_x0020_d" />
+                <FieldRef Name="Hosting_x0020_environment_x0020_" />
+                <FieldRef Name="Dataverse_x0020_enabled" />
+                <FieldRef Name="Database_x0020_source" />
+                <FieldRef Name="Database_x0020_name_x0028_s_x002" />
+                <FieldRef Name="Complexity_x0020_level" />
+                <FieldRef Name="Connector_x0020_type_x0028_s_x00" />
+                <FieldRef Name="Standard_x0020_connector_x0020_n" />
+                <FieldRef Name="Premium_x0020_connector_x0020_na" />
+                <FieldRef Name="Custom_x0020_connector_x0020_nam" />
+                <FieldRef Name="Requested_x0020_date" />
+                <FieldRef Name="Completed_x0020_date" />
+                <FieldRef Name="Request_x0020_ID" />
+                <FieldRef Name="Status" />
+                <FieldRef Name="Approved_x0020_by" />
+                <FieldRef Name="Link_x0020_to_x0020_the_x0020_ap" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+            <pnp:FieldRef ID="a2098001-3394-4378-861d-074fbf31ce1f" Name="Submitter_x0020_name" Required="true" DisplayName="Submitter name" />
+            <pnp:FieldRef ID="11572cb2-df6d-45e4-b7dc-e153572db9d3" Name="Requestor_x0020_name" Required="true" DisplayName="Requestor name" />
+            <pnp:FieldRef ID="3076e75b-8d38-4ac3-a726-425682c04bd3" Name="Application_x0020_name" Required="true" DisplayName="Application name" />
+            <pnp:FieldRef ID="ad5dff52-f896-4332-813e-3c134e353c46" Name="Application_x0020_description" Required="true" DisplayName="Application description" />
+            <pnp:FieldRef ID="f41215ba-8ee4-429e-b304-533cdca2b113" Name="Business_x0020_case" Required="true" DisplayName="Business case" />
+            <pnp:FieldRef ID="ed32f7c5-e50f-4c73-b518-aab749696ff3" Name="Personal_x0020_data" DisplayName="Personal data" />
+            <pnp:FieldRef ID="6b32c025-240e-49dd-82ad-4edc4a525cf6" Name="Planned_x0020_deployment_x0020_d" Required="true" DisplayName="Planned deployment date" />
+            <pnp:FieldRef ID="18a7b75b-cbde-4b81-96c4-94a56e7bab2e" Name="Hosting_x0020_environment_x0020_" Required="true" DisplayName="Hosting environment name" />
+            <pnp:FieldRef ID="4fb619d5-57c5-4c58-bb1c-7aefe5d81165" Name="Dataverse_x0020_enabled" DisplayName="Dataverse enabled" />
+            <pnp:FieldRef ID="55a96e44-8428-415a-aedc-b6d14d6b2d86" Name="Database_x0020_source" Required="true" DisplayName="Database source" />
+            <pnp:FieldRef ID="ceb1106e-0801-47cb-a675-10242c790f8e" Name="Database_x0020_name_x0028_s_x002" DisplayName="Database name(s) (External)" />
+            <pnp:FieldRef ID="87b21c17-c1d9-462d-9b1c-e8b6fb4ad758" Name="Complexity_x0020_level" Required="true" DisplayName="Complexity level" />
+            <pnp:FieldRef ID="3a39840e-ac59-43dd-9cd2-3463341fd1c9" Name="Connector_x0020_type_x0028_s_x00" Required="true" DisplayName="Connector type(s)" />
+            <pnp:FieldRef ID="9010ae56-626b-43ce-a447-bb60f6c41a65" Name="Standard_x0020_connector_x0020_n" DisplayName="Standard connector name(s)" />
+            <pnp:FieldRef ID="c900d36f-8db8-491d-a319-da700ea008ea" Name="Premium_x0020_connector_x0020_na" DisplayName="Premium connector name(s)" />
+            <pnp:FieldRef ID="b537580f-fe2a-4ea9-88d5-3a98aa4e3382" Name="Custom_x0020_connector_x0020_nam" DisplayName="Custom connector name(s)" />
+            <pnp:FieldRef ID="956754d9-089b-4491-9650-cd9508f78eb7" Name="Requested_x0020_date" Required="true" DisplayName="Requested date" />
+            <pnp:FieldRef ID="7689ade3-df76-4508-ac07-03f75d56e9f7" Name="Completed_x0020_date" DisplayName="Completed date" />
+            <pnp:FieldRef ID="133e1587-3741-4696-9444-0eee5bb4cd5e" Name="Request_x0020_ID" Required="true" DisplayName="Request ID" />
+            <pnp:FieldRef ID="a2083785-bfdd-4267-95c3-dfaf6ce268bb" Name="Status" Required="true" DisplayName="Status" />
+            <pnp:FieldRef ID="f13ce4bc-c936-4f5c-9569-0581adbefbd2" Name="Approved_x0020_by" DisplayName="Approved by" />
+            <pnp:FieldRef ID="239b459d-103a-413f-a0a3-69fdce8f418b" Name="Link_x0020_to_x0020_the_x0020_ap" DisplayName="Link to the app" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://flow-apim-europe-002-northeurope-01.azure-apim.net/apim/sharepointonline/ontableupdatedhook?r=https%253a%252f%252fprod-253.westeurope.logic.azure.com%252fworkflows%252f037850a765ec47e381264e979a3d64df%252ftriggers%252fWhen_an_item_is_created_-_New_Power_App_deployment%252fpaths%252finvoke%253fapi-version%253d2016-06-01%2526sp%253d%25252Ftriggers%25252FWhen_an_item_is_created_-_New_Power_App_deployment%25252Frun%25252C%25252Ftriggers%25252FWhen_an_item_is_created_-_New_Power_App_deployment%25252Fread%2526sv%253d1.0%2526sig%253dNK3uuYJIcErD4uGFZc5ONHgUPTFriUaNdHexbQBXJkg" ExpiresInDays="2" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Request - Environment creation" Description="This list serves as the centralized repository for all environment creation requests within the Power Platform, housing vital details and statuses for each submission. It is instrumental in managing, tracking, and organizing the inception of new environments, ensuring efficient handling and adherence to organizational policies and guidelines." DocumentTemplate="" OnQuickLaunch="false" TemplateType="100" Url="Lists/Request  Environment creation" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Request  Environment creation/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Request  Environment creation/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Request  Environment creation/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ReadSecurity="2" WriteSecurity="2" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{06AAB5E9-1990-4ABB-AAF1-16336989AD4A}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Request  Environment creation/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Submitter_x0020_name" />
+                <FieldRef Name="Requestor_x0020_name" />
+                <FieldRef Name="Environment_x0020_name" />
+                <FieldRef Name="Environment_x0020_description" />
+                <FieldRef Name="Environment_x0020_type" />
+                <FieldRef Name="Business_x0020_case" />
+                <FieldRef Name="Dataverse_x0020_enabled" />
+                <FieldRef Name="Code_x0020_component_x0020_enabl" />
+                <FieldRef Name="Requested_x0020_date" />
+                <FieldRef Name="Completed_x0020_date" />
+                <FieldRef Name="Request_x0020_ID" />
+                <FieldRef Name="Status" />
+                <FieldRef Name="Approved_x0020_by" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+            <pnp:FieldRef ID="a2098001-3394-4378-861d-074fbf31ce1f" Name="Submitter_x0020_name" Required="true" DisplayName="Submitter name" />
+            <pnp:FieldRef ID="11572cb2-df6d-45e4-b7dc-e153572db9d3" Name="Requestor_x0020_name" Required="true" DisplayName="Requestor name" />
+            <pnp:FieldRef ID="ad3b6650-9b6b-44b6-aaec-f3fe7855588f" Name="Environment_x0020_name" Required="true" DisplayName="Environment name" />
+            <pnp:FieldRef ID="e302c8ff-c2a7-4c70-bca9-fdd869facd3f" Name="Environment_x0020_description" Required="true" DisplayName="Environment description" />
+            <pnp:FieldRef ID="51a2e179-f9c1-42e2-b011-df2ee69d1d22" Name="Environment_x0020_type" Required="true" DisplayName="Environment type" />
+            <pnp:FieldRef ID="f41215ba-8ee4-429e-b304-533cdca2b113" Name="Business_x0020_case" Required="true" DisplayName="Business case" />
+            <pnp:FieldRef ID="4fb619d5-57c5-4c58-bb1c-7aefe5d81165" Name="Dataverse_x0020_enabled" DisplayName="Dataverse enabled" />
+            <pnp:FieldRef ID="758a472d-838a-45ed-ad42-e1271d7c3f06" Name="Code_x0020_component_x0020_enabl" DisplayName="Code component enabled" />
+            <pnp:FieldRef ID="956754d9-089b-4491-9650-cd9508f78eb7" Name="Requested_x0020_date" Required="true" DisplayName="Requested date" />
+            <pnp:FieldRef ID="7689ade3-df76-4508-ac07-03f75d56e9f7" Name="Completed_x0020_date" DisplayName="Completed date" />
+            <pnp:FieldRef ID="133e1587-3741-4696-9444-0eee5bb4cd5e" Name="Request_x0020_ID" Required="true" DisplayName="Request ID" />
+            <pnp:FieldRef ID="a2083785-bfdd-4267-95c3-dfaf6ce268bb" Name="Status" Required="true" DisplayName="Status" />
+            <pnp:FieldRef ID="f13ce4bc-c936-4f5c-9569-0581adbefbd2" Name="Approved_x0020_by" DisplayName="Approved by" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://flow-apim-europe-002-northeurope-01.azure-apim.net/apim/sharepointonline/ontableupdatedhook?r=https%253a%252f%252fprod-136.westeurope.logic.azure.com%252fworkflows%252f567f0b415b9845daafcd4da614af4ae2%252ftriggers%252fWhen_an_item_is_created_-_New_Power_Platform_Environment_creation%252fpaths%252finvoke%253fapi-version%253d2016-06-01%2526sp%253d%25252Ftriggers%25252FWhen_an_item_is_created_-_New_Power_Platform_Environment_creation%25252Frun%25252C%25252Ftriggers%25252FWhen_an_item_is_created_-_New_Power_Platform_Environment_creation%25252Fread%2526sv%253d1.0%2526sig%253dJ7GzpdDcKfIiQiSnq7w4EuxDd9YGox7kfE5QImB1xCc" ExpiresInDays="3" />
+            <pnp:Webhook ServerNotificationUrl="https://westeurope1-0.pushnp.svc.ms/notifications?token=fe0b9de0-900f-46b8-bad1-e4ddd86e8bed%2Fb!BFeLcy354E6aVVKUQQ3nUDD9fA5lUBRBiTgtjePVmcaAZWY4bX5NS6b9Fgm9M58T" ExpiresInDays="1" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Request - Environment deletion" Description="This list acts as the collective repository for all requests related to environment deletion within the Power Platform. It maintains essential details and statuses of each request, facilitating structured management, and tracking of the environment deletion processes, thereby assuring compliance with organizational norms and procedures." DocumentTemplate="" OnQuickLaunch="false" TemplateType="100" Url="Lists/Request  Environment deletion" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Request  Environment deletion/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Request  Environment deletion/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Request  Environment deletion/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ReadSecurity="2" WriteSecurity="2" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{B7C114D6-2DC7-4315-9C4A-5853DF28CDA2}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Request  Environment deletion/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Submitter_x0020_name" />
+                <FieldRef Name="Requestor_x0020_name" />
+                <FieldRef Name="Environment_x0020_name_x0020__x0" />
+                <FieldRef Name="Business_x0020_case" />
+                <FieldRef Name="Planned_x0020_deletion_x0020_dat" />
+                <FieldRef Name="Requested_x0020_date" />
+                <FieldRef Name="Completed_x0020_date" />
+                <FieldRef Name="Request_x0020_ID" />
+                <FieldRef Name="Status" />
+                <FieldRef Name="Approved_x0020_by" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <ColumnWidth>
+                <FieldRef Name="Environment_x0020_name_x0020__x0" width="230" />
+              </ColumnWidth>
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+            <pnp:FieldRef ID="a2098001-3394-4378-861d-074fbf31ce1f" Name="Submitter_x0020_name" Required="true" DisplayName="Submitter name" />
+            <pnp:FieldRef ID="11572cb2-df6d-45e4-b7dc-e153572db9d3" Name="Requestor_x0020_name" Required="true" DisplayName="Requestor name" />
+            <pnp:FieldRef ID="f41215ba-8ee4-429e-b304-533cdca2b113" Name="Business_x0020_case" Required="true" DisplayName="Business case" />
+            <pnp:FieldRef ID="c22b9b54-52d8-4331-aa7e-3ae78ea10600" Name="Planned_x0020_deletion_x0020_dat" Required="true" DisplayName="Planned deletion date" />
+            <pnp:FieldRef ID="956754d9-089b-4491-9650-cd9508f78eb7" Name="Requested_x0020_date" Required="true" DisplayName="Requested date" />
+            <pnp:FieldRef ID="7689ade3-df76-4508-ac07-03f75d56e9f7" Name="Completed_x0020_date" DisplayName="Completed date" />
+            <pnp:FieldRef ID="133e1587-3741-4696-9444-0eee5bb4cd5e" Name="Request_x0020_ID" Required="true" DisplayName="Request ID" />
+            <pnp:FieldRef ID="a2083785-bfdd-4267-95c3-dfaf6ce268bb" Name="Status" Required="true" DisplayName="Status" />
+            <pnp:FieldRef ID="f13ce4bc-c936-4f5c-9569-0581adbefbd2" Name="Approved_x0020_by" DisplayName="Approved by" />
+            <pnp:FieldRef ID="5943d637-7561-4ad3-9bef-51b78476f336" Name="Environment_x0020_name_x0020__x0" DisplayName="Environment name (Choice)" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://westeurope1-0.pushnp.svc.ms/notifications?token=fe0b9de0-900f-46b8-bad1-e4ddd86e8bed%2Fb!BFeLcy354E6aVVKUQQ3nUDD9fA5lUBRBiTgtjePVmcbA8c3Ufk6cRaod3K-Eivsu" ExpiresInDays="1" />
+            <pnp:Webhook ServerNotificationUrl="https://flow-apim-europe-002-northeurope-01.azure-apim.net/apim/sharepointonline/ontableupdatedhook?r=https%253a%252f%252fprod-164.westeurope.logic.azure.com%252fworkflows%252f78ae2f9c76794e12b2f07e7b7854b727%252ftriggers%252fWhen_an_item_is_created_-_New_Power_Platform_Environment_deletion%252fpaths%252finvoke%253fapi-version%253d2016-06-01%2526sp%253d%25252Ftriggers%25252FWhen_an_item_is_created_-_New_Power_Platform_Environment_deletion%25252Frun%25252C%25252Ftriggers%25252FWhen_an_item_is_created_-_New_Power_Platform_Environment_deletion%25252Fread%2526sv%253d1.0%2526sig%253d5kh-yQdi19Klym1yo9tivOyzle6RMjJbXe-xCJGR1pY" ExpiresInDays="3" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Request - Group creation" Description="This list serves as the centralized storage for all user-submitted requests related to the creation of Microsoft 365 groups. It captures critical details and states of every request, enabling streamlined management and monitoring of the group creation workflows. It ensures adherence to organizational guidelines and user specifications, effectively aiding in precise and organized formation of groups within Microsoft 365." DocumentTemplate="" OnQuickLaunch="false" TemplateType="100" Url="Lists/Request  Group creation" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Request  Group creation/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Request  Group creation/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Request  Group creation/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ReadSecurity="2" WriteSecurity="2" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{BE71E363-1E04-4EA8-9769-9F095B064C25}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Request  Group creation/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Submitter_x0020_name" />
+                <FieldRef Name="Requestor_x0020_name" />
+                <FieldRef Name="Group_x0020_name" />
+                <FieldRef Name="Group_x0020_owner_x0028_s_x0029_" />
+                <FieldRef Name="Business_x0020_case" />
+                <FieldRef Name="Add_x0020_to_x0020_Teams" />
+                <FieldRef Name="Privacy" />
+                <FieldRef Name="Requested_x0020_date" />
+                <FieldRef Name="Completed_x0020_date" />
+                <FieldRef Name="Request_x0020_ID" />
+                <FieldRef Name="Status" />
+                <FieldRef Name="Approved_x0020_by" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <CustomFormatter />
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+            <pnp:FieldRef ID="a2098001-3394-4378-861d-074fbf31ce1f" Name="Submitter_x0020_name" Required="true" DisplayName="Submitter name" />
+            <pnp:FieldRef ID="11572cb2-df6d-45e4-b7dc-e153572db9d3" Name="Requestor_x0020_name" Required="true" DisplayName="Requestor name" />
+            <pnp:FieldRef ID="dc5176fa-0958-4996-b18f-57f77a8bb59a" Name="Group_x0020_name" Required="true" DisplayName="Group name" />
+            <pnp:FieldRef ID="62331aa9-a278-4968-b48f-f017d972f2bd" Name="Group_x0020_owner_x0028_s_x0029_" Required="true" DisplayName="Group owner" />
+            <pnp:FieldRef ID="f41215ba-8ee4-429e-b304-533cdca2b113" Name="Business_x0020_case" Required="true" DisplayName="Business case" />
+            <pnp:FieldRef ID="ab3cefd0-e592-46d9-a582-cf480a4a48f5" Name="Add_x0020_to_x0020_Teams" DisplayName="Add to Teams" />
+            <pnp:FieldRef ID="956754d9-089b-4491-9650-cd9508f78eb7" Name="Requested_x0020_date" Required="true" DisplayName="Requested date" />
+            <pnp:FieldRef ID="7689ade3-df76-4508-ac07-03f75d56e9f7" Name="Completed_x0020_date" DisplayName="Completed date" />
+            <pnp:FieldRef ID="133e1587-3741-4696-9444-0eee5bb4cd5e" Name="Request_x0020_ID" Required="true" DisplayName="Request ID" />
+            <pnp:FieldRef ID="a2083785-bfdd-4267-95c3-dfaf6ce268bb" Name="Status" Required="true" DisplayName="Status" />
+            <pnp:FieldRef ID="f13ce4bc-c936-4f5c-9569-0581adbefbd2" Name="Approved_x0020_by" DisplayName="Approved by" />
+            <pnp:FieldRef ID="64586739-a7aa-4837-a377-394974b2e4ef" Name="Privacy" Required="true" DisplayName="Privacy" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://flow-apim-europe-002-northeurope-01.azure-apim.net/apim/sharepointonline/ontableupdatedhook?r=https%253a%252f%252fprod-44.westeurope.logic.azure.com%252fworkflows%252f62a7fbb424aa41d7bd3dd4018e11b56d%252ftriggers%252fWhen_an_item_is_created_-_New_M365_Group_request%252fpaths%252finvoke%253fapi-version%253d2016-06-01%2526sp%253d%25252Ftriggers%25252FWhen_an_item_is_created_-_New_M365_Group_request%25252Frun%25252C%25252Ftriggers%25252FWhen_an_item_is_created_-_New_M365_Group_request%25252Fread%2526sv%253d1.0%2526sig%253dekem9LBY-u6sa0fvYpp6KUPIURnAm0YR2mTUDB5vVko" ExpiresInDays="2" />
+            <pnp:Webhook ServerNotificationUrl="https://westeurope1-0.pushnp.svc.ms/notifications?token=fe0b9de0-900f-46b8-bad1-e4ddd86e8bed%2Fb!BFeLcy354E6aVVKUQQ3nUDD9fA5lUBRBiTgtjePVmcZMvC16tbEWQ54Vhhdd2WD7" ExpiresInDays="1" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Request - Group deletion" Description="This list acts as the centralized repository for all requests concerning the removal of Microsoft 365 groups. It records essential details and statuses for each deletion request, facilitating organized management and tracking of group removal processes. The list ensures compliance with organizational policies and guidelines while streamlining the group deletion workflow." DocumentTemplate="" OnQuickLaunch="false" TemplateType="100" Url="Lists/Request  Group deletion" EnableVersioning="true" MinorVersionLimit="0" MaxVersionLimit="50" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableAttachments="false" EnableFolderCreation="false" DefaultDisplayFormUrl="{site}/Lists/Request  Group deletion/DispForm.aspx" DefaultEditFormUrl="{site}/Lists/Request  Group deletion/EditForm.aspx" DefaultNewFormUrl="{site}/Lists/Request  Group deletion/NewForm.aspx" ImageUrl="/_layouts/15/images/itgen.png?rev=47" IrmExpire="false" IrmReject="false" IsApplicationList="false" ReadSecurity="2" WriteSecurity="2" ValidationFormula="" ValidationMessage="">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{ECDAC76E-FCB9-4CEE-8D43-12B601891251}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="{site}/Lists/Request  Group deletion/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=47">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Submitter_x0020_name" />
+                <FieldRef Name="Requestor_x0020_name" />
+                <FieldRef Name="Group_x0020_name" />
+                <FieldRef Name="Business_x0020_case" />
+                <FieldRef Name="Planned_x0020_deletion_x0020_dat" />
+                <FieldRef Name="Requested_x0020_date" />
+                <FieldRef Name="Completed_x0020_date" />
+                <FieldRef Name="Request_x0020_ID" />
+                <FieldRef Name="Status" />
+                <FieldRef Name="Approved_x0020_by" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+              <ViewData />
+            </View>
+          </pnp:Views>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" DisplayName="Title" />
+            <pnp:FieldRef ID="76d13cd2-1bae-45a5-8b74-545b87b65037" Name="_ColorTag" DisplayName="Color Tag" />
+            <pnp:FieldRef ID="a2098001-3394-4378-861d-074fbf31ce1f" Name="Submitter_x0020_name" Required="true" DisplayName="Submitter name" />
+            <pnp:FieldRef ID="11572cb2-df6d-45e4-b7dc-e153572db9d3" Name="Requestor_x0020_name" Required="true" DisplayName="Requestor name" />
+            <pnp:FieldRef ID="dc5176fa-0958-4996-b18f-57f77a8bb59a" Name="Group_x0020_name" Required="true" DisplayName="Group name" />
+            <pnp:FieldRef ID="f41215ba-8ee4-429e-b304-533cdca2b113" Name="Business_x0020_case" Required="true" DisplayName="Business case" />
+            <pnp:FieldRef ID="c22b9b54-52d8-4331-aa7e-3ae78ea10600" Name="Planned_x0020_deletion_x0020_dat" Required="true" DisplayName="Planned deletion date" />
+            <pnp:FieldRef ID="956754d9-089b-4491-9650-cd9508f78eb7" Name="Requested_x0020_date" Required="true" DisplayName="Requested date" />
+            <pnp:FieldRef ID="7689ade3-df76-4508-ac07-03f75d56e9f7" Name="Completed_x0020_date" DisplayName="Completed date" />
+            <pnp:FieldRef ID="133e1587-3741-4696-9444-0eee5bb4cd5e" Name="Request_x0020_ID" Required="true" DisplayName="Request ID" />
+            <pnp:FieldRef ID="a2083785-bfdd-4267-95c3-dfaf6ce268bb" Name="Status" Required="true" DisplayName="Status" />
+            <pnp:FieldRef ID="f13ce4bc-c936-4f5c-9569-0581adbefbd2" Name="Approved_x0020_by" DisplayName="Approved by" />
+          </pnp:FieldRefs>
+          <pnp:Webhooks>
+            <pnp:Webhook ServerNotificationUrl="https://flow-apim-europe-002-northeurope-01.azure-apim.net/apim/sharepointonline/ontableupdatedhook?r=https%253a%252f%252fprod-61.westeurope.logic.azure.com%252fworkflows%252f4eacfed89f824309a4e49530bb383075%252ftriggers%252fWhen_an_item_is_created_-_New_M365_Group_deletion_request%252fpaths%252finvoke%253fapi-version%253d2016-06-01%2526sp%253d%25252Ftriggers%25252FWhen_an_item_is_created_-_New_M365_Group_deletion_request%25252Frun%25252C%25252Ftriggers%25252FWhen_an_item_is_created_-_New_M365_Group_deletion_request%25252Fread%2526sv%253d1.0%2526sig%253d7oXfK0-nlwloeCsWKxaFbuYI5sGFzWT4Dj1WC5C5tCo" ExpiresInDays="2" />
+            <pnp:Webhook ServerNotificationUrl="https://westeurope1-0.pushnp.svc.ms/notifications?token=fe0b9de0-900f-46b8-bad1-e4ddd86e8bed%2Fb!BFeLcy354E6aVVKUQQ3nUDD9fA5lUBRBiTgtjePVmcaOQ3UmAxiUTqC5jB7_tosn" ExpiresInDays="1" />
+          </pnp:Webhooks>
+        </pnp:ListInstance>
+      </pnp:Lists>
+    </pnp:ProvisioningTemplate>
+  </pnp:Templates>
+</pnp:Provisioning>

@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "887050d2-5038-4710-901c-35150f417ec7",
+    "Name": "Sendallrequests(visible)toSelf",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "ce19ad0f-7650-ee11-be6d-000d3a4b4875"
+  }
+]

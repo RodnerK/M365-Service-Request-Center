@@ -1,0 +1,1809 @@
+DetailedRequests As screen:
+    Fill: =colorAppBackground
+    LoadingSpinnerColor: =ColorFade(Self.Fill, -20%)
+    OnVisible: =Set(DisplayNewRequestMenu, false)
+
+    Navigation_DetailedRequests As groupContainer.manualLayoutContainer:
+        BorderColor: =
+        BorderStyle: =
+        BorderThickness: =
+        Fill: =colorContentBackground
+        Height: =898
+        Width: =241
+        Y: =54
+        ZIndex: =6
+
+        NavigationGallery_DetailedRequests As gallery.variableTemplateHeightGallery:
+            AccessibleLabel: |-
+                ="Navigation Menu: Select an item to view detailed request types."
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            DelayItemLoading: =true
+            Fill: =colorContentBackground
+            FocusedBorderColor: =
+            FocusedBorderThickness: =
+            Height: =479
+            Items: =screenIndex
+            Layout: =Layout.Vertical
+            LoadingSpinner: =LoadingSpinner.Data
+            LoadingSpinnerColor: =ColorFade(Self.Fill, -20%)
+            TabIndex: =0
+            TemplateFill: =colorContentBackground
+            TemplateSize: =53
+            Width: =241
+            Y: =18
+            ZIndex: =1
+
+            NavigationItems_DetailedRequests As button:
+                Align: =Align.Left
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorContentText
+                DisabledBorderColor: =
+                DisabledColor: =Self.Color
+                DisabledFill: =Self.Fill
+                Fill: |-
+                    =Switch(ThisItem.Name,
+                    "Environment creation(s)", If(DisplayEnvCreationTable, colorTableHeader, colorContentBackground),
+                    "Environment deletion(s)", If(DisplayEnvDeletionTable, colorTableHeader, colorContentBackground),
+                    "App deployment(s)", If(DisplayAppDeplyTable, colorTableHeader, colorContentBackground),
+                    "App deletion(s)", If(DisplayAppDeletionTable, colorTableHeader, colorContentBackground),
+                    "M365 Group creation(s)", If(DisplayGroupCreationTable, colorTableHeader, colorContentBackground),
+                    "M365 Group deletion(s)", If(DisplayGroupDeletionTable, colorTableHeader, colorContentBackground),
+                    colorTableHeader
+                    )
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                FontWeight: =FontWeight.Normal
+                Height: =30
+                HoverBorderColor: =
+                HoverColor: =Self.Color
+                HoverFill: =colorTableHeader
+                OnSelect: |-
+                    =Set(DisplayEnvCreationTable, false);
+                    Set(DisplayEnvDeletionTable, false);
+                    Set(DisplayAppDeplyTable, false);
+                    Set(DisplayAppDeletionTable, false);
+                    Set(DisplayGroupCreationTable, false);
+                    Set(DisplayGroupDeletionTable, false);
+                    
+                    If(ThisItem.Name = "Environment creation(s)",
+                        Set(DisplayEnvCreationTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - Environment creation").content);
+                        Navigate(ThisItem.Screen);
+                    );
+                    If(ThisItem.Name = "Environment deletion(s)",
+                        Set(DisplayEnvDeletionTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - Environment deletion").content);
+                        Navigate(ThisItem.Screen)
+                    );
+                    If(ThisItem.Name = "App deployment(s)",
+                        Set(DisplayAppDeplyTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - App deployment").content);
+                        Navigate(ThisItem.Screen)
+                    );
+                    If(ThisItem.Name = "App deletion(s)",
+                        Set(DisplayAppDeletionTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - App deletion").content);
+                        Navigate(ThisItem.Screen)
+                    );
+                    If(ThisItem.Name = "M365 Group creation(s)",
+                        Set(DisplayGroupCreationTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - Group creation").content);
+                        Navigate(ThisItem.Screen)
+                    );
+                    If(ThisItem.Name = "M365 Group deletion(s)",
+                        Set(DisplayGroupDeletionTable, true);
+                        Set(DetailedRequestContent,LookUp('Metadata - Screen content',screen_location = "DetailedRequests - Content header - Group deletion").content);
+                        Navigate(ThisItem.Screen)
+                    );
+                    
+                    RefreshCurrentTable;
+                PressedBorderColor: =
+                PressedColor: =Self.Color
+                PressedFill: =ColorFade(Self.HoverFill, 20%)
+                Size: =11
+                Text: =ThisItem.Name
+                Width: =231
+                Y: =6
+                ZIndex: =1
+
+    MenuBar_DetailedRequests As groupContainer.manualLayoutContainer:
+        BorderColor: =
+        BorderStyle: =
+        BorderThickness: =
+        Fill: =colorHeaderBackground
+        Height: =54
+        Width: =1920
+        ZIndex: =7
+
+        Help_DetailedRequests As icon.Help:
+            AccessibleLabel: |-
+                ="Help button: Click to open the help site in a new window for assistance and more information on using this application."
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Color: =colorHeadertext
+            DisabledBorderColor: =
+            DisabledColor: =Self.Color
+            DisabledFill: =ColorFade(Self.Fill, 70%)
+            Fill: =colorHeaderBackground
+            FocusedBorderColor: =
+            FocusedBorderThickness: =
+            Height: =30
+            HoverBorderColor: =
+            HoverColor: =Self.Color
+            HoverFill: =ColorFade(Self.Fill, -20%)
+            Icon: =Icon.Help
+            OnSelect: |
+                =Launch(
+                    LookUp('Metadata - Screen content', screen_location = "Help link").hyperlink
+                )
+            PressedBorderColor: =
+            PressedColor: =Self.Color
+            PressedFill: =ColorFade(Self.Fill, 20%)
+            TabIndex: =0
+            Width: =30
+            X: =1883
+            Y: =12
+            ZIndex: =3
+
+        HomeButton_2 As button:
+            BorderColor: =colorHeadertext
+            BorderStyle: =BorderStyle.Dotted
+            BorderThickness: =0.1
+            Color: =colorHeadertext
+            DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+            DisabledColor: =ColorFade(Self.Color, 70%)
+            DisabledFill: =ColorFade(Self.Fill, 70%)
+            Fill: =colorHeaderBackground
+            FocusedBorderThickness: =0.1
+            Height: =45
+            HoverBorderColor: =ColorFade(Self.BorderColor, -20%)
+            HoverColor: =ColorFade(Self.Color, -20%)
+            HoverFill: =ColorFade(Self.Fill, -20%)
+            OnSelect: =Navigate(Home);
+            PressedBorderColor: =ColorFade(Self.BorderColor, 20%)
+            PressedColor: =ColorFade(Self.Color, 20%)
+            PressedFill: =ColorFade(Self.Fill, 20%)
+            Size: =12
+            Text: ="Home"
+            Width: =164
+            X: =5
+            Y: =5
+            ZIndex: =5
+
+        Seperator_1 As icon.VerticalLine:
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Color: =colorHeadertext
+            DisabledBorderColor: =
+            DisabledColor: =Self.Color
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =colorHeaderBackground
+            FocusedBorderColor: =
+            FocusedBorderThickness: =
+            Height: =27
+            HoverBorderColor: =
+            HoverColor: =Self.Color
+            Icon: =Icon.VerticalLine
+            PressedBorderColor: =
+            PressedColor: =Self.Color
+            Width: =14
+            X: =190
+            Y: =14
+            ZIndex: =6
+
+        AppNameLabel_1 As label:
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Color: =colorHeadertext
+            DisabledBorderColor: =
+            DisabledColor: =Self.Color
+            DisabledFill: =Self.Fill
+            Fill: =colorHeaderBackground
+            FocusedBorderColor: =
+            FocusedBorderThickness: =
+            FontWeight: =FontWeight.Semibold
+            Height: =45
+            HoverBorderColor: =
+            PressedBorderColor: =
+            Size: =12
+            Text: ="M365 Service request Center"
+            Width: =330
+            X: =221
+            Y: =5
+            ZIndex: =7
+
+    Content_DetailedRequests As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =8
+
+        ContentRequests As groupContainer.manualLayoutContainer:
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Fill: =colorAppBackground
+            Height: =473
+            RadiusTopRight: =0
+            Width: =1639
+            X: =258
+            Y: =480
+            ZIndex: =1
+
+            EnvCreationTable As dataTable.datatable:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisplayMode: =DisplayMode.Edit
+                Fill: =colorTableContent
+                HeadingColor: =Self.Color
+                HeadingFill: =colorTableHeader
+                HeadingFontWeight: =FontWeight.Semibold
+                HeadingSize: =10
+                Height: =474
+                HoverColor: =Self.Color
+                HoverFill: =ColorFade(Self.Fill, -10%)
+                Items: |-
+                    =SortByColumns(
+                        Filter(
+                            'Request - Environment creation',
+                            'Submitter name'.DisplayName = User().FullName || 'Requestor name'.DisplayName = User().FullName
+                        ),
+                        "Request_x0020_ID",
+                        SortOrder.Ascending
+                    )
+                NoDataText: ="We didn't find any data to show at this time. This might indicate that you haven't made any previous requests."
+                SelectedColor: =Self.Color
+                SelectedFill: =ColorFade(Self.Fill, -20%)
+                Size: =10
+                Visible: =DisplayEnvCreationTable
+                Width: =1639
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+                "'Dataverse enabled_Column2' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Dataverse enabled"
+                    FieldName: ="Dataverse_x0020_enabled"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =5
+                    Text: =ThisItem.'Dataverse enabled'
+                    Width: =177
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                "'Code component enabled_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Code component enabled"
+                    FieldName: ="Code_x0020_component_x0020_enabl"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =6
+                    Text: =ThisItem.'Code component enabled'
+                    Width: =231
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                "'Submitter name_Column5' As dataTableColumn.textualColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Submitter name"
+                    FieldName: ="Submitter_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =-1
+                    Text: =ThisItem.'Submitter name'.DisplayName
+                    Width: =160
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                "'Requestor name_Column5' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requestor name"
+                    FieldName: ="Requestor_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =-1
+                    Text: =ThisItem.'Requestor name'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =5
+
+                "'Environment name_Column5' As dataTableColumn.textualColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Environment name"
+                    FieldName: ="Environment_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =1
+                    Text: =ThisItem.'Environment name'
+                    Width: =178
+                    X: =0
+                    Y: =0
+                    ZIndex: =6
+
+                "'Environment description_Column4' As dataTableColumn.textualColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Environment description"
+                    FieldName: ="Environment_x0020_description"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =2
+                    Text: =ThisItem.'Environment description'
+                    Width: =235
+                    X: =0
+                    Y: =0
+                    ZIndex: =7
+
+                "'Environment type_Column4' As dataTableColumn.textualColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Environment type"
+                    FieldName: ="Environment_x0020_type"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =3
+                    Text: =ThisItem.'Environment type'.Value
+                    Width: =180
+                    X: =0
+                    Y: =0
+                    ZIndex: =8
+
+                "'Business case_Column5' As dataTableColumn.textualColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Business case"
+                    FieldName: ="Business_x0020_case"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =4
+                    Text: =ThisItem.'Business case'
+                    Width: =160
+                    X: =0
+                    Y: =0
+                    ZIndex: =9
+
+                "'Requested date_Column5' As dataTableColumn.dateTimeColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requested date"
+                    FieldName: ="Requested_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =9
+                    Text: =Text(ThisItem.'Requested date',DateTimeFormat.LongDateTime)
+                    Width: =211
+                    X: =0
+                    Y: =0
+                    ZIndex: =12
+
+                "'Completed date_Column5' As dataTableColumn.dateTimeColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Completed date"
+                    FieldName: ="Completed_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =10
+                    Text: =Text(ThisItem.'Completed date',DateTimeFormat.LongDateTime)
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =13
+
+                "'Request ID_Column5' As dataTableColumn.numberColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Request ID"
+                    FieldName: ="Request_x0020_ID"
+                    FieldVariantName: ="numberColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =11
+                    Text: =ThisItem.'Request ID'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =14
+
+                Status_Column5 As dataTableColumn.textualColumn:
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Status"
+                    FieldName: ="Status"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =12
+                    Text: =ThisItem.Status.Value
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =15
+
+                "'Approved by_Column5' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Approved by"
+                    FieldName: ="Approved_x0020_by"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =13
+                    Text: =ThisItem.'Approved by'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =16
+
+            EnvDeletionTable As dataTable.datatable:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisplayMode: =DisplayMode.Edit
+                Fill: =colorTableContent
+                HeadingColor: =Self.Color
+                HeadingFill: =colorTableHeader
+                HeadingFontWeight: =FontWeight.Semibold
+                HeadingSize: =10
+                Height: =474
+                HoverColor: =Self.Color
+                HoverFill: =ColorFade(Self.Fill, -10%)
+                Items: |-
+                    =SortByColumns(
+                        Filter(
+                            'Request - Environment deletion',
+                            'Submitter name'.DisplayName = User().FullName || 'Requestor name'.DisplayName = User().FullName
+                        ),
+                        "Request_x0020_ID",
+                        SortOrder.Ascending
+                    )
+                NoDataText: ="We didn't find any data to show at this time. This might indicate that you haven't made any previous requests."
+                SelectedColor: =Self.Color
+                SelectedFill: =ColorFade(Self.Fill, -20%)
+                Size: =10
+                Visible: =DisplayEnvDeletionTable
+                Width: =1639
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+                "'Submitter name_Column2' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Submitter name"
+                    FieldName: ="Submitter_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =1
+                    Text: =ThisItem.'Submitter name'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =28
+
+                "'Requestor name_Column2' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requestor name"
+                    FieldName: ="Requestor_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =2
+                    Text: =ThisItem.'Requestor name'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =29
+
+                "'Business case_Column2' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Business case"
+                    FieldName: ="Business_x0020_case"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =5
+                    Text: =ThisItem.'Business case'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =31
+
+                "'Planned deletion date_Column2' As dataTableColumn.textualColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Planned deletion date"
+                    FieldName: ="Planned_x0020_deletion_x0020_dat"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =6
+                    Text: =ThisItem.'Planned deletion date'
+                    Width: =213
+                    X: =0
+                    Y: =0
+                    ZIndex: =32
+
+                "'Requested date_Column2' As dataTableColumn.dateTimeColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requested date"
+                    FieldName: ="Requested_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =7
+                    Text: =Text(ThisItem.'Requested date',DateTimeFormat.LongDateTime)
+                    Width: =214
+                    X: =0
+                    Y: =0
+                    ZIndex: =33
+
+                "'Completed date_Column2' As dataTableColumn.dateTimeColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Completed date"
+                    FieldName: ="Completed_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =8
+                    Text: =Text(ThisItem.'Completed date',DateTimeFormat.LongDateTime)
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =34
+
+                "'Request ID_Column2' As dataTableColumn.numberColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Request ID"
+                    FieldName: ="Request_x0020_ID"
+                    FieldVariantName: ="numberColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =9
+                    Text: =ThisItem.'Request ID'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =35
+
+                Status_Column2 As dataTableColumn.textualColumn:
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Status"
+                    FieldName: ="Status"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =10
+                    Text: =ThisItem.Status.Value
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =36
+
+                "'Approved by_Column2' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Approved by"
+                    FieldName: ="Approved_x0020_by"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =11
+                    Text: =ThisItem.'Approved by'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =37
+
+                "'Environment name (Choice)_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Environment name"
+                    FieldName: ="Environment_x0020_name_x0020__x0"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =4
+                    Text: =ThisItem.'Environment name (Choice)'.Value
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =82
+
+            AppDeletionTable As dataTable.datatable:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisplayMode: =DisplayMode.Edit
+                Fill: =colorTableContent
+                HeadingColor: =Self.Color
+                HeadingFill: =colorTableHeader
+                HeadingFontWeight: =FontWeight.Semibold
+                HeadingSize: =10
+                Height: =474
+                HoverColor: =Self.Color
+                HoverFill: =ColorFade(Self.Fill, -10%)
+                Items: |-
+                    =SortByColumns(
+                        Filter(
+                            'Request - App deletion',
+                            'Submitter name'.DisplayName = User().FullName || 'Requestor name'.DisplayName = User().FullName
+                        ),
+                        "Request_x0020_ID",
+                        SortOrder.Ascending
+                    )
+                NoDataText: ="We didn't find any data to show at this time. This might indicate that you haven't made any previous requests."
+                SelectedColor: =Self.Color
+                SelectedFill: =ColorFade(Self.Fill, -20%)
+                Size: =10
+                Visible: =DisplayAppDeletionTable
+                Width: =1639
+                X: =0
+                Y: =0
+                ZIndex: =3
+
+                "'Submitter name_Column1' As dataTableColumn.textualColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Submitter name"
+                    FieldName: ="Submitter_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =1
+                    Text: =ThisItem.'Submitter name'.DisplayName
+                    Width: =175
+                    X: =0
+                    Y: =0
+                    ZIndex: =17
+
+                "'Requestor name_Column1' As dataTableColumn.textualColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requestor name"
+                    FieldName: ="Requestor_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =2
+                    Text: =ThisItem.'Requestor name'.DisplayName
+                    Width: =181
+                    X: =0
+                    Y: =0
+                    ZIndex: =18
+
+                "'Application name_Column1' As dataTableColumn.textualColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Application name"
+                    FieldName: ="Application_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =3
+                    Text: =ThisItem.'Application name'
+                    Width: =178
+                    X: =0
+                    Y: =0
+                    ZIndex: =19
+
+                "'Business case_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Business case"
+                    FieldName: ="Business_x0020_case"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =6
+                    Text: =ThisItem.'Business case'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =21
+
+                "'Planned deletion date_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Planned deletion date"
+                    FieldName: ="Planned_x0020_deletion_x0020_dat"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =7
+                    Text: =ThisItem.'Planned deletion date'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =22
+
+                "'Requested date_Column1' As dataTableColumn.dateTimeColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requested date"
+                    FieldName: ="Requested_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =8
+                    Text: =Text(ThisItem.'Requested date',DateTimeFormat.LongDateTime)
+                    Width: =200
+                    X: =0
+                    Y: =0
+                    ZIndex: =23
+
+                "'Completed date_Column1' As dataTableColumn.dateTimeColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Completed date"
+                    FieldName: ="Completed_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =9
+                    Text: =Text(ThisItem.'Completed date',DateTimeFormat.LongDateTime)
+                    Width: =195
+                    X: =0
+                    Y: =0
+                    ZIndex: =24
+
+                "'Request ID_Column1' As dataTableColumn.numberColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Request ID"
+                    FieldName: ="Request_x0020_ID"
+                    FieldVariantName: ="numberColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =10
+                    Text: =ThisItem.'Request ID'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =25
+
+                Status_Column1 As dataTableColumn.textualColumn:
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Status"
+                    FieldName: ="Status"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =11
+                    Text: =ThisItem.Status.Value
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =26
+
+                "'Approved by_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Approved by"
+                    FieldName: ="Approved_x0020_by"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =12
+                    Text: =ThisItem.'Approved by'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =27
+
+                "'Hosting environment name_Column2' As dataTableColumn.textualColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Hosting environment name"
+                    FieldName: ="Hosting_x0020_environment_x0020_"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =5
+                    Text: =ThisItem.'Hosting environment name'.Value
+                    Width: =250
+                    X: =0
+                    Y: =0
+                    ZIndex: =83
+
+            AppDeplytable As dataTable.datatable:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisplayMode: =DisplayMode.Edit
+                Fill: =colorTableContent
+                HeadingColor: =Self.Color
+                HeadingFill: =colorTableHeader
+                HeadingFontWeight: =FontWeight.Semibold
+                HeadingSize: =10
+                Height: =474
+                HoverColor: =Self.Color
+                HoverFill: =ColorFade(Self.Fill, -10%)
+                Items: |-
+                    =SortByColumns(
+                        Filter(
+                            'Request - App deployment',
+                            'Submitter name'.DisplayName = User().FullName || 'Requestor name'.DisplayName = User().FullName
+                        ),
+                        "Request_x0020_ID",
+                        SortOrder.Ascending
+                    )
+                NoDataText: ="We didn't find any data to show at this time. This might indicate that you haven't made any previous requests."
+                SelectedColor: =Self.Color
+                SelectedFill: =ColorFade(Self.Fill, -20%)
+                Size: =10
+                Visible: =DisplayAppDeplyTable
+                Width: =1639
+                X: =0
+                Y: =0
+                ZIndex: =4
+
+                "'Personal data_Column2' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Personal data"
+                    FieldName: ="Personal_x0020_data"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =4
+                    Text: =ThisItem.'Personal data'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                "'Dataverse enabled_Column3' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Dataverse enabled"
+                    FieldName: ="Dataverse_x0020_enabled"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =8
+                    Text: =ThisItem.'Dataverse enabled'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                "'Submitter name_Column3' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Submitter name"
+                    FieldName: ="Submitter_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =-1
+                    Text: =ThisItem.'Submitter name'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =38
+
+                "'Requestor name_Column3' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requestor name"
+                    FieldName: ="Requestor_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =-1
+                    Text: =ThisItem.'Requestor name'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =39
+
+                "'Application name_Column2' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Application name"
+                    FieldName: ="Application_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =1
+                    Text: =ThisItem.'Application name'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =40
+
+                "'Application description_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Application description"
+                    FieldName: ="Application_x0020_description"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =2
+                    Text: =ThisItem.'Application description'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =41
+
+                "'Business case_Column3' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Business case"
+                    FieldName: ="Business_x0020_case"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =3
+                    Text: =ThisItem.'Business case'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =42
+
+                "'Planned deployment date_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Planned deployment date"
+                    FieldName: ="Planned_x0020_deployment_x0020_d"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =5
+                    Text: =ThisItem.'Planned deployment date'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =44
+
+                "'Hosting environment name_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Hosting environment name"
+                    FieldName: ="Hosting_x0020_environment_x0020_"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =7
+                    Text: =ThisItem.'Hosting environment name'.Value
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =45
+
+                "'Database source_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Database source"
+                    FieldName: ="Database_x0020_source"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =10
+                    Text: =ThisItem.'Database source'.Value
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =47
+
+                "'Database name(s) (External)_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Database name(s) (External)"
+                    FieldName: ="Database_x0020_name_x0028_s_x002"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =11
+                    Text: =Concat (ThisItem.'Database name(s) (External)'.Value, Value & ", ")
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =48
+
+                "'Complexity level_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Complexity level"
+                    FieldName: ="Complexity_x0020_level"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =12
+                    Text: =ThisItem.'Complexity level'.Value
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =49
+
+                "'Connector type(s)_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Connector type(s)"
+                    FieldName: ="Connector_x0020_type_x0028_s_x00"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =13
+                    Text: =Concat(ThisItem.'Connector type(s)'.Value, Concatenate(Text(Value),", "))
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =50
+
+                "'Standard connector name(s)_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Standard connector name(s)"
+                    FieldName: ="Standard_x0020_connector_x0020_n"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =14
+                    Text: =Concat(ThisItem.'Standard connector name(s)'.Value, Value & ", ")
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =51
+
+                "'Premium connector name(s)_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Premium connector name(s)"
+                    FieldName: ="Premium_x0020_connector_x0020_na"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =15
+                    Text: =Concat(ThisItem.'Premium connector name(s)' , Value & ", ")
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =52
+
+                "'Custom connector name(s)_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Custom connector name(s)"
+                    FieldName: ="Custom_x0020_connector_x0020_nam"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =16
+                    Text: =Concat(ThisItem.'Custom connector name(s)' , Value & ", ")
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =53
+
+                "'Requested date_Column3' As dataTableColumn.dateTimeColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requested date"
+                    FieldName: ="Requested_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =17
+                    Text: =Text(ThisItem.'Requested date',DateTimeFormat.LongDateTime)
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =54
+
+                "'Completed date_Column3' As dataTableColumn.dateTimeColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Completed date"
+                    FieldName: ="Completed_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =18
+                    Text: =Text(ThisItem.'Completed date',DateTimeFormat.LongDateTime)
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =55
+
+                "'Request ID_Column3' As dataTableColumn.numberColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Request ID"
+                    FieldName: ="Request_x0020_ID"
+                    FieldVariantName: ="numberColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =19
+                    Text: =ThisItem.'Request ID'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =56
+
+                Status_Column3 As dataTableColumn.textualColumn:
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Status"
+                    FieldName: ="Status"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =20
+                    Text: =ThisItem.Status.Value
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =57
+
+                "'Approved by_Column3' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Approved by"
+                    FieldName: ="Approved_x0020_by"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =21
+                    Text: =ThisItem.'Approved by'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =58
+
+            GroupCreationTable As dataTable.datatable:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisplayMode: =DisplayMode.Edit
+                Fill: =colorTableContent
+                HeadingColor: =Self.Color
+                HeadingFill: =colorTableHeader
+                HeadingFontWeight: =FontWeight.Semibold
+                HeadingSize: =10
+                Height: =474
+                HoverColor: =Self.Color
+                HoverFill: =ColorFade(Self.Fill, -10%)
+                Items: |-
+                    =SortByColumns(
+                        Filter(
+                            'Request - Group creation',
+                            'Submitter name'.DisplayName = User().FullName || 'Requestor name'.DisplayName = User().FullName
+                        ),
+                        "Request_x0020_ID",
+                        SortOrder.Ascending
+                    )
+                NoDataText: ="We didn't find any data to show at this time. This might indicate that you haven't made any previous requests."
+                SelectedColor: =Self.Color
+                SelectedFill: =ColorFade(Self.Fill, -20%)
+                Size: =10
+                Visible: =DisplayGroupCreationTable
+                Width: =1639
+                X: =0
+                Y: =0
+                ZIndex: =5
+
+                "'Add to Teams_Column4' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Add to Teams"
+                    FieldName: ="Add_x0020_to_x0020_Teams"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =5
+                    Text: =ThisItem.'Add to Teams'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                "'Submitter name_Column4' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Submitter name"
+                    FieldName: ="Submitter_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =-1
+                    Text: =ThisItem.'Submitter name'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =60
+
+                "'Requestor name_Column4' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requestor name"
+                    FieldName: ="Requestor_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =1
+                    Text: =ThisItem.'Requestor name'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =61
+
+                "'Group name_Column1' As dataTableColumn.textualColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Group name"
+                    FieldName: ="Group_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =2
+                    Text: =ThisItem.'Group name'
+                    Visible: =true
+                    Width: =196
+                    X: =0
+                    Y: =0
+                    ZIndex: =62
+
+                "'Group owner(s)_Column1' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Group owner(s)"
+                    FieldName: ="Group_x0020_owner_x0028_s_x0029_"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =3
+                    Text: |-
+                        =
+                        ThisItem.'Group owner'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =63
+
+                "'Business case_Column4' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Business case"
+                    FieldName: ="Business_x0020_case"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =4
+                    Text: =ThisItem.'Business case'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =64
+
+                "'Requested date_Column4' As dataTableColumn.dateTimeColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requested date"
+                    FieldName: ="Requested_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =8
+                    Text: =Text(ThisItem.'Requested date',DateTimeFormat.LongDateTime)
+                    Width: =200
+                    X: =0
+                    Y: =0
+                    ZIndex: =66
+
+                "'Completed date_Column4' As dataTableColumn.dateTimeColumn":
+                    AutoWidth: =false
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Completed date"
+                    FieldName: ="Completed_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =9
+                    Text: =Text(ThisItem.'Completed date',DateTimeFormat.LongDateTime)
+                    Width: =198
+                    X: =0
+                    Y: =0
+                    ZIndex: =67
+
+                "'Request ID_Column4' As dataTableColumn.numberColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Request ID"
+                    FieldName: ="Request_x0020_ID"
+                    FieldVariantName: ="numberColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =10
+                    Text: =ThisItem.'Request ID'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =68
+
+                Status_Column4 As dataTableColumn.textualColumn:
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Status"
+                    FieldName: ="Status"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =11
+                    Text: =ThisItem.Status.Value
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =69
+
+                "'Approved by_Column4' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Approved by"
+                    FieldName: ="Approved_x0020_by"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =12
+                    Text: =ThisItem.'Approved by'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =70
+
+                Privacy_Column1 As dataTableColumn.textualColumn:
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Privacy"
+                    FieldName: ="Privacy"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =7
+                    Text: =ThisItem.Privacy.Value
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =81
+
+            GroupDeletionTable As dataTable.datatable:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisplayMode: =DisplayMode.Edit
+                Fill: =colorTableContent
+                HeadingColor: =Self.Color
+                HeadingFill: =colorTableHeader
+                HeadingFontWeight: =FontWeight.Semibold
+                HeadingSize: =10
+                Height: =474
+                HoverColor: =Self.Color
+                HoverFill: =ColorFade(Self.Fill, -10%)
+                Items: |-
+                    =SortByColumns(
+                        Filter(
+                            'Request - Group deletion',
+                            'Submitter name'.DisplayName = User().FullName || 'Requestor name'.DisplayName = User().FullName
+                        ),
+                        "Request_x0020_ID",
+                        SortOrder.Ascending
+                    )
+                NoDataText: ="We didn't find any data to show at this time. This might indicate that you haven't made any previous requests."
+                SelectedColor: =Self.Color
+                SelectedFill: =ColorFade(Self.Fill, -20%)
+                Size: =10
+                Visible: =DisplayGroupDeletionTable
+                Width: =1639
+                X: =0
+                Y: =0
+                ZIndex: =6
+
+                "'Submitter name_Column6' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Submitter name"
+                    FieldName: ="Submitter_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =1
+                    Text: =ThisItem.'Submitter name'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =71
+
+                "'Requestor name_Column6' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requestor name"
+                    FieldName: ="Requestor_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =2
+                    Text: =ThisItem.'Requestor name'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =72
+
+                "'Group name_Column2' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Group name"
+                    FieldName: ="Group_x0020_name"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =3
+                    Text: =ThisItem.'Group name'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =73
+
+                "'Business case_Column6' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Business case"
+                    FieldName: ="Business_x0020_case"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =4
+                    Text: =ThisItem.'Business case'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =74
+
+                "'Planned deletion date_Column3' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Planned deletion date"
+                    FieldName: ="Planned_x0020_deletion_x0020_dat"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =5
+                    Text: =ThisItem.'Planned deletion date'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =75
+
+                "'Requested date_Column6' As dataTableColumn.dateTimeColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Requested date"
+                    FieldName: ="Requested_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =6
+                    Text: =Text(ThisItem.'Requested date',DateTimeFormat.LongDateTime)
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =76
+
+                "'Completed date_Column6' As dataTableColumn.dateTimeColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Completed date"
+                    FieldName: ="Completed_x0020_date"
+                    FieldVariantName: ="dateTimeColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =7
+                    Text: =Text(ThisItem.'Completed date',DateTimeFormat.LongDateTime)
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =77
+
+                "'Request ID_Column6' As dataTableColumn.numberColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Request ID"
+                    FieldName: ="Request_x0020_ID"
+                    FieldVariantName: ="numberColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =8
+                    Text: =ThisItem.'Request ID'
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =78
+
+                Status_Column6 As dataTableColumn.textualColumn:
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Status"
+                    FieldName: ="Status"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =9
+                    Text: =ThisItem.Status.Value
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =79
+
+                "'Approved by_Column6' As dataTableColumn.textualColumn":
+                    DisplayMode: =DisplayMode.Edit
+                    FieldDisplayName: ="Approved by"
+                    FieldName: ="Approved_x0020_by"
+                    FieldVariantName: ="textualColumn"
+                    Height: =Parent.Height
+                    LayoutHeight: =Parent.Height
+                    Order: =10
+                    Text: =ThisItem.'Approved by'.DisplayName
+                    Width: =100
+                    X: =0
+                    Y: =0
+                    ZIndex: =80
+
+        ContentHeader_1 As groupContainer.manualLayoutContainer:
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Fill: =colorContentBackground
+            Height: =346
+            Width: =1639
+            X: =258
+            Y: =83
+            ZIndex: =2
+
+            Header_HTML_DetailedRequests As htmlViewer:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorContentText
+                DisabledBorderColor: =
+                DisabledFill: =
+                Fill: =colorContentBackground
+                Height: =346
+                HoverBorderColor: =
+                HtmlText: =DetailedRequestContent
+                Size: =9
+                Width: =1639
+                ZIndex: =1
+
+        ContentFooter_1 As groupContainer.manualLayoutContainer:
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            Fill: =colorContentBackground
+            Height: =100
+            Width: =1920
+            Y: =980
+            ZIndex: =3
+
+            Footer_HTML_DetailedRequests As htmlViewer:
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorContentText
+                DisabledBorderColor: =
+                DisabledFill: =
+                Fill: =colorContentBackground
+                Height: =85
+                HoverBorderColor: =
+                HtmlText: =LookUp('Metadata - Screen content', screen_location = "Home - Content footer").content
+                Size: =9
+                Width: =1872
+                X: =21
+                Y: =14
+                ZIndex: =1
+
+        TableControls As groupContainer.manualLayoutContainer:
+            BorderColor: =
+            BorderStyle: =
+            BorderThickness: =
+            DropShadow: =
+            Fill: =colorTableHeader
+            Height: =41
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            Width: =100
+            X: =1797
+            Y: =439
+            ZIndex: =4
+
+            "RefreshCurrentTable As icon.'3DPrinting'":
+                AccessibleLabel: |-
+                    ="Refresh Button: Click to update and display the most recent data in the table, ensuring you are viewing the most current status of all your submitted requests."
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                Fill: =colorTableHeader
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =25
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                Icon: =Icon.Reload
+                OnSelect: |-
+                    =If(DisplayEnvCreationTable, Refresh('Request - Environment creation'), false);
+                    If(DisplayEnvDeletionTable, Refresh('Request - Environment deletion'), false);
+                    If(DisplayAppDeplyTable, Refresh('Request - App deployment'), false);
+                    If(DisplayAppDeletionTable, Refresh('Request - App deletion'), false);
+                    If(DisplayGroupCreationTable, Refresh('Request - Group creation'), false);
+                    If(DisplayGroupDeletionTable, Refresh('Request - Group deletion'), false);
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                TabIndex: =0
+                Tooltip: ="Refresh table"
+                Width: =25
+                X: =58.2
+                Y: =9
+                ZIndex: =1
+
+            "SendCurrentTableToMail As icon.'3DPrinting'":
+                AccessibleLabel: |-
+                    ="Send all request table to my Mail Button: Click to send an email containing details of all currently visible requests that you have submitted."
+                BorderColor: =
+                BorderStyle: =
+                BorderThickness: =
+                Color: =colorTableText
+                DisabledBorderColor: =
+                DisabledColor: =ColorFade(Self.Color, 70%)
+                Fill: =colorTableHeader
+                FocusedBorderColor: =
+                FocusedBorderThickness: =
+                Height: =25
+                HoverBorderColor: =
+                HoverColor: =ColorFade(Self.Color, -20%)
+                Icon: =Icon.Mail
+                OnSelect: |
+                    =Switch(
+                        true,
+                        DisplayEnvCreationTable,
+                        If(
+                            'Sendallrequests(visible)toSelf'.Run(
+                                User().Email,
+                                "All my Environment creation requests",
+                                "",
+                                JSON(
+                                    ClearCollect(
+                                        EnvironmentCreationItems,
+                                        'Request - Environment creation'
+                                    ),
+                                    JSONFormat.IncludeBinaryData
+                                ),
+                                "EnvCreation", "", "", "", "", ""
+                            ).success = "True",
+                            Notify(
+                                "Email sent successfully.",
+                                NotificationType.Success
+                            ),
+                            Notify(
+                                "Sending maik failed has failed.",
+                                NotificationType.Error
+                            )
+                        ),
+                        DisplayEnvDeletionTable,
+                        If(
+                            'Sendallrequests(visible)toSelf'.Run(
+                                User().Email,
+                                "All my Environment deletion requests",
+                                "",
+                                ""
+                                ,
+                                "EnvDeletion", JSON(
+                                    ClearCollect(
+                                        EnvironmentDeletionItems,
+                                        'Request - Environment deletion'
+                                    ),
+                                    JSONFormat.IncludeBinaryData
+                                ), "", "", "", ""
+                            ).success = "True",
+                            Notify(
+                                "Email sent successfully.",
+                                NotificationType.Success
+                            ),
+                            Notify(
+                                "Sending maik failed has failed.",
+                                NotificationType.Error
+                            )
+                        ),
+                        DisplayAppDeplyTable,
+                        If(
+                            'Sendallrequests(visible)toSelf'.Run(
+                                User().Email,
+                                "All my Application deployment requests",
+                                "",
+                                "",
+                                "AppDeployment", "", JSON(
+                                    ClearCollect(
+                                        AppDeploymentItems,
+                                        'Request - App deployment'
+                                    ),
+                                    JSONFormat.IncludeBinaryData
+                                ), "", "", ""
+                            ).success = "True",
+                            Notify(
+                                "Email sent successfully.",
+                                NotificationType.Success
+                            ),
+                            Notify(
+                                "Sending maik failed has failed.",
+                                NotificationType.Error
+                            )
+                        ),
+                        DisplayAppDeletionTable,
+                        If(
+                            'Sendallrequests(visible)toSelf'.Run(
+                                User().Email,
+                                "All my Application deletion requests",
+                                "",
+                                "",
+                                "AppDeletion", "", "", JSON(
+                                    ClearCollect(
+                                        AppDeletionItems,
+                                        'Request - App deletion'
+                                    ),
+                                    JSONFormat.IncludeBinaryData
+                                ), "", ""
+                            ).success = "True",
+                            Notify(
+                                "Email sent successfully.",
+                                NotificationType.Success
+                            ),
+                            Notify(
+                                "Sending maik failed has failed.",
+                                NotificationType.Error
+                            )
+                        ),
+                        DisplayGroupCreationTable,
+                        If(
+                            'Sendallrequests(visible)toSelf'.Run(
+                                User().Email,
+                                "All my M365 Group creation requests",
+                                "",
+                                "",
+                                "GroupCreation", "", "", "", JSON(
+                                    ClearCollect(
+                                        GroupCreationItems,
+                                        'Request - Group creation'
+                                    ),
+                                    JSONFormat.IncludeBinaryData
+                                ), ""
+                            ).success = "True",
+                            Notify(
+                                "Email sent successfully.",
+                                NotificationType.Success
+                            ),
+                            Notify(
+                                "Sending maik failed has failed.",
+                                NotificationType.Error
+                            )
+                        ),
+                        DisplayGroupDeletionTable,
+                        If(
+                            'Sendallrequests(visible)toSelf'.Run(
+                                User().Email,
+                                "All my M365 Group deletion requests",
+                                "",
+                                "",
+                                "GroupDeletion", "", "", "", "", JSON(
+                                    ClearCollect(
+                                        GroupDeletionItems,
+                                        'Request - Group deletion'
+                                    ),
+                                    JSONFormat.IncludeBinaryData
+                                )
+                            ).success = "True",
+                            Notify(
+                                "Email sent successfully.",
+                                NotificationType.Success
+                            ),
+                            Notify(
+                                "Sending maik failed has failed.",
+                                NotificationType.Error
+                            )
+                        )
+                    );
+                PressedBorderColor: =
+                PressedColor: =ColorFade(Self.Color, 20%)
+                TabIndex: =0
+                Tooltip: ="Send mail with the table to my mail address"
+                Width: =25
+                X: =16.6
+                Y: =9
+                ZIndex: =2
+

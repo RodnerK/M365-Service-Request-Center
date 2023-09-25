@@ -1,0 +1,347 @@
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Entities></Entities>
+  <Roles></Roles>
+  <Workflows>
+    <Workflow WorkflowId="{704c198e-b54b-ee11-be6e-000d3a4b4875}" Name="Send open requests to Self" Description="Activated from within a Power App, this workflow collates all open requests and forwards them to the initiating user’s email. It’s designed to give users an immediate overview of their outstanding requests, streamlining the monitoring process and assisting users in managing their pending tasks more efficiently within the application environment.">
+      <JsonFileName>/Workflows/SendopenrequeststoSelf-704C198E-B54B-EE11-BE6E-000D3A4B4875.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Send open requests to Self" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Activated from within a Power App, this workflow collates all open requests and forwards them to the initiating user’s email. It’s designed to give users an immediate overview of their outstanding requests, streamlining the monitoring process and assisting users in managing their pending tasks more efficiently within the application environment." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{ce19ad0f-7650-ee11-be6d-000d3a4b4875}" Name="Send all requests (visible) to Self" Description="Triggered within a Power App, this workflow compiles all requests from the currently visible table, both opened and previously submitted, and dispatches them to the user's email. It enables users to receive a consolidated view of their requests, facilitating better tracking and management of the requests’ statuses, aiding in efficient and informed decision-making within the application.">
+      <JsonFileName>/Workflows/SendallrequestsvisibletoSelf-CE19AD0F-7650-EE11-BE6D-000D3A4B4875.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Send all requests (visible) to Self" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Triggered within a Power App, this workflow compiles all requests from the currently visible table, both opened and previously submitted, and dispatches them to the user's email. It enables users to receive a consolidated view of their requests, facilitating better tracking and management of the requests’ statuses, aiding in efficient and informed decision-making within the application." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{1e2c7d87-3351-ee11-be6d-000d3a4b4875}" Name="New M365 Group creation request" Description="This workflow manages the processing of requests to create new M365 groups, ensuring compliance with organizational policies. It automates the validation and approval process, facilitating the creation of groups that can be standalone or integrated with Microsoft Teams based on user preference indicated during the request. It aims to enhance user collaboration while maintaining alignment with the organizational structure and guidelines.">
+      <JsonFileName>/Workflows/NewM365Groupcreationrequest-1E2C7D87-3351-EE11-BE6D-000D3A4B4875.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="New M365 Group creation request" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="This workflow manages the processing of requests to create new M365 groups, ensuring compliance with organizational policies. It automates the validation and approval process, facilitating the creation of groups that can be standalone or integrated with Microsoft Teams based on user preference indicated during the request. It aims to enhance user collaboration while maintaining alignment with the organizational structure and guidelines." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{cddf79bb-5c51-ee11-be6d-000d3a4b4875}" Name="New M365 Group deletion request" Description="This workflow handles requests for deleting M365 groups, ensuring each deletion adheres to organizational protocols and user needs. Upon request submission, it conducts a meticulous review and, post-approval, executes the group deletion, maintaining the integrity of organizational data and structures. The workflow automates the necessary checks and balances to prevent unauthorized or accidental deletions, streamlining group management within the organization.">
+      <JsonFileName>/Workflows/NewM365Groupdeletionrequest-CDDF79BB-5C51-EE11-BE6D-000D3A4B4875.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="New M365 Group deletion request" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="This workflow handles requests for deleting M365 groups, ensuring each deletion adheres to organizational protocols and user needs. Upon request submission, it conducts a meticulous review and, post-approval, executes the group deletion, maintaining the integrity of organizational data and structures. The workflow automates the necessary checks and balances to prevent unauthorized or accidental deletions, streamlining group management within the organization." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{cececaee-fb51-ee11-be6d-000d3a4b4875}" Name="New Power Platform Environment creation request" Description="This workflow automates the creation of new Power Platform environments. On receiving a creation request, it validates the request against organizational policies and proceeds with environment setup upon approval. It configures the environment based on user-provided specifications, ensuring optimal alignment with user requirements and organizational standards. The workflow prioritizes security and compliance, delivering streamlined and efficient environment provisioning to users.">
+      <JsonFileName>/Workflows/NewPowerPlatformEnvironmentcreationrequest-CECECAEE-FB51-EE11-BE6D-000D3A4B4875.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="New Power Platform Environment creation request" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="This workflow automates the creation of new Power Platform environments. On receiving a creation request, it validates the request against organizational policies and proceeds with environment setup upon approval. It configures the environment based on user-provided specifications, ensuring optimal alignment with user requirements and organizational standards. The workflow prioritizes security and compliance, delivering streamlined and efficient environment provisioning to users." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{88d63b07-0452-ee11-be6d-000d3a4b4875}" Name="New Power Platform Environment deletion request" Description="This workflow manages Power Platform environment deletion requests. Upon receiving a deletion request, the workflow initiates a series of verification steps to confirm the legitimacy of the request and checks for compliance with organizational standards. If approved, it oversees the environment's secure and systematic deletion, ensuring that the process aligns with data protection policies and organizational guidelines. This workflow ensures a balanced approach to environment removal, blending user needs with security and operational standards.">
+      <JsonFileName>/Workflows/NewPowerPlatformEnvironmentdeletionrequest-88D63B07-0452-EE11-BE6D-000D3A4B4875.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="New Power Platform Environment deletion request" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="This workflow manages Power Platform environment deletion requests. Upon receiving a deletion request, the workflow initiates a series of verification steps to confirm the legitimacy of the request and checks for compliance with organizational standards. If approved, it oversees the environment's secure and systematic deletion, ensuring that the process aligns with data protection policies and organizational guidelines. This workflow ensures a balanced approach to environment removal, blending user needs with security and operational standards." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{7d1297bd-0452-ee11-be6d-000d3a4b4875}" Name="New Power App deployment request" Description="This workflow is designed to automate and manage the process of deploying new Power Apps within the organization. Upon initiation through user request submission, it validates the provided app details and preferences against predefined organizational criteria and standards.">
+      <JsonFileName>/Workflows/NewPowerAppdeploymentrequest-7D1297BD-0452-EE11-BE6D-000D3A4B4875.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="New Power App deployment request" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="This workflow is designed to automate and manage the process of deploying new Power Apps within the organization. Upon initiation through user request submission, it validates the provided app details and preferences against predefined organizational criteria and standards." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{a82ac2d4-0452-ee11-be6d-000d3a4b4875}" Name="New Power App deletion request" Description="This workflow orchestrates the structured process for handling and executing Power App deletion requests within the organization. It automates the assessment of deletion candidates based on organizational guidelines, aiming to streamline the decommissioning process, secure organizational data, and optimize resource allocation.&#xA;&#xA;Upon the submission of a deletion request, the workflow initiates a sequence of validation and approval steps to confirm the appropriateness of the deletion, ensuring compliance with organizational policies and preventing inadvertent loss of data and functionalities. After securing the necessary approvals, it proceeds with the orderly and secure removal of the specified Power App, while keeping relevant stakeholders informed of the process outcomes.&#xA;&#xA;This workflow is integral in maintaining operational hygiene by enabling controlled dismantling of Power Apps, balancing user needs with organizational stability and security protocols.">
+      <JsonFileName>/Workflows/NewPowerAppdeletionrequest-A82AC2D4-0452-EE11-BE6D-000D3A4B4875.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="New Power App deletion request" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="This workflow orchestrates the structured process for handling and executing Power App deletion requests within the organization. It automates the assessment of deletion candidates based on organizational guidelines, aiming to streamline the decommissioning process, secure organizational data, and optimize resource allocation.&#xA;&#xA;Upon the submission of a deletion request, the workflow initiates a sequence of validation and approval steps to confirm the appropriateness of the deletion, ensuring compliance with organizational policies and preventing inadvertent loss of data and functionalities. After securing the necessary approvals, it proceeds with the orderly and secure removal of the specified Power App, while keeping relevant stakeholders informed of the process outcomes.&#xA;&#xA;This workflow is integral in maintaining operational hygiene by enabling controlled dismantling of Power Apps, balancing user needs with organizational stability and security protocols." />
+      </Descriptions>
+    </Workflow>
+  </Workflows>
+  <FieldSecurityProfiles></FieldSecurityProfiles>
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <CanvasApps>
+    <CanvasApp>
+      <Name>new_m365servicerequestcenter_afdf0</Name>
+      <AppVersion>2023-09-25T08:04:57Z</AppVersion>
+      <Status>Ready</Status>
+      <CreatedByClientVersion>3.23092.13.0</CreatedByClientVersion>
+      <MinClientVersion>3.23092.13.0</MinClientVersion>
+      <Tags>{"primaryDeviceWidth":"1920","primaryDeviceHeight":"1080","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","showStatusBar":"false","publisherVersion":"3.23092.13","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20230924T103240Z-3.23092.13.0"}</Tags>
+      <IsCdsUpgraded>0</IsCdsUpgraded>
+      <GalleryItemId xsi:nil="true"></GalleryItemId>
+      <BackgroundColor>rgba(116, 39, 116, 1)</BackgroundColor>
+      <DisplayName>M365 Service Request Center</DisplayName>
+      <Description>This application serves as a centralized portal designed to streamline the management of various user requests within the organization, including those related to Power Apps environment and Microsoft 365 groups creation and deletion.
+
+Users can submit requests efficiently, with each request undergoing an organized approval workflow to ensure adherence to organizational policies and guidelines. The application displays the progress and status of all user-initiated requests, providing a transparent view of the process from submission to completion.
+
+Key functionalities include:
+
+Request Submissions.
+Progress Tracking.
+Automated Workflows.
+Email Notifications.
+Help and Support.
+
+Usage:
+Designed for both individual contributors and teams within the organization, it aids in facilitating smooth and systematic request handling, thus ensuring optimal utilization and management of organizational resources and services.
+
+Disclaimer:
+The application does not guarantee immediate fulfillment of requests and is not responsible for any delays or inaccuracies in request handling. All actions are subject to organizational policies, and use of this app signifies agreement to its terms.</Description>
+      <CommitMessage xsi:nil="true"></CommitMessage>
+      <Publisher xsi:nil="true"></Publisher>
+      <AuthorizationReferences>[]</AuthorizationReferences>
+      <ConnectionReferences>{"57555928-90fe-41c1-85b8-ee2bbd8f4c28":{"id":"/providers/microsoft.powerapps/apis/shared_sharepointonline","displayName":"SharePoint","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1656/1.0.1656.3432/sharepointonline/icon.png","dataSources":["Request - App deletion","Request - App deployment","Request - Environment creation","Request - Environment deletion","Request - Group creation","Request - Group deletion","Metadata - List UI","Metadata - Screen content","Metadata - Request IDs","Metadata - Common Connectors","Metadata - App Color codes"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{"https://techsolutionhu.sharepoint.com/sites/PowerPlatform":{"dataSources":{"Request - App deletion":{"tableName":"4491c4cb-cf3d-442f-8238-169dadf7ab33"},"Request - App deployment":{"tableName":"23539c47-4e78-4115-8147-5d088b4fff3f"},"Request - Environment creation":{"tableName":"38666580-7e6d-4b4d-a6fd-1609bd339f13"},"Request - Environment deletion":{"tableName":"d4cdf1c0-4e7e-459c-aa1d-dcaf848afb2e"},"Request - Group creation":{"tableName":"7a2dbc4c-b1b5-4316-9e15-86175dd960fb"},"Request - Group deletion":{"tableName":"2675438e-1803-4e94-a0b9-8c1effb68b27"},"Metadata - List UI":{"tableName":"029ec022-3a60-44bb-af7c-b5c4209c1e8f"},"Metadata - Screen content":{"tableName":"8fa09be6-9642-41fe-bccc-934b9cc5f5a7"},"Metadata - Request IDs":{"tableName":"74709a75-2505-42f6-8c5e-12d1d1fc424d"},"Metadata - Common Connectors":{"tableName":"5b8449df-4f89-450f-a563-72c17b0403ee"},"Metadata - App Color codes":{"tableName":"1c9c15dd-30dd-4278-b1d1-53c167b5ff2d"}}}},"apiTier":"Standard","actions":["providers/PowerPlatform.Governance/Operations/Read","providers/PowerPlatform.Governance/Operations/Write","providers/PowerPlatform.Governance/Operations/Delete"]},"eaaaee90-572c-4ace-9b03-d21292d26a10":{"id":"/providers/microsoft.powerapps/apis/shared_office365users","displayName":"Office 365 Users","iconUri":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/office365users/icon.png","dataSources":["Office365Users"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["SearchUser"]},"89c9b3f3-95d1-46e6-9eae-c340f3e9451f":{"id":"/providers/microsoft.powerapps/apis/shared_powerappsforappmakers","displayName":"Power Apps for Makers","iconUri":"https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3312/powerappsforappmakers/icon.png","dataSources":["PowerAppsforMakers"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Get-Apps","Get-Environments"]},"975f6d53-4014-4320-9545-53372fe6ec2d":{"id":"/providers/microsoft.powerapps/apis/shared_office365groups","displayName":"Office 365 Groups","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1654/1.0.1654.3410/office365groups/icon.png","dataSources":["Office365Groups"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["ListGroups"]},"892361b8-a18f-4100-b9f5-1b2f41133866":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1653/1.0.1653.3403/logicflows/icon.png","dataSources":["Sendallrequests(visible)toSelf"],"dependencies":["3d899943-b10a-432d-aebe-81c4b409949a"],"dependents":[],"parameterHints":{"workflowName":{"value":"bd28cf9c-d184-4abb-b4cf-82fcc2b7347f"},"workflowEntityId":{"value":"ce19ad0f-7650-ee11-be6d-000d3a4b4875"},"3d899943-b10a-432d-aebe-81c4b409949a":{"value":"shared_office365"}},"parameterHintsV2":{"workflowName":{"value":"bd28cf9c-d184-4abb-b4cf-82fcc2b7347f"},"workflowEntityId":{"value":"ce19ad0f-7650-ee11-be6d-000d3a4b4875"},"shared_office365":{"value":"3d899943-b10a-432d-aebe-81c4b409949a"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"3d899943-b10a-432d-aebe-81c4b409949a":{"id":"/providers/microsoft.powerapps/apis/shared_office365","displayName":"Office 365 Outlook","iconUri":"https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/office365/icon.png","dataSources":[],"dependencies":[],"dependents":["892361b8-a18f-4100-b9f5-1b2f41133866","c1a6295c-edd7-4119-ac86-d8c7d0f96335"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard"},"c1a6295c-edd7-4119-ac86-d8c7d0f96335":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1653/1.0.1653.3403/logicflows/icon.png","dataSources":["SendopenrequeststoSelf"],"dependencies":["3d899943-b10a-432d-aebe-81c4b409949a"],"dependents":[],"parameterHints":{"workflowName":{"value":"ac752664-c23b-4e15-81eb-41c853b7aa1e"},"workflowEntityId":{"value":"704c198e-b54b-ee11-be6e-000d3a4b4875"},"3d899943-b10a-432d-aebe-81c4b409949a":{"value":"shared_office365"}},"parameterHintsV2":{"workflowName":{"value":"ac752664-c23b-4e15-81eb-41c853b7aa1e"},"workflowEntityId":{"value":"704c198e-b54b-ee11-be6e-000d3a4b4875"},"shared_office365":{"value":"3d899943-b10a-432d-aebe-81c4b409949a"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]}}</ConnectionReferences>
+      <DatabaseReferences>{}</DatabaseReferences>
+      <AppComponents>[]</AppComponents>
+      <AppComponentDependencies>[]</AppComponentDependencies>
+      <CanConsumeAppPass>1</CanConsumeAppPass>
+      <CanvasAppType>0</CanvasAppType>
+      <BypassConsent>0</BypassConsent>
+      <AdminControlBypassConsent>0</AdminControlBypassConsent>
+      <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <CdsDependencies>{"cdsdependencies":[{"dependencyid":"ce19ad0f-7650-ee11-be6d-000d3a4b4875","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"704c198e-b54b-ee11-be6e-000d3a4b4875","componenttype":29,"componenttypeplatformname":"Workflow"}]}</CdsDependencies>
+      <IsCustomizable>1</IsCustomizable>
+      <BackgroundImageUri>/CanvasApps/new_m365servicerequestcenter_afdf0_BackgroundImageUri</BackgroundImageUri>
+      <DocumentUri>/CanvasApps/new_m365servicerequestcenter_afdf0_DocumentUri.msapp</DocumentUri>
+    </CanvasApp>
+  </CanvasApps>
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="new_sharedapprovals_8e0fa">
+      <connectionreferencedisplayname>Approvals Microsoft365Requests-8e0fa</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_approvals</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedoffice365_4951d">
+      <connectionreferencedisplayname>Office 365 Outlook Microsoft365Requests-4951d</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedoffice365groups_b1459">
+      <connectionreferencedisplayname>Office 365 Groups Microsoft365Requests-b1459</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365groups</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedoffice365users_0d76b">
+      <connectionreferencedisplayname>Office 365 Users Microsoft365Requests-0d76b</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365users</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedpowerplatformforadmins_c54a4">
+      <connectionreferencedisplayname>Power Platform for Admins Microsoft365Requests-c54a4</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_powerplatformforadmins</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+     <connectionreference connectionreferencelogicalname="new_sharedpowerappsforadmins_0f6cc">
+      <connectionreferencedisplayname>Power Platform for Admins Microsoft365Requests-c54a4</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_powerplatformforadmins</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedsharepointonline_722ec">
+      <connectionreferencedisplayname>SharePoint Microsoft365Requests-722ec</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedteams_288f3">
+      <connectionreferencedisplayname>Microsoft Teams Microsoft365Requests-288f3</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_teams</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>

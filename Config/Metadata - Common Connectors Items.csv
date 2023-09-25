@@ -1,0 +1,76 @@
+Connector_x0020_type,Connector_x0020_name
+Standard connector,Approvals
+Standard connector,AS2
+Standard connector,Asana
+Standard connector,Azure AD
+Standard connector,Azure Batch Speech-to-text
+Standard connector,Azure Cognitive Service for Language
+Standard connector,Azure Digital Twins
+Standard connector,Basecamp 2
+Premium connector,Basecamp 3
+Standard connector,Bing Maps
+Standard connector,Bing Search
+Standard connector,Campfire
+Standard connector,Cards for Power Apps
+Standard connector,Content Conversion
+Standard connector,Defender for Cloud Apps
+Standard connector,Dropbox
+Standard connector,Dynamics 365 Customer Voice
+Standard connector,Excel Online (Business)
+Standard connector,Excel Online (OneDrive)
+Standard connector,GitHub
+Standard connector,LinkedIn V2
+Standard connector,Mail
+Standard connector,Microsoft 365 message center
+Standard connector,Microsoft Bookings
+Standard connector,Microsoft Teams
+Standard connector,Microsoft To-Do (Business)
+Standard connector,Microsoft Translator V2
+Standard connector,Microsoft Translator V3
+Standard connector,Office 365 Groups
+Standard connector,Office 365 Groups Mail
+Standard connector,Office 365 Outlook
+Standard connector,Office 365 Users
+Standard connector,OneDrive
+Standard connector,OneNote (Business)
+Standard connector,Outlook.com
+Standard connector,Planner
+Standard connector,Power Apps for Admins
+Standard connector,Power Apps for Makers
+Standard connector,Power Apps Notification
+Standard connector,Power Apps Notification V2
+Standard connector,Power Automate for Admins
+Standard connector,Power Automate Management
+Standard connector,Power BI
+Standard connector,Power Platform for Admins
+Standard connector,Power Query Dataflows
+Standard connector,Power Virtual Agents
+Standard connector,Project Online
+Standard connector,Project Roadmap
+Standard connector,RSS
+Standard connector,Slack
+Standard connector,SMTP
+Standard connector,Viva Engage
+Standard connector,SharePoint
+Premium connector,Amazon Redshift
+Premium connector,Amazon S3
+Premium connector,Amazon SQS
+Premium connector,Apache Impala
+Premium connector,Azure AD Identity Protection
+Premium connector,Azure App Service
+Premium connector,Azure Application Insights
+Premium connector,Azure Automation
+Premium connector,Azure Blob Storage
+Premium connector,Azure Database for MySQL
+Premium connector,Azure DevOps
+Premium connector,Azure File Storage
+Premium connector,Dynamics 365 Business Central
+Premium connector,Dynamics 365 Business Central (on-premises)
+Premium connector,Dynamics 365 Customer Insights
+Premium connector,Jira
+Custom connector,Azure Key Vault
+Custom connector,Facebook
+Custom connector,HR Cloud
+Custom connector,HtmlToText
+Custom connector,Office365Groups
+Custom connector,ServiceNow

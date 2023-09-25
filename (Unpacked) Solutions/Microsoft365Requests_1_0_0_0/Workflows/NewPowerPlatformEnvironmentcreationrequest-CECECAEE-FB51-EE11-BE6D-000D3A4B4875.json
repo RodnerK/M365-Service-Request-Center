@@ -1,0 +1,687 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_722ec"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_4951d"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_powerplatformforadmins": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedpowerplatformforadmins_c54a4"
+        },
+        "api": {
+          "name": "shared_powerplatformforadmins"
+        }
+      },
+      "shared_office365users": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365users_0d76b"
+        },
+        "api": {
+          "name": "shared_office365users"
+        }
+      },
+      "shared_teams": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedteams_288f3"
+        },
+        "api": {
+          "name": "shared_teams"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_item_is_created_-_New_Power_Platform_Environment_creation": {
+          "recurrence": {
+            "frequency": "Minute",
+            "interval": 1
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "067b7b6c-ca22-42e6-8134-742be7b94dcd"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetOnNewItems"
+            },
+            "parameters": {
+              "dataset": "https://techsolutionhu.sharepoint.com/sites/PowerPlatform",
+              "table": "38666580-7e6d-4b4d-a6fd-1609bd339f13"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Initialize_variable_-_ApprovalEmail": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "744b8558-9dcb-42bc-83f9-5a1769d3b16f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "ApprovalEmail",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_ApprovalClaims": {
+          "runAfter": {
+            "Initialize_variable_-_ApprovalEmail": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "be45e426-4209-43c7-bdc9-422d4d5729fa"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "ApprovalClaims",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Get_Approvals": {
+          "runAfter": {
+            "Initialize_variable_-_ApprovalClaims": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "079c92d7-8fae-4cf7-bdaa-4eaac4fd790a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetItems"
+            },
+            "parameters": {
+              "dataset": "https://techsolutionhu.sharepoint.com/sites/PowerPlatform",
+              "table": "8d6443f1-26fa-49a8-b855-2e8b36bbfe67"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Filter_Approvals": {
+          "runAfter": {
+            "Get_Approvals": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ea2ea3e8-aa71-42b4-bf24-0fb225442c26"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@outputs('Get_Approvals')?['body/value']",
+            "where": "@equals(item()['Request_type']['Value'], 'Environment_creation')"
+          }
+        },
+        "Condition_-_If_'Filter_Approvals'_is_empty_OR_not": {
+          "actions": {
+            "Update_item_-_On_Hold": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "01bc824a-f696-4e52-900c-c33eaa7d36ae"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "PatchItem"
+                },
+                "parameters": {
+                  "dataset": "https://techsolutionhu.sharepoint.com/sites/PowerPlatform",
+                  "table": "38666580-7e6d-4b4d-a6fd-1609bd339f13",
+                  "id": "@triggerOutputs()?['body/ID']",
+                  "item/Environment_x0020_name": "@triggerOutputs()?['body/Environment_x0020_name']",
+                  "item/Environment_x0020_description": "@triggerOutputs()?['body/Environment_x0020_description']",
+                  "item/Business_x0020_case": "@triggerOutputs()?['body/Business_x0020_case']",
+                  "item/Requested_x0020_date": "@triggerOutputs()?['body/Requested_x0020_date']",
+                  "item/Request_x0020_ID": "@triggerOutputs()?['body/Request_x0020_ID']",
+                  "item/Environment_x0020_type/Value": "@triggerOutputs()?['body/Environment_x0020_type/Value']",
+                  "item/Dataverse_x0020_enabled": "@triggerOutputs()?['body/Dataverse_x0020_enabled']",
+                  "item/Code_x0020_component_x0020_enabl": "@triggerOutputs()?['body/Code_x0020_component_x0020_enabl']",
+                  "item/Status/Value": "On Hold"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Terminate_-_Failed": {
+              "runAfter": {
+                "Update_item_-_On_Hold": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "3fd6ad2f-3fb8-4f8a-9a67-1296c50a24a8"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Failed",
+                "runError": {
+                  "message": "No Approval found for New Environment creation requests"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Filter_Approvals": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Set_variable_-_ApprovalEmail": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "0270a25f-b578-43bf-a04f-7f947a2d25cb"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "ApprovalEmail",
+                  "value": "@{first(body('Filter_Approvals'))['Approval'][0]['Email']}"
+                }
+              },
+              "Set_variable_-_ApprovalClaims": {
+                "runAfter": {
+                  "Set_variable_-_ApprovalEmail": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "460c9372-d31b-4946-808b-4a9806204691"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "ApprovalClaims",
+                  "value": "@{first(body('Filter_Approvals'))['Approval'][0]['Claims']}"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@empty(body('Filter_Approvals'))",
+              "@true"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c54679b7-3730-45da-b5fd-1f4f47a9b450"
+          },
+          "type": "If"
+        },
+        "Update_item_-_Pending_Approval": {
+          "runAfter": {
+            "Condition_-_If_'Filter_Approvals'_is_empty_OR_not": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e250eeae-a36c-4cf2-9192-d147610b9994"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "connectionName": "shared_sharepointonline",
+              "operationId": "PatchItem"
+            },
+            "parameters": {
+              "dataset": "https://techsolutionhu.sharepoint.com/sites/PowerPlatform",
+              "table": "38666580-7e6d-4b4d-a6fd-1609bd339f13",
+              "id": "@triggerOutputs()?['body/ID']",
+              "item/Environment_x0020_name": "@triggerOutputs()?['body/Environment_x0020_name']",
+              "item/Environment_x0020_description": "@triggerOutputs()?['body/Environment_x0020_description']",
+              "item/Business_x0020_case": "@triggerOutputs()?['body/Business_x0020_case']",
+              "item/Requested_x0020_date": "@triggerOutputs()?['body/Requested_x0020_date']",
+              "item/Request_x0020_ID": "@triggerOutputs()?['body/Request_x0020_ID']",
+              "item/Environment_x0020_type/Value": "@triggerOutputs()?['body/Environment_x0020_type/Value']",
+              "item/Dataverse_x0020_enabled": "@triggerOutputs()?['body/Dataverse_x0020_enabled']",
+              "item/Code_x0020_component_x0020_enabl": "@triggerOutputs()?['body/Code_x0020_component_x0020_enabl']",
+              "item/Status/Value": "Pending Approval"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Send_email_with_options_-_Approve_or_Reject": {
+          "runAfter": {
+            "Update_item_-_Pending_Approval": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "176fb5cf-1b27-47d9-b550-c5ea3d6cdfb8"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "connectionName": "shared_office365",
+              "operationId": "SendMailWithOptions"
+            },
+            "parameters": {
+              "optionsEmailSubscription/Message/To": "@variables('ApprovalEmail')",
+              "optionsEmailSubscription/Message/Subject": "New Power Platform Environment creation request | @{triggerOutputs()?['body/Request_x0020_ID']}",
+              "optionsEmailSubscription/Message/Options": "Approve, Reject",
+              "optionsEmailSubscription/Message/Body": "    <p><strong>Hello,</strong></p></br>\n    <p>Please Approve or Reject the new request.</p></br>\n    \n    <p><strong>Request details:</strong></p></br>\n    <ul>\n        <li>Requestor name: @{triggerOutputs()?['body/Requestor_x0020_name/DisplayName']}, (@{triggerOutputs()?['body/Requestor_x0020_name/Email']})</li>\n        <li>Submitter name: @{triggerOutputs()?['body/Submitter_x0020_name/DisplayName']}, (@{triggerOutputs()?['body/Submitter_x0020_name/Email']})</li>\n        <li>Environment name: @{triggerOutputs()?['body/Environment_x0020_name']}</li>\n        <li>Environment description: @{triggerOutputs()?['body/Environment_x0020_description']}</li>\n        <li>Environment type: @{triggerOutputs()?['body/Environment_x0020_type/Value']}</li>\n        <li>Business case: @{triggerOutputs()?['body/Business_x0020_case']}</li>\n        <li>Dataverse enabled: @{triggerOutputs()?['body/Dataverse_x0020_enabled']}</li>\n        <li>Code component enabled: @{triggerOutputs()?['body/Code_x0020_component_x0020_enabl']}</li>\n        <li>Requested date: @{if(not(empty(triggerOutputs()?['body/Requested_x0020_date'])), formatDateTime(triggerOutputs()?['body/Requested_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)}</li>\n        <li>Request ID: @{triggerOutputs()?['body/Request_x0020_ID']}</li>\n    </ul></br>\n<p>Please do not reply to this email, just select response!</p>",
+              "optionsEmailSubscription/Message/Importance": "Normal",
+              "optionsEmailSubscription/Message/UseOnlyHTMLMessage": true,
+              "optionsEmailSubscription/Message/HideHTMLMessage": false,
+              "optionsEmailSubscription/Message/ShowHTMLConfirmationDialog": false,
+              "optionsEmailSubscription/Message/HideMicrosoftFooter": true
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition_-_If_'Approved'_or_'Rejected'": {
+          "actions": {
+            "Update_item_-_Rejected": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d8f47cfe-57a3-437b-af12-a24fbe3a10c8"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "PatchItem"
+                },
+                "parameters": {
+                  "dataset": "https://techsolutionhu.sharepoint.com/sites/PowerPlatform",
+                  "table": "38666580-7e6d-4b4d-a6fd-1609bd339f13",
+                  "id": "@triggerOutputs()?['body/ID']",
+                  "item/Environment_x0020_name": "@triggerOutputs()?['body/Environment_x0020_name']",
+                  "item/Environment_x0020_description": "@triggerOutputs()?['body/Environment_x0020_description']",
+                  "item/Business_x0020_case": "@triggerOutputs()?['body/Business_x0020_case']",
+                  "item/Requested_x0020_date": "@triggerOutputs()?['body/Requested_x0020_date']",
+                  "item/Request_x0020_ID": "@triggerOutputs()?['body/Request_x0020_ID']",
+                  "item/Environment_x0020_type/Value": "@triggerOutputs()?['body/Environment_x0020_type/Value']",
+                  "item/Dataverse_x0020_enabled": "@triggerOutputs()?['body/Dataverse_x0020_enabled']",
+                  "item/Code_x0020_component_x0020_enabl": "@triggerOutputs()?['body/Code_x0020_component_x0020_enabl']",
+                  "item/Status/Value": "Rejected",
+                  "item/Approved_x0020_by/Claims": "@variables('ApprovalClaims')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Send_an_email_(V2)": {
+              "runAfter": {
+                "Update_item_-_Rejected": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "8716b159-5690-4c13-8de6-5bf23c17671d"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                  "connectionName": "shared_office365",
+                  "operationId": "SendEmailV2"
+                },
+                "parameters": {
+                  "emailMessage/To": "@triggerOutputs()?['body/Submitter_x0020_name/Email']",
+                  "emailMessage/Subject": "Rejected | New Power Platform Environment creation request | @{triggerOutputs()?['body/Request_x0020_ID']}",
+                  "emailMessage/Body": "<p><em><strong>Dear </strong></em><em><strong>@{triggerOutputs()?['body/Submitter_x0020_name/DisplayName']}</strong></em><em><strong>,</strong></em><br>\n<br>\nI hope this message finds you well. We regret to inform you that your recent request has been reviewed and, unfortunately, has been rejected.<br>\n<br>\nRequest Details:<br>\n- Request ID: @{triggerOutputs()?['body/Request_x0020_ID']}<br>\n- Requested Date: @{if(not(empty(triggerOutputs()?['body/Requested_x0020_date'])), formatDateTime(triggerOutputs()?['body/Requested_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)}<br>\n- Request Type: New Environment creation<br>\n<br>\nWe understand that this decision may be disappointing, and we appreciate your understanding. If you have any questions or need further clarification regarding this decision, please feel free to reach out to us.<br>\n<br>\nThank you for your understanding.</p>",
+                  "emailMessage/Importance": "Normal"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Terminate_-_Cancelled": {
+              "runAfter": {
+                "Send_an_email_(V2)": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c38cd60f-5456-4e91-bbfb-174190f91884"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Cancelled"
+              }
+            }
+          },
+          "runAfter": {
+            "Send_email_with_options_-_Approve_or_Reject": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Update_item_-_Approved": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "621772f6-2fc7-4b7c-b895-a9c0b224ca1b"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+                    "connectionName": "shared_sharepointonline",
+                    "operationId": "PatchItem"
+                  },
+                  "parameters": {
+                    "dataset": "https://techsolutionhu.sharepoint.com/sites/PowerPlatform",
+                    "table": "38666580-7e6d-4b4d-a6fd-1609bd339f13",
+                    "id": "@triggerOutputs()?['body/ID']",
+                    "item/Environment_x0020_name": "@triggerOutputs()?['body/Environment_x0020_name']",
+                    "item/Environment_x0020_description": "@triggerOutputs()?['body/Environment_x0020_description']",
+                    "item/Business_x0020_case": "@triggerOutputs()?['body/Business_x0020_case']",
+                    "item/Requested_x0020_date": "@triggerOutputs()?['body/Requested_x0020_date']",
+                    "item/Request_x0020_ID": "@triggerOutputs()?['body/Request_x0020_ID']",
+                    "item/Environment_x0020_type/Value": "@triggerOutputs()?['body/Environment_x0020_type/Value']",
+                    "item/Dataverse_x0020_enabled": "@triggerOutputs()?['body/Dataverse_x0020_enabled']",
+                    "item/Code_x0020_component_x0020_enabl": "@triggerOutputs()?['body/Code_x0020_component_x0020_enabl']",
+                    "item/Status/Value": "Approved",
+                    "item/Approved_x0020_by/Claims": "@variables('ApprovalClaims')"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@outputs('Send_email_with_options_-_Approve_or_Reject')?['body/SelectedOption']",
+                "Approve"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "2197c351-2e42-47e3-8e7d-79e881adf6d3"
+          },
+          "type": "If"
+        },
+        "Update_item_-_Under_Processing": {
+          "runAfter": {
+            "Condition_-_If_'Approved'_or_'Rejected'": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c47aba32-a37b-42b8-937b-ef7eec4d0ffb"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "connectionName": "shared_sharepointonline",
+              "operationId": "PatchItem"
+            },
+            "parameters": {
+              "dataset": "https://techsolutionhu.sharepoint.com/sites/PowerPlatform",
+              "table": "38666580-7e6d-4b4d-a6fd-1609bd339f13",
+              "id": "@triggerOutputs()?['body/ID']",
+              "item/Environment_x0020_name": "@triggerOutputs()?['body/Environment_x0020_name']",
+              "item/Environment_x0020_description": "@triggerOutputs()?['body/Environment_x0020_description']",
+              "item/Business_x0020_case": "@triggerOutputs()?['body/Business_x0020_case']",
+              "item/Requested_x0020_date": "@triggerOutputs()?['body/Requested_x0020_date']",
+              "item/Request_x0020_ID": "@triggerOutputs()?['body/Request_x0020_ID']",
+              "item/Environment_x0020_type/Value": "@triggerOutputs()?['body/Environment_x0020_type/Value']",
+              "item/Dataverse_x0020_enabled": "@triggerOutputs()?['body/Dataverse_x0020_enabled']",
+              "item/Code_x0020_component_x0020_enabl": "@triggerOutputs()?['body/Code_x0020_component_x0020_enabl']",
+              "item/Status/Value": "Under Processing"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Create_Environment": {
+          "runAfter": {
+            "Update_item_-_Under_Processing": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c849859a-aa04-49fd-b2c5-19af05eabc60"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_powerplatformforadmins",
+              "connectionName": "shared_powerplatformforadmins",
+              "operationId": "NewAdminEnvironment"
+            },
+            "parameters": {
+              "api-version": "2020-05-01",
+              "body/location": "europe",
+              "body/properties/displayName": "@triggerOutputs()?['body/Environment_x0020_name']",
+              "body/properties/environmentSku": "@triggerOutputs()?['body/Environment_x0020_type/Value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Update_Environment": {
+          "runAfter": {
+            "Create_Environment": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "72f03381-a2c6-4634-925d-624c9e2a867a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_powerplatformforadmins",
+              "connectionName": "shared_powerplatformforadmins",
+              "operationId": "UpdateEnvironment"
+            },
+            "parameters": {
+              "environment": "@outputs('Create_Environment')?['body/name']",
+              "body/properties/description": "@triggerOutputs()?['body/Environment_x0020_description']",
+              "body/properties/displayName": "@triggerOutputs()?['body/Environment_x0020_name']",
+              "api-version": "2020-10-01"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Update_item_-_Completed": {
+          "runAfter": {
+            "Edit_Environment_Role_Assignment": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c47aba32-a37b-42b8-937b-ef7eec4d0ffb"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
+              "connectionName": "shared_sharepointonline",
+              "operationId": "PatchItem"
+            },
+            "parameters": {
+              "dataset": "https://techsolutionhu.sharepoint.com/sites/PowerPlatform",
+              "table": "38666580-7e6d-4b4d-a6fd-1609bd339f13",
+              "id": "@triggerOutputs()?['body/ID']",
+              "item/Environment_x0020_name": "@triggerOutputs()?['body/Environment_x0020_name']",
+              "item/Environment_x0020_description": "@triggerOutputs()?['body/Environment_x0020_description']",
+              "item/Business_x0020_case": "@triggerOutputs()?['body/Business_x0020_case']",
+              "item/Requested_x0020_date": "@triggerOutputs()?['body/Requested_x0020_date']",
+              "item/Request_x0020_ID": "@triggerOutputs()?['body/Request_x0020_ID']",
+              "item/Environment_x0020_type/Value": "@triggerOutputs()?['body/Environment_x0020_type/Value']",
+              "item/Dataverse_x0020_enabled": "@triggerOutputs()?['body/Dataverse_x0020_enabled']",
+              "item/Code_x0020_component_x0020_enabl": "@triggerOutputs()?['body/Code_x0020_component_x0020_enabl']",
+              "item/Completed_x0020_date": "@outputs('Create_Environment')?['body/properties/createdTime']",
+              "item/Status/Value": "Completed"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Send_an_email_(V2)_2": {
+          "runAfter": {
+            "Update_item_-_Completed": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8716b159-5690-4c13-8de6-5bf23c17671d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+              "connectionName": "shared_office365",
+              "operationId": "SendEmailV2"
+            },
+            "parameters": {
+              "emailMessage/To": "@triggerOutputs()?['body/Submitter_x0020_name/Email']",
+              "emailMessage/Subject": "Completed | New Power Platform Environment creation request | @{triggerOutputs()?['body/Request_x0020_ID']}",
+              "emailMessage/Body": "<p><em><strong>Dear </strong></em><em><strong>@{triggerOutputs()?['body/Submitter_x0020_name/DisplayName']}</strong></em><em><strong>,<br>\n<br>\n</strong></em>We are pleased to inform you that your recent request has been successfully completed. Your request details are as follows:<br>\n<br>\nRequest Details:<br>\n- Request ID: @{triggerOutputs()?['body/Request_x0020_ID']}<br>\n- Requested Date: @{if(not(empty(triggerOutputs()?['body/Requested_x0020_date'])), formatDateTime(triggerOutputs()?['body/Requested_x0020_date'], 'yyyy-MM-dd hh:mm:ss tt'), null)}<br>\n- Request Type: New Power Platform Environment creation<br>\n<br>\nWe trust that the completion of this request aligns with your expectations. If you have any further questions or require additional assistance, please don't hesitate to reach out to us. We're here to help.</p>",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_user_profile_(V2)": {
+          "runAfter": {
+            "List_teams_-_To_get_Tenant_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ba0aaa20-1fdb-4761-88ef-49e31bc7a136"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users",
+              "connectionName": "shared_office365users",
+              "operationId": "UserProfile_V2"
+            },
+            "parameters": {
+              "id": "@triggerOutputs()?['body/Requestor_x0020_name/Email']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_teams_-_To_get_Tenant_ID": {
+          "runAfter": {
+            "List_Environment_Role_Assignments": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "489b758a-d2a5-474e-8e30-b8b5e80cec74"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+              "connectionName": "shared_teams",
+              "operationId": "GetAllTeams"
+            },
+            "parameters": {},
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_Environment_Role_Assignments": {
+          "runAfter": {
+            "Update_Environment": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "abef55c8-4192-4c8b-9121-80a67ea06e7c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_powerplatformforadmins",
+              "connectionName": "shared_powerplatformforadmins",
+              "operationId": "Get-AdminEnvironmentRoleAssignment"
+            },
+            "parameters": {
+              "environment": "@outputs('Create_Environment')?['body/name']",
+              "api-version": "2018-10-01"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Edit_Environment_Role_Assignment": {
+          "runAfter": {
+            "Get_user_profile_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5ef3bff5-d498-4b3b-be47-f3666b0cabc9"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_powerplatformforadmins",
+              "connectionName": "shared_powerplatformforadmins",
+              "operationId": "Edit-AdminEnvironmentRoleAssignment"
+            },
+            "parameters": {
+              "environment": "@outputs('Create_Environment')?['body/name']",
+              "body/add": [
+                {
+                  "properties/principal/email": "@outputs('Get_user_profile_(V2)')?['body/mail']",
+                  "properties/principal/tenantId": "@outputs('List_teams_-_To_get_Tenant_ID')?['body/value'][0]['tenantid']",
+                  "properties/principal/id": "@outputs('Get_user_profile_(V2)')?['body/id']",
+                  "properties/principal/type": "User",
+                  "properties/roleDefinition/id": "/providers/Microsoft.BusinessAppPlatform/scopes/admin/environments/@{outputs('Create_Environment')?['body/name']}/roleDefinitions/EnvironmentAdmin"
+                }
+              ],
+              "api-version": "2018-10-01"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

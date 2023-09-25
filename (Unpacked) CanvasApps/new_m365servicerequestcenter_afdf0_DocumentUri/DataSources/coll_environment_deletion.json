@@ -1,0 +1,9 @@
+[
+  {
+    "IsComponentScoped": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "Name": "coll_environment_deletion",
+    "Type": "CollectionDataSourceInfo"
+  }
+]

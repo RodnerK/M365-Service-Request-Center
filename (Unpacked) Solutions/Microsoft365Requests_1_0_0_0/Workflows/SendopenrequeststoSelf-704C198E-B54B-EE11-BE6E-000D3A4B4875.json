@@ -1,0 +1,320 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_4951d"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "2b9c1881-14fc-4133-9d54-f1c425d20bed"
+          },
+          "type": "Request",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Sendanemail(V2)_To": {
+                  "type": "string",
+                  "format": "email",
+                  "description": "Specify email addresses separated by semicolons like someone@contoso.com",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "Sendanemail(V2)_Subject": {
+                  "type": "string",
+                  "description": "Specify the subject of the mail",
+                  "x-ms-powerflows-param-ispartial": false
+                },
+                "Sendanemail(V2)_Body": {
+                  "type": "string",
+                  "format": "html",
+                  "description": "Specify the body of the mail. This parameter is used as part of \"09CD88FF-1014-451A-BBC8-405B38406B4E\"",
+                  "x-ms-powerflows-param-ispartial": true
+                },
+                "Initializevariable_Value": {
+                  "type": "any"
+                },
+                "OpenRequestCollection_Value": {
+                  "type": "string",
+                  "description": "Enter initial value",
+                  "x-ms-powerflows-param-ispartial": false
+                }
+              },
+              "required": [
+                "Sendanemail(V2)_To",
+                "Sendanemail(V2)_Subject",
+                "Sendanemail(V2)_Body",
+                "Initializevariable_Value",
+                "OpenRequestCollection_Value"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5b496222-0543-48e8-aae0-cf41aab89f6b"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/To": "@triggerBody()['Sendanemail(V2)_To']",
+              "emailMessage/Subject": "My current opened requests",
+              "emailMessage/Body": "<p><em><strong>Hello,</strong></em><strong><br>\n<br>\n</strong>Please find the list of your current opened requests:<strong><br>\n<br>\n</strong><strong>@{outputs('Compose')}</strong><strong><br>\n<br>\n</strong>If you have any questions or need further assistance, please don't hesitate to reach out.<strong><br>\n</strong></p>"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Parse_JSON_(OpenRequestCollection)": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "18b21938-7cd8-4d70-83e6-710000239e3d"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerBody()['OpenRequestCollection_Value']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Approved_x0020_by": {
+                    "type": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "Environment_x0020_name": {
+                    "type": "string"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Request ID": {
+                    "type": "integer"
+                  },
+                  "Request Status": {
+                    "type": "string"
+                  },
+                  "Request type": {
+                    "type": "string"
+                  },
+                  "Request_x0020_ID": {
+                    "type": "integer"
+                  },
+                  "Requested date": {
+                    "type": "string"
+                  },
+                  "Requested_x0020_date": {
+                    "type": "string"
+                  },
+                  "Requestor name": {
+                    "type": "string"
+                  },
+                  "Requestor_x0020_name": {
+                    "type": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "Submitter_x0020_name": {
+                    "type": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "Status": {
+                    "type": "object",
+                    "properties": {
+                      "Value": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "Environment_x0020_name_x0020__x0": {
+                    "type": "object",
+                    "properties": {
+                      "Value": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "Group_x0020_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Init_OpenedRequestsRecords": {
+          "runAfter": {
+            "Parse_JSON_(OpenRequestCollection)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0e40d3f9-92a5-482a-89f8-7bfe9cdd03ce"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "OpenedRequestsRecords",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@body('Parse_JSON_(OpenRequestCollection)')",
+          "actions": {
+            "Append_to_array_variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "586a5e00-eb7a-43b5-adee-8d0426b3f0da"
+              },
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "OpenedRequestsRecords",
+                "value": "@items('Apply_to_each')"
+              }
+            }
+          },
+          "runAfter": {
+            "Init_OpenedRequestsRecords": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9fcaddfd-2820-4c25-9355-a080c4857b69"
+          },
+          "type": "Foreach"
+        },
+        "Create_HTML_table": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7fc24e5b-5d63-4756-9084-0b2ff9efc80b"
+          },
+          "type": "Table",
+          "inputs": {
+            "from": "@variables('OpenedRequestsRecords')",
+            "format": "HTML",
+            "columns": [
+              {
+                "header": "Requestor",
+                "value": "@item()['Requestor name']"
+              },
+              {
+                "header": "SubmitterName",
+                "value": "@item()['Submitter_x0020_name']['DisplayName']"
+              },
+              {
+                "header": "RequestType",
+                "value": "@item()['Request type']"
+              },
+              {
+                "header": "Name",
+                "value": "@item()['Name']"
+              },
+              {
+                "header": "RequestID",
+                "value": "@item()['Request ID']"
+              },
+              {
+                "header": "Status",
+                "value": "@item()['Status']['Value']"
+              },
+              {
+                "header": "RequestDate",
+                "value": "@formatDateTime(item()?['Requested date'], 'yyyy-MM-dd hh:mm:ss tt')\r\n"
+              }
+            ]
+          }
+        },
+        "Compose": {
+          "runAfter": {
+            "Create_HTML_table": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1f9eb4e9-3316-4a3b-8e8b-4b26a46f855e"
+          },
+          "type": "Compose",
+          "inputs": "<style>\ntable {\n  border: 1px solid #1C6EA4;\n  background-color: #EEEEEE;\n  width: 100%;\n  text-align: right;\n  border-collapse: collapse;\n}\ntable td, table th {\n  border: 1px solid #AAAAAA;\n  padding: 3px 2px;\n}\ntable tbody td {\n  font-size: 13px;\n}\ntable thead {\n  background: #1C6EA4;\n  border-bottom: 2px solid #444444;\n}\ntable thead th {\n  font-size: 15px;\n  font-weight: bold;\n  color: #FFFFFF;\n  border-left: 2px solid #D0E4F5;\n}\ntable thead th:first-child {\n  border-left: none;\n}\n</style>\n@{body('Create_HTML_table')}"
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Send_an_email_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9df6b867-3fbc-436f-9928-89c8ab542367"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "success": "True"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "title": "success",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": "0253862642354d9187425cfc8b3bdda2"
+  },
+  "schemaVersion": "1.0.0.0"
+}

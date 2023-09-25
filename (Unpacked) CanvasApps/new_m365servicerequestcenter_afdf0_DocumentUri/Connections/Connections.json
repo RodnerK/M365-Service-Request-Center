@@ -1,0 +1,232 @@
+{
+  "3d899943-b10a-432d-aebe-81c4b409949a": {
+    "appActions": [],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Outlook",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/office365/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [],
+    "dependencies": {},
+    "dependents": [
+      "892361b8-a18f-4100-b9f5-1b2f41133866",
+      "c1a6295c-edd7-4119-ac86-d8c7d0f96335"
+    ],
+    "id": "3d899943-b10a-432d-aebe-81c4b409949a"
+  },
+  "57555928-90fe-41c1-85b8-ee2bbd8f4c28": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write",
+      "providers/PowerPlatform.Governance/Operations/Delete"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1656/1.0.1656.3432/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://development538.sharepoint.com/sites/PowerAppsDev": {
+        "dataSources": {
+          "Metadata - App Color codes": {
+            "tableName": "1c9c15dd-30dd-4278-b1d1-53c167b5ff2d"
+          },
+          "Metadata - Common Connectors": {
+            "tableName": "5b8449df-4f89-450f-a563-72c17b0403ee"
+          },
+          "Metadata - List UI": {
+            "tableName": "029ec022-3a60-44bb-af7c-b5c4209c1e8f"
+          },
+          "Metadata - Request IDs": {
+            "tableName": "74709a75-2505-42f6-8c5e-12d1d1fc424d"
+          },
+          "Metadata - Screen content": {
+            "tableName": "8fa09be6-9642-41fe-bccc-934b9cc5f5a7"
+          },
+          "Request - App deletion": {
+            "tableName": "4491c4cb-cf3d-442f-8238-169dadf7ab33"
+          },
+          "Request - App deployment": {
+            "tableName": "23539c47-4e78-4115-8147-5d088b4fff3f"
+          },
+          "Request - Environment creation": {
+            "tableName": "38666580-7e6d-4b4d-a6fd-1609bd339f13"
+          },
+          "Request - Environment deletion": {
+            "tableName": "d4cdf1c0-4e7e-459c-aa1d-dcaf848afb2e"
+          },
+          "Request - Group creation": {
+            "tableName": "7a2dbc4c-b1b5-4316-9e15-86175dd960fb"
+          },
+          "Request - Group deletion": {
+            "tableName": "2675438e-1803-4e94-a0b9-8c1effb68b27"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Request - App deletion",
+      "Request - App deployment",
+      "Request - Environment creation",
+      "Request - Environment deletion",
+      "Request - Group creation",
+      "Request - Group deletion",
+      "Metadata - List UI",
+      "Metadata - Screen content",
+      "Metadata - Request IDs",
+      "Metadata - Common Connectors",
+      "Metadata - App Color codes"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "57555928-90fe-41c1-85b8-ee2bbd8f4c28"
+  },
+  "892361b8-a18f-4100-b9f5-1b2f41133866": {
+    "appActions": [
+      "Run"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1653/1.0.1653.3403/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "3d899943-b10a-432d-aebe-81c4b409949a": {
+          "value": "shared_office365"
+        },
+        "workflowEntityId": {
+          "value": "ce19ad0f-7650-ee11-be6d-000d3a4b4875"
+        },
+        "workflowName": {
+          "value": "a6be48a6-cbdf-7763-780c-ad0ddc8686dd"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_office365": {
+          "value": "3d899943-b10a-432d-aebe-81c4b409949a"
+        },
+        "workflowEntityId": {
+          "value": "ce19ad0f-7650-ee11-be6d-000d3a4b4875"
+        },
+        "workflowName": {
+          "value": "a6be48a6-cbdf-7763-780c-ad0ddc8686dd"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "Sendallrequests(visible)toSelf"
+    ],
+    "dependencies": {
+      "shared_office365": "3d899943-b10a-432d-aebe-81c4b409949a"
+    },
+    "dependents": [],
+    "id": "892361b8-a18f-4100-b9f5-1b2f41133866"
+  },
+  "89c9b3f3-95d1-46e6-9eae-c340f3e9451f": {
+    "appActions": [
+      "Get-Apps",
+      "Get-Environments"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Power Apps for Makers",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3312/powerappsforappmakers/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_powerappsforappmakers",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "PowerAppsforMakers"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "89c9b3f3-95d1-46e6-9eae-c340f3e9451f"
+  },
+  "975f6d53-4014-4320-9545-53372fe6ec2d": {
+    "appActions": [
+      "ListGroups"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Groups",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1654/1.0.1654.3410/office365groups/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365groups",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Groups"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "975f6d53-4014-4320-9545-53372fe6ec2d"
+  },
+  "c1a6295c-edd7-4119-ac86-d8c7d0f96335": {
+    "connectionRef": {
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1653/1.0.1653.3403/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "3d899943-b10a-432d-aebe-81c4b409949a": {
+          "value": "shared_office365"
+        },
+        "workflowEntityId": {
+          "value": "704c198e-b54b-ee11-be6e-000d3a4b4875"
+        },
+        "workflowName": {
+          "value": "54736ca6-d05f-0421-08b1-8b698ef9602d"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_office365": {
+          "value": "3d899943-b10a-432d-aebe-81c4b409949a"
+        },
+        "workflowEntityId": {
+          "value": "704c198e-b54b-ee11-be6e-000d3a4b4875"
+        },
+        "workflowName": {
+          "value": "54736ca6-d05f-0421-08b1-8b698ef9602d"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "SendopenrequeststoSelf"
+    ],
+    "dependencies": {
+      "shared_office365": "3d899943-b10a-432d-aebe-81c4b409949a"
+    },
+    "dependents": [],
+    "id": "c1a6295c-edd7-4119-ac86-d8c7d0f96335"
+  },
+  "eaaaee90-572c-4ace-9b03-d21292d26a10": {
+    "appActions": [
+      "SearchUser"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Users",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/ase-v3/1.0.1653.3402/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "eaaaee90-572c-4ace-9b03-d21292d26a10"
+  }
+}

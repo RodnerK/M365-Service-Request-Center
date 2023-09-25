@@ -1,0 +1,321 @@
+screen_location,content,hyperlink
+Help link,,"https://learn.microsoft.com/en-us/power-apps/powerapps-overview, What is Power Apps?"
+Home - Content header,"<div style=""font-family: Arial, sans-serif; line-height: 1.6; margin-bottom: 20px;"">
+    <p>
+        <strong>Welcome to Microsoft 365 request center!</strong>
+    </p>
+    <p>
+        This innovative Power App serves as an integrative platform, meticulously developed to refine and simplify your
+        interactions with diverse organizational requests. It’s meticulously crafted to consolidate various
+        functionalities, offering a cohesive experience whether you’re aiming to manage environments, deploy
+        applications, or regulate Microsoft 365 Groups.
+    </p>
+    <p>
+        <strong>Key Features:</strong>
+    </p>
+    <ul>
+        <li><strong>Intuitive Request Submission:</strong> Leverage our user-centric forms to submit your requests
+            effortlessly, expediting approvals and implementations.</li>
+        <li><strong>Real-Time Request Tracking:</strong> Stay informed with live updates, tracking the evolution of your
+            requests from initiation to fulfillment.</li>
+        <li><strong>Comprehensive History View:</strong> Maintain optimal organization with access to a detailed log of
+            all your previous submissions, ensuring transparency and informed decision-making.</li>
+        <li><strong>User-Centric Design:</strong> Navigate with ease through our streamlined interface, optimized for
+            user-friendliness and accessibility, enhancing your overall experience.</li>
+    </ul>
+    <p>
+        On the home screen, you are greeted with a concise overview of your active requests, allowing for efficient
+        monitoring of each submission’s progress and status. To initiate a new request, navigate to the relevant
+        category and complete the corresponding form with utmost accuracy and clarity.
+    </p>
+    <p>
+        <strong>Efficient Navigation and Submission:</strong>
+    </p>
+    <p>
+        Our platform is structured to promote intuitive navigation, guiding you smoothly through various sections and
+        functionalities. When submitting a new request, following the guided prompts ensures the accuracy and
+        completeness of the information provided, crucial for prompt processing and approval.
+    </p>
+    <p>
+        <strong>Accuracy and Precision:</strong>
+    </p>
+    <p>
+        The efficacy of the request processing heavily relies on the precision of the submitted details. We urge you to
+        meticulously review all information before confirming your submission, as this aids in avoiding potential delays
+        and ensuring seamless progression through approval stages.
+    </p>
+    <p>
+        <strong>Enhanced Productivity and Satisfaction:</strong>
+    </p>
+    <p>
+        Our goal is to provide you with a platform that not only meets your needs but also exceeds your expectations,
+        facilitating enhanced productivity and user satisfaction. We hope you find immense value and convenience in
+        utilizing our Power App Request Portal and wish you a fruitful and pleasant experience!
+    </p>
+</div>",
+Home - Content footer,"<div style=""font-family: Arial, sans-serif; line-height: 1.6; margin-bottom: 20px;"">
+    <p>
+        <strong>Disclaimer</strong>: The information and requests submitted through this application are subject to
+        review and approval by the appropriate teams. The app is designed to facilitate the request process and improve
+        efficiency, but it does not guarantee immediate fulfillment or completion of requests. Any actions taken based
+        on the requests are subject to organizational policies and guidelines.
+        The app developers and administrators do their best to ensure accurate processing, but they are not responsible
+        for any errors or delays in the request handling. Use of this app signifies your understanding and agreement to
+        these terms.
+    </p>
+</div>",
+DetailedRequests - Content header - Environment creation,"<div style=""font-family: Arial, sans-serif; line-height: 1.6; margin-bottom: 20px;"">
+    <p>
+        <strong>Environment Creation Requests Overview</strong>
+    </p>
+    <p>
+        A comprehensive list of all your submitted requests for Power App environment creation. Upon submission, each
+        request undergoes an approval process through a predefined workflow. Approved requests subsequently trigger
+        automatic environment setup, allowing users to track the progression of their requests from submission to
+        environment configuration seamlessly. Please ensure all information provided during the request is accurate to
+        avoid delays in the approval and setup processes.
+    </p>
+</div>",
+DetailedRequests - Content footer,"<div style=""font-family: Arial, sans-serif; line-height: 1.6; margin-bottom: 20px;"">
+    <p>
+        <strong>Disclaimer</strong>: The information and requests submitted through this application are subject to
+        review and approval by the appropriate teams. The app is designed to facilitate the request process and improve
+        efficiency, but it does not guarantee immediate fulfillment or completion of requests. Any actions taken based
+        on the requests are subject to organizational policies and guidelines.
+        The app developers and administrators do their best to ensure accurate processing, but they are not responsible
+        for any errors or delays in the request handling. Use of this app signifies your understanding and agreement to
+        these terms.
+    </p>
+</div>",
+DetailedRequests - Content header - Environment deletion,"<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dummy Text</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .text-container {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class=""text-container"">
+        <h2>Environment Deletion Requests Overview</h2>
+        <p>
+            This section represents a detailed list of all submitted requests for the deletion of Power App
+            environments. It serves as a centralized hub for managing and viewing the status of your deletion requests.
+        </p>
+        <p>
+            Each request, upon submission, is channeled through a specific approval workflow to validate the legitimacy
+            and appropriateness of the deletion. It ensures that no environment is deleted inadvertently, securing
+            organizational data and app configurations.
+        </p>
+        <p>
+            Once a request gains approval, the corresponding environment is deleted automatically, allowing users to
+            monitor the status of their requests effortlessly, from initiation to deletion.
+        </p>
+        <p>
+            Accuracy and clarity in providing information during the request are crucial to avoid any unnecessary delays
+            or complications in the approval and deletion processes. Please double-check all submitted details to ensure
+            a smooth, error-free experience.
+        </p>
+    </div>
+</body>
+
+</html>",
+DetailedRequests - Content header - App deployment,"<div style=""font-family: Arial, sans-serif; line-height: 1.6; margin-bottom: 20px;"">
+    <p>
+        <strong>Power App Deployment Requests Overview</strong>
+    </p>
+    <p>
+        Navigate through a meticulous list of all your deployment requests for Power Apps, conveniently aggregated in
+        one location. This allows users to manage, view, and track the progress of their deployment requests in an
+        organized manner.
+    </p>
+    <p>
+        When a deployment request is submitted, it enters a specialized approval workflow designed to review and verify
+        the request’s validity and compliance with organizational policies. This ensures that every deployed app aligns
+        with organizational standards and requirements.
+    </p>
+    <p>
+        Upon receiving the necessary approvals, the deployment of the requested Power App is executed automatically,
+        facilitating users to follow their requests from submission to actual deployment seamlessly.
+    </p>
+    <p>
+        It is paramount to submit clear and accurate information when making a deployment request to prevent any delays
+        or hindrances in the approval and deployment phases. Kindly review all the details carefully before submission
+        to guarantee an efficient and smooth deployment process.
+    </p>
+</div>",
+DetailedRequests - Content header - App deletion,"<div style=""font-family: Arial, sans-serif; line-height: 1.6; margin-bottom: 20px;"">
+    <p>
+        <strong>Power App Deletion Requests Overview</strong>
+    </p>
+    <p>
+        This section compiles a detailed list of all your submitted requests for deleting Power Apps. It acts as a
+        unified portal where users can manage, view, and track the statuses of their deletion requests efficiently.
+    </p>
+    <p>
+        Every deletion request, once submitted, is processed through a systematic approval workflow. This workflow is
+        crucial for verifying the appropriateness of the deletion, ensuring that no app is accidentally removed and
+        preventing potential loss of app configurations and data.
+    </p>
+    <p>
+        Upon securing the requisite approvals, the specified Power App is deleted automatically, enabling users to
+        seamlessly monitor their requests from initiation to final deletion. This provides a transparent and
+        user-friendly way to manage app deletions.
+    </p>
+    <p>
+        Submitting precise and accurate information during the request is vital to evade any complications or delays in
+        the approval and deletion processes. Users are urged to double-check all provided details to ensure the accuracy
+        and to facilitate a smooth and hassle-free deletion experience.
+    </p>
+</div>",
+DetailedRequests - Content header - Group creation,"<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Microsoft 365 Group Creation Requests Overview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .text-container {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class=""text-container"">
+        <h2>Microsoft 365 Group Creation Requests Overview</h2>
+        <p>
+            This section provides a comprehensive overview of all your submitted requests for the creation of Microsoft
+            365 groups. It functions as a user-friendly platform enabling effective management, viewing, and tracking of
+            the progress of group creation requests.
+        </p>
+        <p>
+            After submission, every request embarks on a detailed approval journey, aligning with the organizational
+            policies and guidelines to ascertain compliance and appropriateness of the group creation.
+        </p>
+        <p>
+            Depending on the preferences selected during the request submission, the approved groups are either
+            assimilated into Microsoft Teams or configured as standalone entities. This customization ensures the
+            created groups are precisely tuned to fulfill the distinct collaborative needs of its members efficiently.
+        </p>
+        <p>
+            It’s imperative for users to ensure the accuracy and clarity of the information provided in the request
+            forms, including the preferences for integration with Microsoft Teams. This precision is crucial to prevent
+            any potential delays or discrepancies during the approval and configuration phases. We encourage a thorough
+            review of all the details before the final submission for a seamless and efficient group creation
+            experience.
+        </p>
+    </div>
+</body>
+
+</html>",
+DetailedRequests - Content header - Group deletion,"<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Microsoft 365 Group Deletion Requests Overview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .text-container {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class=""text-container"">
+        <h2>Microsoft 365 Group Deletion Requests Overview</h2>
+        <p>
+            This section amalgamates all your submitted requests for deleting Microsoft 365 groups into a unified and
+            user-friendly interface, allowing for the efficient management, viewing, and tracking of the statuses of
+            deletion requests.
+        </p>
+        <p>
+            Every request, once submitted, undergoes a meticulous review via a structured approval process to validate
+            its authenticity and compliance with organizational norms, thereby ensuring protection against unintended
+            deletions and possible disruptions.
+        </p>
+        <p>
+            Regardless of their integration with Microsoft Teams or their standalone status, each group identified for
+            deletion is rigorously assessed to ascertain that its removal is in sync with user requirements and
+            organizational protocols. This meticulous approach ensures a systematic and streamlined deletion procedure,
+            minimizing the likelihood of data loss and preserving organizational structure integrity.
+        </p>
+        <p>
+            Users are encouraged to submit information and preferences regarding group deletion with utmost clarity and
+            accuracy, as precision is fundamental for avoiding complications during the process. Diligent verification
+            of all the submitted details is crucial before the final submission to preclude any discrepancies or delays
+            in the subsequent approval and deletion stages.
+        </p>
+    </div>
+</body>
+
+</html>",
